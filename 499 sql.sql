@@ -1,4 +1,4 @@
-use dc2633;
+use dc2633; #temporarily using IBM from Hunter. You can use your own db to test for now
 
 CREATE TABLE IF NOT EXISTS customers(
 userID INT AUTO_INCREMENT UNIQUE,
