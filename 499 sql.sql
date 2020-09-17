@@ -23,12 +23,36 @@ CREATE TABLE IF NOT EXISTS company(
 companyID INT AUTO_INCREMENT UNIQUE,
 companyName varchar(32) NOT NULL,
 companyAddress varchar(128) NOT NULL,
+companyZipcode varchar(5) NOT NULL,
 storeCapacity int NOT NULL,
 companyPhone varchar(12) NOT NULL,
-companyEmail varchar(32) NOT NULL,
+companyEmail varchar(32) NOT NULL
+); #owner contact info can be found in table "companyContactInfo"
 
+#prevents repeating data
+CREATE TABLE IF NOT EXISTS zipcode(
+zipCode varchar(5),
+city varchar(32),
+state varchar(32),
 );
 
+#Table to store the contact info of managers/owners. It's for the develoeprs to call the manager/company. Remember that one person can own multiple stores
+CREATE TABLE IF NOT EXISTS companyContactInfo(
+ownerID INT NOT NULL AUTO_INCREMENT,
+ownerLastName varchar(128) NOT NULL,
+ownerMiddleName varchar(128),
+ownerFirstName varchar(128) NOT NULL,
+ownerEmail varchar(32) NOT NULL,
+ownerCell varchar(12) NOT NULL
+);
+
+
+#This table links the company to the company contact info. Prevents repeating data. One company can have multiple contact people (ex: day+evening manager) or one person can own multiple stores
+CREATE TABLE IF NOT EXISTS companyContactDetails
+(
+ownerID INT,
+companyID INT
+);
 
 #New table to handle different hours for different days (ex: 9-5 M-F, but 10-4 on weekends)
 CREATE TABLE IF NOT EXISTS companyHours(
@@ -38,15 +62,18 @@ startTime TIME, #format is 'hh:mm:ss'. Not unique because you can have multiple 
 endTime TIME
 );
 #Testing companyHours table
-INSERT INTO companyHours (companyID, dayOfWeek, startTime,endTime) VALUES (123, 1, '9:11', '5:12'); #This company is opened from 9:11 to 5:!2 on Sundays
-INSERT INTO companyHours (companyID, dayOfWeek, startTime,endTime) VALUES (123, 2, '3:11', '8:12'); #The same company is opened from 3:11 to 8:12 on Mondays
-select * from companyHours;
+-- INSERT INTO companyHours (companyID, dayOfWeek, startTime,endTime) VALUES (123, 1, '9:11', '5:12'); #This company is opened from 9:11 to 5:!2 on Sundays
+-- INSERT INTO companyHours (companyID, dayOfWeek, startTime,endTime) VALUES (123, 2, '3:11', '8:12'); #The same company is opened from 3:11 to 8:12 on Mondays
+-- select * from companyHours;
 
-
-CREATE TABLE IF NOT EXISTS zipcode(
-zipCode varchar(5),
-city varchar(32),
-state varchar(32),
+#line for the customers... needs some looking over
+CREATE TABLE IF NOT EXISTS queue(
+groupID INT AUTO_INCREMENT,
+numOfCustomers INT NOT NULL,
+dt date,
+companyID INT UNIQUE NOT NULL,
+userID INT UNIQUE NOT NULL, #remove not null if you allow same client to go on the same line twice in a day. Maybe they have a lot to buy and need to make 2 trips or maybe we don't want the person to reserve too many spots (ex: idiot pressing the "enter queue" button too many times thinking it's not working)
+placeInLine INT
 );
 
 
