@@ -17,5 +17,5 @@
 ```source env/bin/actviate```
 
 4. While in the virtual environment 
-* You will see *(env)* prefacing the your CLI input
-    * pip install django    
+* You will see *(env)* prefacing your CLI input
+```pip install django```    
