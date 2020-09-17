@@ -66,10 +66,10 @@ endTime TIME
 -- INSERT INTO companyHours (companyID, dayOfWeek, startTime,endTime) VALUES (123, 2, '3:11', '8:12'); #The same company is opened from 3:11 to 8:12 on Mondays
 -- select * from companyHours;
 
-#line for the customers... needs some looking over
+#line for the customers... needs some looking over. use SELECT MIN to find the person next on line. 
 CREATE TABLE IF NOT EXISTS queue(
 groupID INT AUTO_INCREMENT,
-numOfCustomers INT NOT NULL,
+numInGroup INT NOT NULL,
 dt date,
 companyID INT UNIQUE NOT NULL,
 userID INT UNIQUE NOT NULL, #remove not null if you allow same client to go on the same line twice in a day. Maybe they have a lot to buy and need to make 2 trips or maybe we don't want the person to reserve too many spots (ex: idiot pressing the "enter queue" button too many times thinking it's not working)
