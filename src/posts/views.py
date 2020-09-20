@@ -14,3 +14,4 @@ def post_list_view(request):
     }
 
     return render(request, "posts/index.html", context)
+
