@@ -2,7 +2,8 @@
 
 ## Technologies 
 * Django
-* mySQL
+* mySQL 
+    * Workbench
 
 ## Linux 
 ### Dependencies
@@ -14,8 +15,14 @@
 ```virtualenv env```
 
 3. Activiate the environment\
-```source env/bin/actviate```
+```source env/bin/activate```
 
 4. While in the virtual environment 
-* You will see *(env)* prefacing your CLI input\
+* You will see *(env)* prefacing your CLI input
+    * This means you are in your virtual environment 
 ```pip install django```    
+
+5. Install mySQL
+*This will allow you to manage data migrations\
+```pip install mysqlclient```\
+*If you encounter any errors with this, [click here](https://stackoverflow.com/questions/35190465/virtualenvpython3-4-pip-install-mysqlclient-error)
