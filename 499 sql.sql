@@ -1,4 +1,7 @@
-use dc2633; #temporarily using IBM from Hunter. You can use your own db to test for now
+#This is currently using Azure  -David 9/22/2020
+CREATE DATABASE IF NOT EXISTS lineup;
+
+use lineup;
 
 #Register a client
 CREATE TABLE IF NOT EXISTS customers(
@@ -75,5 +78,4 @@ companyID INT UNIQUE NOT NULL,
 userID INT UNIQUE NOT NULL, #remove not null if you allow same client to go on the same line twice in a day. Maybe they have a lot to buy and need to make 2 trips or maybe we don't want the person to reserve too many spots (ex: idiot pressing the "enter queue" button too many times thinking it's not working)
 placeInLine INT
 );
-
 
