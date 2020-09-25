@@ -15,3 +15,5 @@ def post_list_view(request):
 
     return render(request, "posts/index.html", context)
 
+def home_page_view(request):
+     return render(request, "posts/homepage.html", {})
