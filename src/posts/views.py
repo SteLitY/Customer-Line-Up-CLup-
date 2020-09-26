@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Post
 # Create your views here.
@@ -6,14 +7,15 @@ from .models import Post
 
 #List all the posts 
 
-def post_list_view(request):
-    post_objects = Post.objects.all()
-    
-    context = {
-        'post_objects': post_objects
-    }
+def home_page_view(request,*args, **kwargs):
+    print(request)
+    print(request.user)
+    return render(request, "posts/homepage.html", {})
 
-    return render(request, "posts/index.html", context)
 
-def home_page_view(request):
-     return render(request, "posts/homepage.html", {})
+def contact_page_view(request, *args, **kwargs):
+    return render(request, "posts/contact.html", {})
+
+def about_us_page_view(request,*args, **kwargs):
+     return render(request, "posts/aboutus.html", {})
+

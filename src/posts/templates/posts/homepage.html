@@ -1,14 +1,6 @@
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Customer Line Up</title>
-    <head>
-    <body>
-        <h1>Customer Line Up</h1>
-    </body>
-    <form action="/your-name/" method="post">
-        <label for="your_name">Your name: </label>
-        <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-        <input type="submit" value="OK">
-    </form>
-</html>
+{% block content %}
+    <h1> Hello World! </h1> 
+    <p> I'm a template </p>
+{% endblock %} 
