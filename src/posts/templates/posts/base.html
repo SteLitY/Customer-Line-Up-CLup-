@@ -1,13 +1,21 @@
 <!doctype html>
+{% load static %}
+
 <html>
 <head>
     <title>Customer Line-Up </title>
 </head>
     <body>
-        {% block content %} 
-        
+        {%block content %} 
+        <img src="{% static 'images/customers_lining_up.png' %}"/>
+        {% endblock %}
+
+        {% block content1 %} 
         replace me
-        
+        {% endblock %}
+
+        {% block content2 %} 
+        replace me
         {% endblock %}
     </body>
 </html>
