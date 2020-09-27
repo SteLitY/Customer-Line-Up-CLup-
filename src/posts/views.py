@@ -10,12 +10,12 @@ from .models import Post
 def home_page_view(request,*args, **kwargs):
     print(request)
     print(request.user)
-    return render(request, "posts/homepage.html", {})
+    return render(request, "homepage.html", {})
 
 
 def contact_page_view(request, *args, **kwargs):
-    return render(request, "posts/contact.html", {})
+    return render(request, "contact.html", {})
 
 def about_us_page_view(request,*args, **kwargs):
-     return render(request, "posts/aboutus.html", {})
+     return render(request, "aboutus.html", {})
 
