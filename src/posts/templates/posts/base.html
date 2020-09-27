@@ -5,9 +5,10 @@
 <head>
     <title>Customer Line-Up </title>
 </head>
+{% comment %} Meaning to {% include 'navbar.html' here  %} {% endcomment %}
     <body>
-        {%block content %} 
-        <img src="{% static 'images/customers_lining_up.png' %}"/>
+        {% block content %} 
+        <img src="{% static "/images/customers_lining_up.png" %}" alt="lineup">
         {% endblock %}
 
         {% block content1 %} 

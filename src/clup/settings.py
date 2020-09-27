@@ -128,5 +128,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
  
     BASE_DIR / "static",
-    '/src/clup/static',
+    '/src/clup/static/',
 ]
