@@ -19,3 +19,5 @@ def contact_page_view(request, *args, **kwargs):
 def about_us_page_view(request,*args, **kwargs):
      return render(request, "aboutus.html", {})
 
+def signup_signin_page_view(request, *args, **kwargs):
+    return render(request, "signup_signin.html", {})
