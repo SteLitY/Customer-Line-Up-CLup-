@@ -23,6 +23,6 @@
 ```pip install django```    
 
 5. Install mySQL
-*This will allow you to manage data migrations\
+* This will allow you to manage data migrations\
 ```pip install mysqlclient```\
-*If you encounter any errors with this, [click here](https://stackoverflow.com/questions/35190465/virtualenvpython3-4-pip-install-mysqlclient-error)
+* If you encounter any errors with this,\ [click here](https://stackoverflow.com/questions/35190465/virtualenvpython3-4-pip-install-mysqlclient-error)
