@@ -7,6 +7,10 @@ from .models import Post
 
 #List all the posts 
 
+
+def base_view(request, *args, **kwargs):
+    return render(request, "base.html", {})
+
 def home_page_view(request,*args, **kwargs):
     print(request)
     print(request.user)
