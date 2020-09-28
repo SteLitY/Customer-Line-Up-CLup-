@@ -12,7 +12,6 @@ def home_page_view(request,*args, **kwargs):
     print(request.user)
     return render(request, "homepage.html", {})
 
-
 def contact_page_view(request, *args, **kwargs):
     return render(request, "contact.html", {})
 
@@ -21,5 +20,9 @@ def about_us_page_view(request,*args, **kwargs):
 
 def signup_signin_page_view(request, *args, **kwargs):
     return render(request, "signup_signin.html", {})
+    
 def business_signup_view(request, *args, **kwargs):
     return render(request, "b_signup.html", {})
+
+def business_login_view(request, *args, **kwargs):
+	return render(request, "b_login.html", {})
