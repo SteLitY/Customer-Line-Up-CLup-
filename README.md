@@ -25,13 +25,12 @@ group may enter the store.
 * Monitor inflow/outflow
 	* Allow people to sign up groups of people (one person in queue can mean more
 than 1 customer going into the store)
-* Limit the amount of people in store (don’t let clients in if the capacity is reached)
-* Unique ID (MySQL)
+	* Limit the amount of people in store (don’t let clients in if the capacity is reached)
 * Capacity monitor
 	* Prevent clients from going past capacity.
 	* Keep track of how many people are currently in the store.
-* Scan in and scan out with QR code (Assume cashier scans customer out after checking out their items)
-* Include count for employees. During "rush hours" where there are more
+		* Scan in and scan out with QR code (Assume cashier scans customer out after checking out their items)
+		* Include count for employees. During "rush hours" where there are more
 clients, they also need more staff to accommodate them (ex: more
 employees to restock shelves). Include the extra staff in the store capacity.
 	* Optional feature - allow the business to send messages to everyone in the
