@@ -1,6 +1,6 @@
 # Customer Line-Up Web Application
 
-__**Brief Intro:**__
+#__**Brief Intro:**__
 COVID has added safety restrictions for stores. We need to make sure that the store
 isn’t too crowded and that the lines don’t have too many people in it. The goal of this
 project is to develop an easy-to-use website that
