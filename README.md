@@ -1,10 +1,11 @@
 # Customer Line-Up Web Application
 
+__**Brief Intro:**__
 COVID has added safety restrictions for stores. We need to make sure that the store
 isn’t too crowded and that the lines don’t have too many people in it. The goal of this
 project is to develop an easy-to-use website that
-1) allows store managers to regulate the amount of people inside the store,
-2) save the client’s time from having to physically wait in line (especially when the
+1. allows store managers to regulate the amount of people inside the store,
+2. save the client’s time from having to physically wait in line (especially when the
 weather is bad)
 Attention will also be given to the store’s profits (ex: the more people in the store, the
 more money the store earns. So, we need to let clients in as soon as there is space
@@ -15,24 +16,24 @@ the web application. Individuals or groups will scan their QR codes to get into 
 when they are finished shopping, a cashier will scan them out, and the next person or
 group may enter the store.
 List of features, and for each, a description.
-● Innovative ticket system
-○ Allow people to sign up online, in person, and over the phone. The tickets
-numbers will be given starting from 1. People coming in person or are calling
-over the phone will have their spot on-the-line tracked by the online system.
-Ticket numbers are first come first serve. The smaller your ticket number, the
-closer you are to the front of the line.
-● Monitor inflow/outflow
-○ Allow people to sign up groups of people (one person in queue can mean more
+* Innovative ticket system
+	* Allow people to sign up online, in person, and over the phone. The tickets
+	numbers will be given starting from 1. People coming in person or are calling
+	over the phone will have their spot on-the-line tracked by the online system.
+	Ticket numbers are first come first serve. The smaller your ticket number, the
+	closer you are to the front of the line.
+* Monitor inflow/outflow
+	* Allow people to sign up groups of people (one person in queue can mean more
 than 1 customer going into the store)
-■ Limit the amount of people in store (don’t let clients in if the
+* Limit the amount of people in store (don’t let clients in if the
 capacity is reached)
-● Unique ID (MySQL)
-● Capacity monitor
-○ Prevent clients from going past capacity.
-○ Keep track of how many people are currently in the store.
-■ Scan in and scan out with QR code (Assume cashier scans
+* Unique ID (MySQL)
+* Capacity monitor
+	* Prevent clients from going past capacity.
+	* Keep track of how many people are currently in the store.
+* Scan in and scan out with QR code (Assume cashier scans
 customer out after checking out their items)
-■ Include count for employees. During "rush hours" where there are more
+* Include count for employees. During "rush hours" where there are more
 clients, they also need more staff to accommodate them (ex: more
 employees to restock shelves). Include the extra staff in the store capacity.
 ○ Optional feature - allow the business to send messages to everyone in the
