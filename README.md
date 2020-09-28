@@ -6,7 +6,7 @@ project is to develop an easy-to-use webapp that
 
 2. Save the client’s time from having to physically wait in line (especially when the
 weather is bad). 
-3. Attention will also be given to the store’s profits (ex: the more people in the store, the
+3. Make sure the store continues to remains profitable with our line management system. Attention will also be given to the store’s profits (ex: the more people in the store, the
 more money the store earns. So, we need to let clients in as soon as there is space
 available). If we don’t pay attention to the store’s profit, they will not use the app. Staff
 and managerial personnel will be able to see the amount of people within their store and
