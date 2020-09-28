@@ -52,8 +52,8 @@ minutes, take the client off queue, increment tardiness_ by 1.
 is relative to how fast the store serves clients. Ex: A bigger store can serve
 100 clients a minute while a smaller store with fewer employees can serve
 10 a minute. We want to give the client time to come to the store so the
-bigger store would have a warning when they’re 20,000th in queue, while
-the smaller store might warn the client when they’re 2,000th in queue.
+bigger store would have a warning when they’re 200th on the queue, while
+the smaller store might warn the client when they’re 10th on the queue.
 * Timestamp (know when client arrives + leaves)
 
 * Vicinity to store
