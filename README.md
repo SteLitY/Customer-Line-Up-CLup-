@@ -1,7 +1,7 @@
 # Customer Line-Up Web Application
 COVID has added safety restrictions for stores. We need to make sure that the store
 isn’t too crowded and that the lines don’t have too many people on it. The goal of this
-project is to develop an easy-to-use website that
+project is to develop an easy-to-use webapp that
 1. Allows store managers to regulate the amount of people inside the store
 
 2. Save the client’s time from having to physically wait in line (especially when the
