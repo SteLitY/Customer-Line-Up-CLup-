@@ -5,7 +5,8 @@ project is to develop an easy-to-use website that
 1. Allows store managers to regulate the amount of people inside the store
 
 2. Save the client’s time from having to physically wait in line (especially when the
-weather is bad). Attention will also be given to the store’s profits (ex: the more people in the store, the
+weather is bad). 
+3. Attention will also be given to the store’s profits (ex: the more people in the store, the
 more money the store earns. So, we need to let clients in as soon as there is space
 available). If we don’t pay attention to the store’s profit, they will not use the app. Staff
 and managerial personnel will be able to see the amount of people within their store and
