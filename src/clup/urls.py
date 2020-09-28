@@ -14,5 +14,6 @@ urlpatterns = [
     path('aboutus/', about_us_page_view),
     path('signin/', signup_signin_page_view),
     path('businesslogin/',business_login_view),
-    path('businesssignup/',business_signup_view)
+    path('businesssignup/',business_signup_view),
+    path('reset/', forgot_password_view)
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
