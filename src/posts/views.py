@@ -29,3 +29,4 @@ def business_login_view(request, *args, **kwargs):
 
 def forgot_password_view(request, *args, **kwargs):
 	return render(request, "reset.html", {})
+	
