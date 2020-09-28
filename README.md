@@ -63,7 +63,7 @@ the smaller store might warn the client when they’re 10th on the queue.
 when they are not expected to get in before the store closes.
 	* Reservation closing time.
 
-## Test plan.
+## Test plan
 To test this web application, our team will open the webapp on different platforms and browsers
 (iphone, android, PC. firefox, chrome, IE). We will test different client sign-up methods and
 apply stress tests to each feature to test the extents to which the app may break. We will set up
