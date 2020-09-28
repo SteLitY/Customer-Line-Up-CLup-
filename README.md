@@ -55,7 +55,8 @@ is relative to how fast the store serves clients. Ex: A bigger store can serve
 bigger store would have a warning when they’re 20,000th in queue, while
 the smaller store might warn the client when they’re 2,000th in queue.
 * Timestamp (know when client arrives + leaves)
-	* Vicinity to store
+
+* Vicinity to store
 	* “I’m nearby” button
 * Times of operations
 	* Closing and Opening of stores. Prevent clients from entering the queue
