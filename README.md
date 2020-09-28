@@ -1,13 +1,11 @@
 # Customer Line-Up Web Application
-
-## Brief Intro:
 COVID has added safety restrictions for stores. We need to make sure that the store
 isn’t too crowded and that the lines don’t have too many people in it. The goal of this
 project is to develop an easy-to-use website that
-1. allows store managers to regulate the amount of people inside the store,
-2. save the client’s time from having to physically wait in line (especially when the
-weather is bad)
-Attention will also be given to the store’s profits (ex: the more people in the store, the
+1. Allows store managers to regulate the amount of people inside the store
+
+2. Save the client’s time from having to physically wait in line (especially when the
+weather is bad). Attention will also be given to the store’s profits (ex: the more people in the store, the
 more money the store earns. So, we need to let clients in as soon as there is space
 available). If we don’t pay attention to the store’s profit, they will not use the app. Staff
 and managerial personnel will be able to see the amount of people within their store and
@@ -15,7 +13,8 @@ the amount of people in the queue. A QR code is generated for those who sign up 
 the web application. Individuals or groups will scan their QR codes to get into the store,
 when they are finished shopping, a cashier will scan them out, and the next person or
 group may enter the store.
-List of features, and for each, a description.
+
+## List of features:
 * Innovative ticket system
 	* Allow people to sign up online, in person, and over the phone. The tickets
 	numbers will be given starting from 1. People coming in person or are calling
