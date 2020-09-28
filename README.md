@@ -64,14 +64,12 @@ when they are not expected to get in before the store closes.
 	* Reservation closing time.
 
 ## Test plan.
-To test this web application, the team will open the web app on different platforms and browsers
+To test this web application, our team will open the webapp on different platforms and browsers
 (iphone, android, PC. firefox, chrome, IE). We will test different client sign-up methods and
 apply stress tests to each feature to test the extents to which the app may break. We will set up
-a mock store on a machine and have team members populate the queue with new users in the
+a mock store on a machine and populate the queue with new users in the
 virtual line. We will have a given number of QR codes in an “active” state meaning that they are
-inside the store and several customers outside the store in an inactive state. An example of
-what this may be called is store_capacity_ which decrements by group size when a group of
-clients leave the store.
+inside the store and several customers outside the store in an inactive state. We will test the variable store_capacity_ and make sure it properly decrements its value when a group or indiividual leaves the store
 
 
 ## Technologies 
