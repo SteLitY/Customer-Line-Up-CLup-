@@ -24,45 +24,44 @@ group may enter the store.
 * Monitor inflow/outflow
 	* Allow people to sign up groups of people (one person in queue can mean more
 than 1 customer going into the store)
-* Limit the amount of people in store (don’t let clients in if the
-capacity is reached)
+* Limit the amount of people in store (don’t let clients in if the capacity is reached)
 * Unique ID (MySQL)
 * Capacity monitor
 	* Prevent clients from going past capacity.
 	* Keep track of how many people are currently in the store.
-* Scan in and scan out with QR code (Assume cashier scans
-customer out after checking out their items)
+* Scan in and scan out with QR code (Assume cashier scans customer out after checking out their items)
 * Include count for employees. During "rush hours" where there are more
 clients, they also need more staff to accommodate them (ex: more
 employees to restock shelves). Include the extra staff in the store capacity.
-○ Optional feature - allow the business to send messages to everyone in the
+	* Optional feature - allow the business to send messages to everyone in the
 queue through email or text message. (ex: send an alert to customer if
 item has run out or if they want to give a special offer to people waiting on
 queue, etc.)
-● COVID Requirements to enter store
-○ Masks - Reminders to wear a mask - (can be added to the message sent
+* COVID Requirements to enter store
+	* Masks - Reminders to wear a mask - (can be added to the message sent
 to clients when they successfully entered the queue. If we have time, ask
 client to take a photo of themselves with a mask on and use machine
 learning to see if group has mask on)
-● Reservation (line)
-○ Button to make and cancel reservations.
-○ Time limit to come. If the client doesn’t arrive when it’s their turn. Send an
+* Reservation (line)
+	* Button to make and cancel reservations.
+	* Time limit to come. If the client doesn’t arrive when it’s their turn. Send an
 alert to the client telling them they have ___ minutes to come. After ___
 minutes, take the client off queue, increment tardiness_ by 1.
-○ Warn customers when they’re 10th/5th/1st person on the queue. Number
+* Warn customers when they’re 10th/5th/1st person on the queue. Number
 is relative to how fast the store serves clients. Ex: A bigger store can serve
 100 clients a minute while a smaller store with fewer employees can serve
 10 a minute. We want to give the client time to come to the store so the
 bigger store would have a warning when they’re 20,000th in queue, while
 the smaller store might warn the client when they’re 2,000th in queue.
-○ Timestamp (know when client arrives + leaves)
-● Vicinity to store
-○ “I’m nearby” button
-● Times of operations
-○ Closing and Opening of stores. Prevent clients from entering the queue
+* Timestamp (know when client arrives + leaves)
+	* Vicinity to store
+	* “I’m nearby” button
+* Times of operations
+	* Closing and Opening of stores. Prevent clients from entering the queue
 when they are not expected to get in before the store closes.
-○ Reservation closing time.
-Test plan (1 paragraph).
+	* Reservation closing time.
+
+## Test plan.
 To test this web application, the team will open the web app on different platforms and browsers
 (iphone, android, PC. firefox, chrome, IE). We will test different client sign-up methods and
 apply stress tests to each feature to test the extents to which the app may break. We will set up
@@ -100,7 +99,7 @@ clients leave the store.
 ```pip install mysqlclient```\
 *If you encounter any errors with this, [click here](https://stackoverflow.com/questions/35190465/virtualenvpython3-4-pip-install-mysqlclient-error)
 
-##How to use:
+## How to use:
 
 1. open cmd (windows) or terminal and navigate to the src folder
 
