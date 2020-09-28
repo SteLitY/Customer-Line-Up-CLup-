@@ -8,8 +8,9 @@ project is to develop an easy-to-use webapp that
 weather is bad). 
 3. Make sure the store continues to remains profitable with our line management system. Attention will also be given to the store’s profits (ex: the more people in the store, the
 more money the store earns. So, we need to let clients in as soon as there is space
-available). If we don’t pay attention to the store’s profit, they will not use the app. Staff
-and managerial personnel will be able to see the amount of people within their store and
+available). If we don’t pay attention to the store’s profit, they will not use the app. 
+
+Staff and managerial personnel will be able to see the amount of people within their store and
 the amount of people in the queue. A QR code is generated for those who sign up on
 the web application. Individuals or groups will scan their QR codes to get into the store,
 when they are finished shopping, a cashier will scan them out, and the next person or
