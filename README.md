@@ -44,7 +44,7 @@ to clients when they successfully entered the queue. If we have time, ask
 client to take a photo of themselves with a mask on and use machine
 learning to see if group has mask on)
 * Reservation (line)
-	* Button to make and cancel reservations.
+	* Button to go on the line and leave it.
 	* Time limit to come. If the client doesn’t arrive when it’s their turn. Send an
 alert to the client telling them they have ___ minutes to come. After ___
 minutes, take the client off queue, increment tardiness_ by 1.
