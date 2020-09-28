@@ -25,6 +25,9 @@ def about_us_page_view(request,*args, **kwargs):
 def signup_signin_page_view(request, *args, **kwargs):
     return render(request, "signup_signin.html", {})
 
+def customer_signup_view(request, *args, **kwargs):
+    return render(request, "c_signup.html", {})
+
 def business_signup_view(request, *args, **kwargs):
     return render(request, "b_signup.html", {})
 

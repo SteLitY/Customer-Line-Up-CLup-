@@ -7,12 +7,13 @@ from posts.views import *
 
 
 urlpatterns = [
-    path('', base_view),
+    path('', home_page_view),
     path('home/', home_page_view),
     path('admin/', admin.site.urls),
     path('contact/', contact_page_view),
     path('aboutus/', about_us_page_view),
     path('signin/', signup_signin_page_view),
+    path('signup/', customer_signup_view),
     path('businesslogin/',business_login_view),
     path('businesssignup/',business_signup_view),
     path('reset/', forgot_password_view)
