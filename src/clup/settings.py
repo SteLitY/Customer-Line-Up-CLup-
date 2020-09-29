@@ -84,9 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'clup',
-        'USER': 'admin',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
+        'USER': 'admin499',
+        'PASSWORD': 'CS499class',
+        'HOST': 'lineup499.mysql.database.azure.com',
         'PORT': '3306',
 
     }
