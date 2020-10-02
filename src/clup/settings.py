@@ -80,6 +80,11 @@ WSGI_APPLICATION = 'clup.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+def get_ssl_cert():
+    current_path = Path(__file__).resolve().parent.parent
+    return str(current_path / 'BaltimoreCyberTrustRoot.crt.pem')
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -88,7 +93,9 @@ DATABASES = {
         'PASSWORD': 'CS499class',
         'HOST': 'lineup499.mysql.database.azure.com',
         'PORT': '3306',
-
+        'OPTIONS' : {
+        'ssl' : get_ssl_cert()
+        }
     }
 }
 
