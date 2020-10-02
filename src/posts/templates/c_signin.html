@@ -1,47 +1,56 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 col-xl-9 mx-auto">
-        <div class="card card-signin flex-row my-5">
-          <div class="card-img-left d-none d-md-flex">
-             <!-- Background image for card set in CSS! -->
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-center">Customer Registration</h5>
-            <form class="form-signin">
-              <div class="form-label-group">
-                <label for="inputUserame">Username</label>
-                <input type="text" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
-              </div>
-              </br>
-              <div class="form-label-group">
-                <label for="inputEmail">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
-              </div>
-              
-              <hr>
-              </br>
-              <div class="form-label-group">
-                <label for="inputPassword">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-              </div>
-              </br>
-              <div class="form-label-group">
-                <label for="inputConfirmPassword">Confirm password</label>
-                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
-              </div>
-              </br>
-              <button class="btn btn-lg btn-primary btn-block " type="submit">Sign in</button>                      
-              <br>
-              <p><a href="/reset">Forgot password </a>  |  <a href="/signup">Sign up</a></p>  
-              <hr class="my-4">
-            </form>
-          </div>
+<style>
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+h2 {
+ text-align:center
+}
+p {
+ text-align:center
+}
+</style>
+<div class="container-fluid home-main">
+    <!-- Sign up form -->
+    <form>
+        <h2 class="card-title"> Line Up !</h2>
+        <!-- Sign up card -->
+            <div class="card-body home-main">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQcHLNUeeh2ZrMIfDgkqE5p1Ka_EXDj5Ldomg&usqp=CAU" class="width:1%";>
         </div>
-      </div>
-    </div>
-  </div>
-</body>
+        
+        <div class="row">
+            <!-- <div class="col-md-11" style="padding=0.5em;"> -->
+                <!-- <div class="card"> -->
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
+                            <div class="email-feedback">
+                            
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">Pasword</label>
+                            <input type="password" class="form-control" id="password" placeholder="Type your password" required>
+                            <div class="password-feedback">
+                            
+                            </div>
+                        </div>
+                        </div>
+                   <!--  </div>
+                </div> -->
+        </div>
+        <div style="margin-top: 1em;">
+            <button button type="submit" type="button" class="btn btn-default">Login</button>
+        </div>
+        <br>
+        <p><a href="/reset">Forgot password ?  </a>  | 
+         <a href="/signup">Sign up for Line Up</a></p>  
+        </form>
+</div>
 {% endblock %}

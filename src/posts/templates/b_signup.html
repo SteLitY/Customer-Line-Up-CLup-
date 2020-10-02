@@ -8,18 +8,18 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
-p {
+p, h3 {
  text-align:center
 }
 </style>
-<div class="container" style="margin-top: 1em;">
+<div class="container-fluid home-main">
     <!-- Sign up form -->
     <form>
         <!-- Sign up card -->
-        <div class="card person-card">
-            <div class="card-body">
-                <!-- Sex image -->
-                <img src="https://as2.ftcdn.net/jpg/01/43/97/11/500_F_143971135_Q4o84M61UtIbgm0B5GPGSvSTogJ9Wl8n.jpg" class="width:50%";>
+        <!-- <div class="card person-card"> -->
+            <div class="card-body fluid home-main">
+                <h3 class="card-title"> Sign Up for Business !</h3>
+                 <img src="https://cedcommerce.com/blog/wp-content/uploads/2018/11/Create-A-Top-notch-Online-Grocery-Store-Model-With-These-Easy-Tips-1200x628.jpg" class="width:500%";>
                 <h2 id="who_message" class="card-title">Who are you ?</h2>
                 <!-- First row (on medium screen) -->
                 <div class="row">
@@ -43,12 +43,12 @@ p {
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
         
         <div class="row">
             <div class="col-md-6" style="padding=0.5em;">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body fluid home-main">
                         <h2 class="card-title">How to contact you ?</h2>
                         <div class="form-group">
                             <label for="email" class="col-form-label">Email</label>
@@ -70,7 +70,7 @@ p {
                 
             <div class="col-md-6">
                 <div class="card"> 
-                    <div class="card-body">
+                    <div class="card-body home-main">
                         <h2 class="card-title">Secure your account !</h2>
                         <div class="form-group">
                             <label for="password" class="col-form-label">Pasword</label>
@@ -93,7 +93,7 @@ p {
         <div class="row">
             <div class="col-md-6" style="padding=0.5em;">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body home-main">
                         <h2 class="card-title">Store Information</h2>
                         <div class="form-group">
                             <label for="sname" class="col-form-label">Store name</label>
@@ -116,7 +116,7 @@ p {
                 
             <div class="col-md-6">
                 <div class="card"> 
-                    <div class="card-body">
+                    <div class="card-body home-main">
                         <h2 class="card-title">Store Address</h2>
                         <div class="form-group">
                             <label for="sstradd" class="col-form-label">Street address</label>
@@ -199,7 +199,8 @@ p {
             </div>
         </div>
         <div style="margin-top: 1em;">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Sign up !</button>
+            <!-- <button type="submit" class="btn btn-primary btn-lg btn-block">Sign up !</button> -->
+            <button button type="submit" type="button" class="btn btn-default">Sign Up</button>
         </div>
         <br>
         <p><a href="/businesslogin"> Back to login  </a>
