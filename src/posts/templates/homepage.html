@@ -1,9 +1,64 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+span{
+  margin: 0 .00000000001px;
+  line-height: .5;
+  text-shadow: 0 0 2px rgba(0, 0, 0, .45);
+  animation: span 3s ease-in infinite alternate;
+}
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.letter{
+  display: inline-flex;
+  height: 5px;
+  width: .001px;
+  /* border: 2.5px solid #FF1EAD; */
+  /*border: 2.35px solid black; */
+  /*border-radius: 5px;*/
+
+  animation: letter 3s ease-in-out infinite alternate;
+}
+@keyframes span {
+  0%,30%{ margin: 0 15px; }
+  70%,100%{ margin: 0 5px; }
+}
+@keyframes letter {
+  0%,30%{ width: 4px; }
+  70%,100%{ width: 6vw; }
+}
+/*h2{
+  margin-right: auto;   
+  margin-left: auto;
+}
+
+.a { text-indent: 3em; }
+.b { padding-left: 3em;}
+.c { margin-left: 3em; }
+.d { transform: translateX(3em);}
+.e { position: relative; left: 3em;}*/
+</style>
  <div class="container-fluid home-main">
-    <h1>Line Up </h1>
-    <h2><span class="blinker">🚶🏽‍♀️🚶🏻‍♂️🚶🏼‍♀️🚶🏿‍♂️🚶🏻‍♀️🚶🏾‍♀️</span></h2>
+    <h1 id="who_message" class="card-title"> Line Up</h1>
+    <!-- <h2><span class="blinker">🚶🏽‍♀️🚶🏻‍♂️🚶🏼‍♀️🚶🏿‍♂️🚶🏻‍♀️🚶🏾‍♀️</span></h2> -->
+  </br>
+    <div class="main">
+  <h2>
+  <span>🚶🏻‍♂️</span>
+  <span class="letter"></span>
+  <span>🚶🏼‍♀️</span>
+  <span class="letter"></span>
+  <span>🚶🏿‍♂️</span>
+  <span class="letter"></span>
+  <span>🚶🏾‍♀️</span>
+  <span class="letter"></span>
+   <h2>
+
+</div>
     <button onclick="location.href='/signin'" type="button" class="btn btn-default">Customer</button>
     </br>
     </br>
