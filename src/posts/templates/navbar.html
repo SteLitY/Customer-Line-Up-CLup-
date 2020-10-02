@@ -3,6 +3,7 @@
   .nav.navbar-nav.navbar-right li a {
     color: blue;
 }
+
    body{
        margin:0;
        padding:0;
@@ -17,6 +18,7 @@
        width:100%;
        background:black;
        overflow:auto;
+       text-decoration: none;
    }
    ul{
        padding:0;
@@ -25,12 +27,14 @@
    }
    li{
        float:left;
+       text-decoration: none;
    }
    .logo img{
        position:absolute;
        margin-top:15px;
        margin-left:10px;
    }
+
    nav a{
        width: 300px;
        display:block;
@@ -39,7 +43,6 @@
        font-family:Arial;
        color:#f2f2f2;
        text-align:center; 
-
    }
    nav a:hover{
        background:#D3D3D3;
@@ -55,19 +58,19 @@
 } 
    </style>
 
-
+<body>
 <nav class="navbar navbar-expand-lg navbar-custom">
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="color-me" href="/home"><h5>LineUp</h5><span class="sr-only"></span></a>
+        <a class="color-me" style="text-decoration:none;" href="/home"><h5>LineUp</h5><span class="sr-only"></span></a>
         <!-- <a href="#" class="color-me"><h5>LineUp</h5><span class="glyphicon glyphicon-list-alt"></span></a> -->
       </li>
       <li class="nav-item active">
-        <a class="color-me" href="/aboutus">About Us</a>
+        <a class="color-me" style="text-decoration:none;" href="/aboutus">About Us</a>
       </li>
       <li class="nav-item active">
-        <a class="color-me" href="/contact">Contact</a>
+        <a class="color-me" style="text-decoration:none;" href="/contact">Contact</a>
       </li>
     </ul>
     <ul class="nav-item dropdown active">
@@ -83,7 +86,7 @@
       </ul>
   </div>
 </nav>
-
+</body>
 
 
 <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
