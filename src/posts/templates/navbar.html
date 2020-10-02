@@ -1,12 +1,21 @@
 {% load static %}
+<style>
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+h3 {
+ font-family: 'arial';
+}
+
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#"><img src="{% static "images/icons/line_up_icon.png" %}" alt="lineup_icon" width="130" height="70"> <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/home"><h5>LineUp</h5><span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link " href="/aboutus">About Us</a>
