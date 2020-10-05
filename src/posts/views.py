@@ -36,4 +36,5 @@ def business_login_view(request, *args, **kwargs):
 
 def forgot_password_view(request, *args, **kwargs):
 	return render(request, "reset.html", {})
-	
+def control_panel_view(request, *args, **kwargs):
+    return render(request, "controlpanel.html", {})
