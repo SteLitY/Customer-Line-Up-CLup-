@@ -14,13 +14,13 @@ def base_view(request, *args, **kwargs):
 def home_page_view(request,*args, **kwargs):
     print(request)
     print(request.user)
-    return render(request, "homepage.html", {})
+    return render(request, "home_page.html", {})
 
 def contact_page_view(request, *args, **kwargs):
-    return render(request, "contact.html", {})
+    return render(request, "contact_us.html", {})
 
 def about_us_page_view(request,*args, **kwargs):
-     return render(request, "aboutus.html", {})
+     return render(request, "about_us.html", {})
 
 def signup_signin_page_view(request, *args, **kwargs):
     return render(request, "c_signin.html", {})
@@ -37,4 +37,4 @@ def business_login_view(request, *args, **kwargs):
 def forgot_password_view(request, *args, **kwargs):
 	return render(request, "reset.html", {})
 def control_panel_view(request, *args, **kwargs):
-    return render(request, "controlpanel.html", {})
+    return render(request, "control_panel.html", {})

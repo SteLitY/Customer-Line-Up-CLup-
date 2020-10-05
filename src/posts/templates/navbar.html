@@ -1,5 +1,9 @@
 {% load static %}
 <style>
+  h5 {
+    color:#5812c5;
+  }
+
   .nav.navbar-nav.navbar-right li a {
     color: blue;
   }
@@ -15,7 +19,7 @@
    }
    nav{
        width:100%;
-       background:black;
+       background:#f2f2f2;
        overflow:auto;
        text-decoration: none;
    }
@@ -48,13 +52,53 @@
        transition:0.5s;
    }
    .color-me{
-    background: #f2f2f2;
+      background: #f2f2f2;
       color:#5812c5;
     }
     /* Modify the backgorund color */ 
 .navbar-custom { 
     background-color: #f2f2f2; 
 } 
+{% comment %} Mobile Friendly - Navbar  {% endcomment %}
+
+.fa-1x {
+font-size: 1.5rem;
+}
+.navbar-toggler.toggler-example {
+cursor: pointer;
+}
+.dark-blue-text {
+color: #0A38F5;
+}
+.dark-pink-text {
+color: #AC003A;
+}
+.dark-amber-text {
+color: #ff6f00;
+}
+.dark-teal-text {
+color: #004d40;
+}
+
+
+{% comment %} Mobile - Friendly View  {% endcomment %}
+@media (min-width: 1000px) {
+  .navbar-light {
+    display:none;
+  }
+}
+
+@media (max-width: 999px) { 
+    
+  .navbar-bar {
+  display:block;
+}
+  .navbar-expand-lg {
+    display: none;
+    color:#5812c5;
+  }
+}
+
    </style>
 
 <body>
@@ -66,15 +110,74 @@
         <!-- <a href="#" class="color-me"><h5>LineUp</h5><span class="glyphicon glyphicon-list-alt"></span></a> -->
       </li>
       <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;" href="/aboutus">About Us</a>
+        <a class="color-me" style="text-decoration:none;" href="/about_us">About Us</a>
       </li>
       <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;" href="/contact">Contact</a>
+        <a class="color-me" style="text-decoration:none;" href="/contact_us">Contact</a>
       </li>
     </ul>
   </div>
 </nav>
 </body>
+
+<!--Navbar-->
+<nav class="navbar navbar-light navbar-2 white">
+
+  <!-- Navbar brand -->
+  <a class="color-me" href="/">LineUp</a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
+    aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent15">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="color-me" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="color-me" href="/about_us">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="color-me" href="/contact_us">Contact Us</a>
+      </li>
+            <li class="nav-item">
+        <a class="color-me" href="/sign_in">Customer Login</a>
+      </li>
+            <li class="nav-item">
+        <a class="color-me" href="/business_sign_in">Business Login</a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+
+{% comment %} 
+<nav class="navbar navbar-light navbar-expand-md">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbar1">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+  </div>
+</nav> {% endcomment %}
+
+<!--/.Navbar-->
 
 
 <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
