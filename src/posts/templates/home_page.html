@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<style type="text/css">
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+span{
+  margin: 0 15px;
+  line-height: .7;
+  text-shadow: 0 0 2px rgba(0, 0, 0, .45);
+  animation: span 3s ease-in infinite alternate;
+}
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.letter{
+  display: inline-flex;
+  height: 30px;
+  width: 100px;
+  animation: letter 3s ease-in-out infinite alternate;
+}
+@keyframes span {
+  0%,30%{ margin: 0 5px; }
+  70%,100%{ margin: 0 2px; }
+}
+@keyframes letter {
+  0%,30%{ width: 7px; }
+  70%,100%{ width: 10vw; }
+}
+  
+</style>
+
+ <div class="container-fluid home-main">
+    <h1>Line Up </h1>
+    <h2><span class="blinker">🚶🏽‍♀️🚶🏻‍♂️🚶🏼‍♀️🚶🏻‍♀️🚶🏿‍♂️🚶🏾‍♀️</span></h2>
+    <div class="main">
+  <h2>
+    <span class="blinker" >🚶🏽‍♀️</span>
+    <span class="letter">6'</span>
+    <span>🚶🏻‍♂️</span>
+    <span class="letter">6'</span>
+    <span>🚶🏿‍♂️</span>
+    <span class="letter">6'</span>
+    <span>🚶🏼‍♀️</span>
+    <span class="letter">6'</span>
+    <span>🚶🏾‍♀️</span>
+    <span class="letter">6'</span>
+  </h2>
+</div>
+    <button onclick="location.href='/sign_in'" type="button" class="btn btn-default">Customer</button>
+    </br>
+    </br>
+    </br>
+    <button onclick="location.href='/business_sign_in'" type="button" class="btn btn-default">Business</button>
+  </div>
+  <div class="container-fluid home-content1">
+    <div class="row">
+      <div class="col-md-6 content1-left">
+        <h3>Why use Line Up <span class="blinker">?</span></h3>
+        <p> COVID has added safety restrictions for stores. We need to make sure that the store isn’t too crowded and that the lines don’t have too many people on it.</p>
+        <!-- <div class="content1-left"></div> -->
+      </div>
+      <div class="col-md-6 content1-right">
+        <p>Line Up is an Innovative ticket system
+          Allow people to sign up online, in person, and over the phone. The tickets numbers will be given starting from 1. People coming in person or are calling over the phone will have their spot on-the-line tracked by the online system. Ticket numbers are first come first serve. The smaller your ticket number, the closer you are to the front of the line.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid home-content2">
+
+  </div>
+{% endblock %} 
