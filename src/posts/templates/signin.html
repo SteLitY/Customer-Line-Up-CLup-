@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+h2 {
+ text-align:center
+}
+p {
+ text-align:center
+}
+</style>
+<div class="container-fluid home-main">
+    <!-- Sign up form -->
+    <form>
+        <h1 class="card-title"> Welcome <span class="blinker">!</span></h1>
+        <div class="row">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
+                            <div class="email-feedback">
+                            
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">Pasword</label>
+                            <input type="password" class="form-control" id="password" placeholder="Type your password" required>
+                            <div class="password-feedback">
+                            
+                            </div>
+                        </div>
+                        </div>
+
+        </div>
+        <div style="margin-top: 1em;">
+            <button button type="submit" type="button" class="btn btn-default">Login</button>
+        </div>
+        <br>
+        <p><a href="/reset">Forgot password ?  </a>  | 
+         <a href="/signup">Sign up for Line Up</a>  |
+         <a href="/business_sign_in">Business</a></p>  
+        </form>
+</div>
+{% endblock %}

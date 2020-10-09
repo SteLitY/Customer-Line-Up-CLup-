@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<style>
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+h1, p {
+ text-align:center;
+}
+
+  .home-main{
+      background: #5812c5;
+      color:#fff;
+      padding: 13%;
+      text-align: center;
+    }
+    .blinker{
+      animation: blinker 2s linear infinite;
+    }
+    @keyframes blinker {
+      50% {
+      opacity: 0;
+      }
+    }
+    .home-main button{
+      background: #fff;
+      color: #5812c5;
+      border-radius: 0;
+      font-size: 3.25vw;
+      width: 50%;
+      height: 2.5em;
+      top: 4%;
+      margin-top: 3%;
+    }
+    .home-main button:hover{
+      transition: 1s ease;
+      color:#5812c5;
+      width: 19%;
+    }
+    .content1-left{
+      padding:9%;
+    }
+    .content1-right{
+      padding:9%;
+      background:#e4e4e4;
+    }
+    .home-content2{
+      background: #5812c5;
+      padding: 1.4%;
+      text-align: center; 
+    }
+    .home-content2 p{
+      font-size: 18px;
+      line-height: 50px;
+    }
+    .home-content2 p span{
+      font-weight: 500;
+    }
+    .card {
+    background: #89239;
+ }
+
+</style>
+  <head>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Customer LineUp</title>
+  </head>
+
+  <body>
+    {% include 'navbar.html' %}
+    {% block content %}
+    <h1>Customer LineUp!</h1>
+    </br>
+    {% endblock %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+      
+</html>

@@ -1,0 +1,229 @@
+{% load static %}
+<style>
+  h5 {
+    color:#5812c5;
+  }
+
+  .nav.navbar-nav.navbar-right li a {
+    color: blue;
+  }
+   body{
+       margin:0;
+       padding:0;
+       background:white;
+   }
+   .header{
+     width:1100px;
+     height:350px;
+     margin:auto;
+   }
+   nav{
+       width:100%;
+       background:#f2f2f2;
+       overflow:auto;
+       text-decoration: none;
+   }
+   ul{
+       padding:0;
+       margin:0 0 0 150px;
+       list-style:none;
+   }
+   li{
+       text-decoration: none;
+   }
+   .logo img{
+       position:absolute;
+       margin-top:15px;
+       margin-left:10px;
+   }
+
+   nav a{
+       width: 175px;
+       display:block;
+       padding:1.5vw 2vw;
+       text-decoration:none;
+       font-family:Arial;
+       color:#f2f2f2;
+       text-align:center; 
+   }
+   nav a:hover{
+       background:#D3D3D3;
+       transition:0.5s;
+   }
+   .color-me{
+      background: #f2f2f2;
+      color:#5812c5;
+    }
+    /* Modify the backgorund color */ 
+.navbar-custom { 
+    background-color: #f2f2f2; 
+} 
+{% comment %} Mobile Friendly - Navbar  {% endcomment %}
+
+.fa-1x {
+font-size: 1.5rem;
+}
+.navbar-toggler.toggler-example {
+cursor: pointer;
+}
+.dark-blue-text {
+color: #0A38F5;
+}
+.dark-pink-text {
+color: #AC003A;
+}
+.dark-amber-text {
+color: #ff6f00;
+}
+.dark-teal-text {
+color: #004d40;
+}
+
+
+{% comment %} Mobile - Friendly View  {% endcomment %}
+@media (min-width: 1000px) {
+  .navbar-light {
+    display:none;
+  }
+      .home-main button{
+      background: #fff;
+      color: #5812c5;
+      border-radius: 0;
+      font-size: 20px;
+      width: 40%;
+      height: 2.25em;
+      top: 4%;
+      margin-top: 3%;
+    }
+}
+
+@media (max-width: 999px) { 
+    
+  .navbar-bar {
+  display:block;
+}
+  .navbar-expand-lg {
+    display: none;
+    color:#5812c5;
+  }
+}
+
+   </style>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="color-me" style="text-decoration:none;" href="/home"><h4><b>LineUp</b></h4><span class="sr-only"></span></a>
+        <!-- <a href="#" class="color-me"><h5>LineUp</h5><span class="glyphicon glyphicon-list-alt"></span></a> -->
+      </li>
+      <li class="nav-item active">
+        <a class="color-me" style="text-decoration:none;" href="/about_us">About Us</a>
+      </li>
+      <li class="nav-item active">
+        <a class="color-me" style="text-decoration:none;" href="/contact_us">Contact</a>
+      </li>
+      <li class="nav-item active">
+        <a class="color-me" style="text-decoration:none;" href="/control_panel">Control Panel</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</body>
+
+<!--Navbar-->
+<nav class="navbar navbar-light navbar-2 white">
+ 
+  <!-- Navbar brand -->
+  <a class="color-me logo-text" href="/">LineUp</a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
+    aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent15">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="color-me" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="color-me" href="/about_us">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="color-me" href="/contact_us">Contact Us</a>
+      </li>
+            <li class="nav-item">
+        <a class="color-me" href="/signin">Customer Login</a>
+      </li>
+            <li class="nav-item">
+        <a class="color-me" href="/business_sign_in">Business Login</a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+
+{% comment %} 
+<nav class="navbar navbar-light navbar-expand-md">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbar1">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+  </div>
+</nav> {% endcomment %}
+
+<!--/.Navbar-->
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">LineUp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Login / Sign Up 
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Customer</a>
+          <a class="dropdown-item" href="#">Business</a>
+         {% comment %} <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a> {% endcomment %}
+        </div>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">About Us</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link disabled" href="#">Contact</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav> -->
