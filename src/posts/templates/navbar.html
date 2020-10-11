@@ -107,7 +107,10 @@ color: #004d40;
 }
 
 @media (max-width: 999px) { 
-    
+   .center-align {
+     width:145%;
+   } 
+
    nav a{
        width: 67%;
        display:block;
@@ -122,7 +125,7 @@ color: #004d40;
   }
 }
 
-   </style>
+</style>
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-custom">
@@ -150,7 +153,10 @@ color: #004d40;
 <nav class="navbar navbar-light navbar-2 white">
  
   <!-- Navbar brand -->
-  <li class="color-me logo-text" style="float:left;list-style-type:none;" href="/"><b>LineUp</b></li>
+           <li class="nav-item" style="list-style-type:none;" >
+        <a class="color-me" style="text-decoration:none;" href="/home"><h4><b>LineUp</b></h4><span class="sr-only"></span></a>
+        <!-- <a href="#" class="color-me"><h5>LineUp</h5><span class="glyphicon glyphicon-list-alt"></span></a> -->
+      </li>
 
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
@@ -160,7 +166,7 @@ color: #004d40;
   <div class="collapse navbar-collapse" id="navbarSupportedContent15">
 
     <!-- Links -->
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto center-align">
       <li class="nav-item active">
         <a class="color-me" style="text-decoration:none;" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
