@@ -25,11 +25,13 @@
    }
    ul{
        padding:0;
-       margin:0 0 0 150px;
+       margin:0 0 0 26vw;
        list-style:none;
+       float:right;
    }
-   li{
+   li {
        text-decoration: none;
+       float: right;
    }
    .logo img{
        position:absolute;
@@ -38,14 +40,19 @@
    }
 
    nav a{
-       width: 175px;
+       width: 100%;
        display:block;
        padding:1.5vw 2vw;
-       text-decoration:none;
        font-family:Arial;
        color:#f2f2f2;
        text-align:center; 
+       float: right;
    }
+
+   .nav-item .right {
+     float: right;
+   }
+
    nav a:hover{
        background:#D3D3D3;
        transition:0.5s;
@@ -95,13 +102,20 @@ color: #004d40;
       top: 4%;
       margin-top: 3%;
     }
+
+
 }
 
 @media (max-width: 999px) { 
     
-  .navbar-bar {
-  display:block;
-}
+   nav a{
+       width: 67%;
+       display:block;
+       padding:1.5vw 2vw;
+       font-family:Arial;
+       color:#f2f2f2;
+       text-align:center; 
+   }
   .navbar-expand-lg {
     display: none;
     color:#5812c5;
@@ -113,16 +127,16 @@ color: #004d40;
 <body>
 <nav class="navbar navbar-expand-lg navbar-custom">
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+        <li class="nav-item right" style="list-style-type:none;" >
         <a class="color-me" style="text-decoration:none;" href="/home"><h4><b>LineUp</b></h4><span class="sr-only"></span></a>
         <!-- <a href="#" class="color-me"><h5>LineUp</h5><span class="glyphicon glyphicon-list-alt"></span></a> -->
       </li>
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="color-me" style="text-decoration:none;" href="/about_us">About Us</a>
       </li>
       <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;" href="/contact_us">Contact</a>
+        <a class="color-me" style="text-decoration:none;float:right;" href="/contact_us">Contact</a>
       </li>
       <li class="nav-item active">
         <a class="color-me" style="text-decoration:none;" href="/control_panel">Control Panel</a>
@@ -136,7 +150,7 @@ color: #004d40;
 <nav class="navbar navbar-light navbar-2 white">
  
   <!-- Navbar brand -->
-  <a class="color-me logo-text" href="/">LineUp</a>
+  <li class="color-me logo-text" style="float:left;list-style-type:none;" href="/"><b>LineUp</b></li>
 
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
@@ -148,19 +162,19 @@ color: #004d40;
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="color-me" href="/">Home <span class="sr-only">(current)</span></a>
+        <a class="color-me" style="text-decoration:none;" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="color-me" href="/about_us">About Us</a>
+        <a class="color-me" style="text-decoration:none;" href="/about_us">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="color-me" href="/contact_us">Contact Us</a>
+        <a class="color-me" style="text-decoration:none;" href="/contact_us">Contact Us</a>
       </li>
-            <li class="nav-item">
-        <a class="color-me" href="/signin">Customer Login</a>
+      <li class="nav-item">
+        <a class="color-me" style="text-decoration:none;" href="/signin">Customer Login</a>
       </li>
-            <li class="nav-item">
-        <a class="color-me" href="/business_sign_in">Business Login</a>
+      <li class="nav-item">
+        <a class="color-me" style="text-decoration:none;" href="/business_sign_in">Business Login</a>
       </li>
     </ul>
     <!-- Links -->
