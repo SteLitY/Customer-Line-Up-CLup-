@@ -44,7 +44,7 @@ def about_us_page_view(request,*args, **kwargs):
      return render(request, "about_us.html", {})
 
 def about_us_page_view(request,*args, **kwargs):
-    return render(request, "aboutus.html", {})
+    return render(request, "about_us.html", {})
 
 def signup_signin_page_view(request, *args, **kwargs):
     return render(request, "signin.html", {})

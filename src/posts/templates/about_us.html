@@ -3,16 +3,33 @@
 {% block content %}
 <style>
  p {
- text-align:center
+    text-align:center;
+    max-width: 42em;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:1.65vw;
+}
 
+{% comment %} Mobile - Friendly View  {% endcomment %}
+@media (min-width: 1000px) {
+  .navbar-light {
+    display:none;
+  }
+ p {
+    text-align:center;
+    max-width: 42em;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:1.4vw;
+
+    }
 }
 </style>
 
 <div class="container-fluid home-main" style:" text-align: center;" >
     <h2>About Us <span class="blinker">!</span></h2>
       <div class="content">
-        <p style="max-width: 45em;margin-left: auto;
-    margin-right: auto;"> Due to the changes brought on by COVID-19, we’ve added a way to enforce safety restrictions for stores. When assuring a store isn’t too crowded, we require that a limited amount of people is on line and in the store. Line Up is an Innovative ticketing system which allows people to sign up online, in person, and over the phone so that the process of shopping is met with safety and efficiency. Just pick up a  ticket and view your position in line! </p>
+        <p> Due to the changes brought on by COVID-19, we’ve added a way to enforce safety restrictions for stores. When assuring a store isn’t too crowded, we require that a limited amount of people is on line and in the store. Line Up is an Innovative ticketing system which allows people to sign up online, in person, and over the phone so that the process of shopping is met with safety and efficiency. Just pick up a  ticket and view your position in line! </p>
       </div>
   </div>
 {% endblock %} 
