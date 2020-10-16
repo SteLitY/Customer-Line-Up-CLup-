@@ -63,6 +63,7 @@ def customer_signup_view(request, *args, **kwargs):
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
             user.profile.cell_number = form.cleaned_data.get('cell_number')
+            user.profile.middle_name = form.cleaned_data.get('middle_name')
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
