@@ -17,47 +17,56 @@ p {
 </style>
 <div class="container-fluid home-main">
     <!-- Sign up form -->
-    <form>
+    <form action = "" method="POST">
+    {% csrf_token %}
         <h1 class="card-title"> Sign Up <span class="blinker">!</span></h1>
         <div class="row">
-            <!-- <div class="col-md-11" style="padding=0.5em;"> -->
-                <!-- <div class="card"> -->
+            <div class="col-md-8 mx-auto" style="padding=0.5em;"> 
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="firstname" class="col-form-label">First Name</label>
-                            <input type="name" class="form-control" id="firstname" placeholder="First name" required>
-                            <div class="first-name">
-                            </div>
+                            <label for="username" class="col-form-label">Username</label>
+                            <input type="name" class="form-control" id="username" name="username" placeholder=" Username" required>
+                            <div class="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="first_name" class="col-form-label">First Name</label>
+                            <input type="name" class="form-control" id="first_name" name="first_name" placeholder="First name" required>
+                            <div class="first_name">
+                        </div>
 
                         <div class="form-group">
-                            <label for="lastname" class="col-form-label">Last Name</label>
-                            <input type="name" class="form-control" id="lastname" placeholder="Last name" required>
-                            <div class="last-name">
+                            <label for="last_name" class="col-form-label">Last Name</label>
+                            <input type="name" class="form-control" id="last_name" name="last_name" placeholder="Last name" required>
+                            <div class="last_name">
                             </div>
 
                         <div class="form-group">
                             <label for="email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com" required>
                             <div class="email-feedback">
-                            
+                            </div>
+
+                        <div class="form-group">
+                            <label for="cell_number" class="col-form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="cell_number" name="cell_number" placeholder="718 555 5555" required>
+                            <div class="tel-feedback">    
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="password" class="col-form-label">Pasword</label>
-                            <input type="password" class="form-control" id="password" placeholder="Type your password" required>
+                            <label for="password1" class="col-form-label">Pasword</label>
+                            <input type="password1" class="form-control" id="password1" name="password1" placeholder="Type your password" required>
                             <div class="password-feedback">
                             
                             </div>
                              <div class="form-group">
-                            <label for="password" class="col-form-label">Confirm Pasword</label>
-                            <input type="password" class="form-control" id="password" placeholder="Type your password again" required>
+                            <label for="password2" class="col-form-label">Confirm Pasword</label>
+                            <input type="password2" class="form-control" id="password2" name="password2" placeholder="Type your password again" required>
                             <div class="password-feedback">
                             
                             </div>
                         </div>
-                        </div>
-                   <!--  </div>
-                </div> -->
+                        </div>  
+                </div> 
         </div>
         <div style="margin-top: 1em;">
             <button button type="submit" type="button" class="btn btn-default">Sign Up</button>
