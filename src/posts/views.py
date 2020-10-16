@@ -1,14 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from .models import Post
-from django.shortcuts import render, redirect
 from .models import Post
 from .forms import CustomerSignUpForm
-from .forms import BusinessSignUpForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-
-from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_text
@@ -19,8 +13,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
 
-
-# from mysite.core.forms import SignUpForm
+from posts.forms import CustomerSignUpForm
 
 # Create your views here.
 
@@ -41,13 +34,27 @@ def contact_page_view(request, *args, **kwargs):
     return render(request, "contact_us.html", {})
 
 def about_us_page_view(request,*args, **kwargs):
-     return render(request, "about_us.html", {})
+    return render(request, "about_us.html", {})
 
 def about_us_page_view(request,*args, **kwargs):
     return render(request, "about_us.html", {})
 
 def signup_signin_page_view(request, *args, **kwargs):
+    if request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect(home_page_view)
+
     return render(request, "signin.html", {})
+
+def signout_page_view(request):
+    if request.method == "POST":
+        logout(request)
+        return render(request, "home_page.html", {})
 
 def customer_signup_view(request, *args, **kwargs):
     if request.method == 'POST':
@@ -57,13 +64,10 @@ def customer_signup_view(request, *args, **kwargs):
             user.refresh_from_db()  # load the profile instance created by the signal
             user.profile.cell_number = form.cleaned_data.get('cell_number')
             user.save()
-            user.refresh_from_db()
-            # user_username = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
             return render(request, "home_page.html", {})
-            # return redirect(home_page_view)
         else: 
             print("here")
             print(form.errors)  
