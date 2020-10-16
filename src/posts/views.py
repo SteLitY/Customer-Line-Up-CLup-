@@ -62,8 +62,8 @@ def customer_signup_view(request, *args, **kwargs):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
-            user.profile.cell_number = form.cleaned_data.get('cell_number')
             user.profile.middle_name = form.cleaned_data.get('middle_name')
+            user.profile.cell_number = form.cleaned_data.get('cell_number')
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
@@ -110,4 +110,3 @@ def control_panel_view(request, *args, **kwargs):
 
 def profile_setting_view(request, *args, **kwargs):
     return render(request, "profile_setting.html", {})
-
