@@ -4,6 +4,7 @@ from .models import Post
 from django.shortcuts import render, redirect
 from .models import Post
 from .forms import CustomerSignUpForm
+from .forms import BusinessSignUpForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 
@@ -18,7 +19,6 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
 
-from posts.forms import CustomerSignUpForm
 
 # from mysite.core.forms import SignUpForm
 
@@ -72,6 +72,26 @@ def customer_signup_view(request, *args, **kwargs):
     return render(request, "signup.html", {'form': form})
 
 def business_signup_view(request, *args, **kwargs):
+    if request.method == 'POST':
+        form = BusinessSignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()
+            user.Business.store_name = form.cleaned_data.get('store_name')
+            user.Business.store_number = form.cleaned_data.get('store_number')
+            user.Business.store_address = form.cleaned_data.get('store_address')
+            user.Business.city = form.cleaned_data.get('city')
+            user.Business.state = form.cleaned_data.get('state')
+            user.Business.zipcode = form.cleaned_data.get('zipcode')
+            user.Business.input_sex = form.cleaned_data.get('input_sex')
+            user.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect(home_page_view)
+        else:
+            form = BusinessSignUpForm()
+        return render(request, 'b_signup.html', {'form': form})
     return render(request, "b_signup.html", {})
 
 def business_login_view(request, *args, **kwargs):
