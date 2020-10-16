@@ -16,36 +16,71 @@ p {
 </style>
 <div class="container-fluid home-main">
     <!-- Sign up form -->
-    <form method="post">
-        <h1 class="card-title"> Welcome <span class="blinker">!</span></h1>
+    <form action = "" method="POST">
+    {% csrf_token %}
+        <h1 class="card-title"> Sign Up <span class="blinker">!</span></h1>
         <div class="row">
+            <div class="col-md-5 mx-auto" style="padding=0.5em;"> 
                     <div class="card-body">
-                    	{% csrf_token %} 
                         <div class="form-group">
-
                             <label for="username" class="col-form-label">Username</label>
-                            <input type="input" class="form-control" name="username" id="inputEmail" placeholder="Login Name" required>
-                            <div class="login-feedback">
-                            
+                            <input type="name" class="form-control" id="username" name="username" placeholder=" Username" required>
+                            <div class="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="first_name" class="col-form-label">First Name</label>
+                            <input type="name" class="form-control" id="first_name" name="first_name" placeholder="First name" required>
+                            <div class="first_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="middle_name" class="col-form-label">Middle Name</label>
+                            <input type="name" class="form-control" id="middle_name" name="middle_name" placeholder="Middle name" required>
+                            <div class="middle_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name" class="col-form-label">Last Name</label>
+                            <input type="name" class="form-control" id="last_name" name="last_name" placeholder="Last name" required>
+                            <div class="last_name">
+                            </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com" required>
+                            <div class="email-feedback">
+                            </div>
+
+                        <div class="form-group">
+                            <label for="cell_number" class="col-form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="cell_number" name="cell_number" placeholder="718 555 5555" required>
+                            <div class="tel-feedback">    
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="password" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Type your password" required>
+                            <label for="password1" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Type your password" required>
+                            <div class="password-feedback">
+                            
+                            </div>
+                             <div class="form-group">
+                            <label for="password2" class="col-form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="password2" name="password2" placeholder="Type your password again" required>
                             <div class="password-feedback">
                             
                             </div>
                         </div>
-                        </div>
-
+                        </div>  
+                </div> 
         </div>
         <div style="margin-top: 1em;">
-            <button button type="submit" type="button" class="btn btn-default">Login</button>
+            <button button type="submit" type="button" class="btn btn-default">Sign Up</button>
         </div>
         <br>
-        <p><a href="/reset">Forgot password ?  </a>  | 
-         <a href="/signup">Sign up for Line Up</a>  |
-         <a href="/business_sign_in">Business</a></p>  
+        <p><a href="/reset">Forgot password ?  </a>  | <a href="/signin"> Back to login  </a> <p>
         </form>
 </div>
 {% endblock %}
+
+
+
+
+
