@@ -50,39 +50,26 @@ def signup_signin_page_view(request, *args, **kwargs):
     return render(request, "signin.html", {})
 
 def customer_signup_view(request, *args, **kwargs):
-
-    return render(request, "signup.html", {})
-
     if request.method == 'POST':
         form = CustomerSignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
-            user.profile.middle_name = form.cleaned_data.get('middle_name')
             user.profile.cell_number = form.cleaned_data.get('cell_number')
             user.save()
             user.refresh_from_db()
+            # user_username = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            return redirect(home_page_view)
+            return render(request, "home_page.html", {})
+            # return redirect(home_page_view)
+        else: 
+            print("here")
+            print(form.errors)  
     else:
         form = CustomerSignUpForm()
     return render(request, "signup.html", {'form': form})
-    # if request.method == 'POST':
-    #     form = CustomerSignUpForm(request.POST)
-    #     if form.is_valid():
-    #         user = form.save()
-    #         user.refresh_from_db()  # load the profile instance created by the signal
-    #         user.profile.middle_name = form.cleaned_data.get('middle_name')
-    #         user.save()
-    #         raw_password = form.cleaned_data.get('password1')
-    #         user = authenticate(username=user.username, password=raw_password)
-    #         login(request, user)
-    #         return redirect('c_signup.html')
-    #     else:
-    #         form = CustomerSignUpForm()
-    #     return render(request, 'c_signup.html', {'form': form})
 
 def business_signup_view(request, *args, **kwargs):
     return render(request, "b_signup.html", {})
@@ -93,10 +80,6 @@ def business_login_view(request, *args, **kwargs):
 def forgot_password_view(request, *args, **kwargs):
 	return render(request, "reset.html", {})
 
-def control_panel_view(request, *args, **kwargs):
-    return render(request, "control_panel.html", {})
-
-    
 def control_panel_view(request, *args, **kwargs):
     return render(request, "control_panel.html", {})
 
