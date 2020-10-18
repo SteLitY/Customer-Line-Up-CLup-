@@ -21,6 +21,7 @@
         <!-- Profile form-->
         <h1 class="card-title"> Account Profile </h1>
             <div class="row">
+             <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
                 <div class="card-body">
                     <div class="form-group">
                         <label for="firstname" class="col-form-label">First Name</label>
@@ -40,44 +41,29 @@
                             <input type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
                             <div class="email-feedback">
                             </div>
-                        </div>  
-                    
-                    <!-- <div class="form-group">
-                        <label for="username"> Username</label>
-                        <input type="text" id="username" placeholder="Username" required>
-
-                        </div> -->
-                                
-                                    
+                        </div>      
                         <div class="form-group">
                             <label for="tel" class="col-form-label">Phone number</label>
                             <input type="tel" class="form-control" id="phone" placeholder="718 555 5555" pattern="[0-9]{10}" required>
                             <div class="phone-feedback">
                             </div>
-                        </div>
-                                    
-                                    
+                        </div>            
                         <div class="form-group">
                                     <label for="sname" class="col-form-label">Store name</label>
                                     <input type="text" class="form-control" id="storename" placeholder="My Store!" required>
                                     <div class="sname-feedback">
                                     </div>
-                        </div>
-                                    
+                        </div>          
                         <div class="form-group">
                                     <label for="stel" class="col-form-label">Store phone number</label>
                                     <input type="tel" class="form-control" id="phone" placeholder="(917)-123-4567" pattern="[0-9]{10}" required>
                                     <div class="stel-feedback">
                                     </div>
                         </div>
-
                         <div class="block">
                             <label for="sstradd" class="col-form-label">Store Street address</label>
                             <input type="sstradd" class="form-control" id="sstradd" placeholder="123 Shopping Street" required>
-                        
                         </div>
-                        
-                       
                         <div class="block">
                         <label for="scity" class="col-form-label">City </label>
                         <input type="scity" class="form-control" id="scity" placeholder="Brooklyn" required>
@@ -137,17 +123,14 @@
                             <option value="WI">Wisconsin</option>
                             <option value="WY">Wyoming</option>
                          </datalist>      
-
                        <label for="szip" class="col-form-label">Zipcode </label>
                         <input type="szip" class="form-control" id="szip" placeholder="11226" pattern="[0-9]{5}"required>
                     </div>
                 </div>
                 </div>
-             
+             </div>
         </div>
-                                </br>
-
-
+    </br>
 <div id="business-form" class="day-hour-form">
                                 <div class="block">
                                 <label> Sunday:    </label>
@@ -156,10 +139,8 @@
                                     <input class="field" type="time" id="appt" min="00:00" max="24:00" />
                                     <input type="checkbox" name="closed" value="closed">
                                     <font size="2"></font><span>Closed</span>
-                               
                                 </div>
                                 </br>
-                            
                                 <div class="block">
                                 <label> Monday:    </label>
                                     <input class="field" type="time" id="appt" min="00:00" max="20:00" /> 
@@ -234,19 +215,8 @@
                                     <font size="2"></font><span>Closed</span>
           
                                 </div>
-                                    <!-- <option value="06:00">6:00 AM</option> <option value="06:30">6:30 AM</option> <option value="07:00">7:00 AM</option> <option value="07:30">7:30 AM</option> <option value="08:00">8:00 AM</option> <option value="08:30">8:30 AM</option> <option value="09:00"  selected>9:00 AM</option> <option value="09:30">9:30 AM</option> <option value="10:00">10:00 AM</option> <option value="10:30">10:30 AM</option> <option value="11:00">11:00 AM</option> <option value="11:30">11:30 AM</option> <option value="12:00">12:00 PM</option> <option value="12:30">12:30 PM</option> <option value="13:00">1:00 PM</option> <option value="13:30">1:30 PM</option> <option value="14:00">2:00 PM</option> <option value="14:30">2:30 PM</option> <option value="15:00">3:00 PM</option> <option value="15:30">3:30 PM</option> <option value="16:00">4:00 PM</option> <option value="16:30">4:30 PM</option> <option value="17:00">5:00 PM</option> <option value="17:30">5:30 PM</option> <option value="18:00">6:00 PM</option> <option value="18:30">6:30 PM</option> <option value="19:00">7:00 PM</option> <option value="19:30">7:30 PM</option> <option value="20:00">8:00 PM</option> <option value="20:30">8:30 PM</option> <option value="21:00">9:00 PM</option> <option value="21:30">9:30 PM</option> <option value="22:00">10:00 PM</option>
-                                    </select>
-                                    <label>to</label>
-                                    <select name="to"  id="to">
-                                    <option value="10:00">10:00 AM</option> <option value="10:30">10:30 AM</option> <option value="07:00">7:00 AM</option> <option value="07:30">7:30 AM</option> <option value="08:00">8:00 AM</option> <option value="08:30">8:30 AM</option> <option value="09:00">9:00 AM</option> <option value="09:30">9:30 AM</option> <option value="10:00">10:00 AM</option> <option value="10:30">10:30 AM</option> <option value="11:00">11:00 AM</option> <option value="11:30">11:30 AM</option> <option value="12:00">12:00 PM</option> <option value="12:30">12:30 PM</option> <option value="13:00">1:00 PM</option> <option value="13:30">1:30 PM</option> <option value="14:00">2:00 PM</option> <option value="14:30">2:30 PM</option> <option value="15:00">3:00 PM</option> <option value="15:30">3:30 PM</option> <option value="16:00">4:00 PM</option> <option value="16:30">4:30 PM</option> <option value="17:00" selected>5:00 PM</option> <option value="17:30">5:30 PM</option> <option value="18:00">6:00 PM</option> <option value="18:30">6:30 PM</option> <option value="19:00">7:00 PM</option> <option value="19:30">7:30 PM</option> <option value="20:00">8:00 PM</option> <option value="20:30">8:30 PM</option> <option value="21:00">9:00 PM</option> <option value="21:30">9:30 PM</option> <option value="22:00">10:00 PM</option>
-                                    </select>
-                                    <input type="checkbox" name="closed" value="closed">
-                                  <font size="-1"><span>Closed</span>  -->
-
                                 </br>
-                                
-</div>
-
+                                </div>
                                 <!-- <form action="" method="post"> -->
                                 <div class="form-group">
                                     <label class="grey" for="password1">Current Password:</label>
@@ -256,16 +226,14 @@
                                     <!-- <input type="submit" name="submit" value="Change" class="bt_register" style="margin-left: 382px;" />
                                     <div class="clear"></div> -->
                                 </div>
-                            </div>
-                    </div>
+                                <div id="business-form" class="button-form">
+                            <button onclick="location.href='/control_panel'" type="submit"  class="btn btn-success">Save Changes</button>
+                        <div>
+                    </div>           
+                </div>
             </div>
         </div>
     </br>
-
     </div>
-<div id="business-form" class="button-form">
-    <button onclick="location.href='/control_panel'" type="submit"  class="btn btn-success">Save Changes</button>
-
     </form>
-
 {% endblock %}

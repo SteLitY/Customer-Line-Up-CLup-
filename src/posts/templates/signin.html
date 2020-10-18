@@ -13,12 +13,18 @@ h2 {
 p {
  text-align:center
 }
+
+a:hover {
+  color:white;
+}
+
 </style>
 <div class="container-fluid home-main">
     <!-- Sign up form -->
     <form>
         <h1 class="card-title"> Welcome <span class="blinker">!</span></h1>
         <div class="row">
+         <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
                     <div class="card-body">
                         <div class="form-group">
                             <label for="email" class="col-form-label">Email</label>
@@ -31,7 +37,7 @@ p {
                             <label for="password" class="col-form-label">Pasword</label>
                             <input type="password" class="form-control" id="password" placeholder="Type your password" required>
                             <div class="password-feedback">
-                            
+                            </div>
                             </div>
                         </div>
                         </div>
@@ -41,9 +47,9 @@ p {
             <button button type="submit" type="button" class="btn btn-default">Login</button>
         </div>
         <br>
-        <p><a href="/reset">Forgot password ?  </a>  | 
-         <a href="/signup">Sign up for Line Up</a>  |
-         <a href="/business_sign_in">Business</a></p>  
+        <p><a style="text-decoration:none;" href="/reset">Forgot password ?  </a>  | 
+         <a style="text-decoration:none;" href="/signup">Sign up for Line Up</a>  |
+         <a style="text-decoration:none;" href="/business_sign_in">Business</a></p>  
         </form>
 </div>
 {% endblock %}
