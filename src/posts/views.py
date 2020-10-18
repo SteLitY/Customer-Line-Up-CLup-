@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from .models import Post
+from .models import *
 from .forms import CustomerSignUpForm, BusinessSignUpForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
@@ -59,12 +59,30 @@ def customer_signup_view(request, *args, **kwargs):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
-            user.Customer.username = form.cleaned_data.get('username')
-            user.Customer.first_name = form.cleaned_data.get('first_name')
-            user.Customer.last_name = form.cleaned_data.get('last_name')
-            user.Customer.email = form.cleaned_data.get('email')
-            user.Customer.phone_number = form.cleaned_data.get('phone_number')
+            user.profile.username = form.cleaned_data.get('username')
+            user.profile.first_name = form.cleaned_data.get('first_name')
+            user.profile.last_name = form.cleaned_data.get('last_name')
+            user.profile.email = form.cleaned_data.get('email')
+            user.profile.phone_number = form.cleaned_data.get('phone_number')
             user.save()
+            #Save to db
+            userName = request.POST.get('username')
+            firstName = request.POST.get('first_name')
+            lastName = request.POST.get('last_name')
+            emailadd = request.POST.get('email')
+            passwordc = request.POST.get('password1')
+            passwordcon = request.POST.get('phone_number')
+
+            customer = Customer.objects.create(
+                user = user,
+                username = userName,
+                first_name= firstName, 
+                last_name= lastName, 
+                email= emailadd,
+                password1= passwordc
+                )
+            customer.save()
+
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
@@ -79,19 +97,23 @@ def business_signup_view(request, *args, **kwargs):
     if request.method == 'POST':
         form = BusinessSignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            user.refresh_from_db()
-            user.Business.store_name = form.cleaned_data.get('store_name')
-            user.Business.store_number = form.cleaned_data.get('store_number')
-            user.Business.store_address = form.cleaned_data.get('store_address')
-            user.Business.city = form.cleaned_data.get('city')
-            user.Business.state = form.cleaned_data.get('state')
-            user.Business.zipcode = form.cleaned_data.get('zipcode')
-            user.Business.input_sex = form.cleaned_data.get('input_sex')
-            user.save()
-            raw_password = form.cleaned_data.get('password1')
-            business = authenticate(username=user.username, password=raw_password)
-            login(request, business)
+            # user = form.save()
+            # #Save to profiles
+            # user.refresh_from_db()
+            # user.profile.store_name = form.cleaned_data.get('store_name')
+            # user.profile.store_number = form.cleaned_data.get('store_number')
+            # user.profile.store_address = form.cleaned_data.get('store_address')
+            # user.profile.city = form.cleaned_data.get('city')
+            # user.profile.state = form.cleaned_data.get('state')
+            # user.profile.zipcode = form.cleaned_data.get('zipcode')
+            # user.profile.input_sex = form.cleaned_data.get('input_sex')
+            # user.save()
+            # #Save to db
+
+
+            # raw_password = form.cleaned_data.get('password1')
+            # # business = authenticate(username=user.username, password=raw_password)
+            # login(request, business)
             return redirect(home_page_view)
         else: 
             print(form.errors)

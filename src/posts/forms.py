@@ -10,6 +10,7 @@ class CustomerSignUpForm(UserCreationForm):
     phone_number = forms.CharField(max_length=12, help_text='')
     password1 =  forms.CharField(max_length=30, help_text='')
     password2 = forms.CharField(max_length=30, help_text='')
+    
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'password1', 'password2', 'email',  'phone_number')
