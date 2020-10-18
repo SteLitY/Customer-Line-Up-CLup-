@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from .models import Post
-from .forms import CustomerSignUpForm
+from .forms import CustomerSignUpForm, BusinessSignUpForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
@@ -59,15 +59,17 @@ def customer_signup_view(request, *args, **kwargs):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
-            user.profile.middle_name = form.cleaned_data.get('middle_name')
-            user.profile.cell_number = form.cleaned_data.get('cell_number')
+            user.Customer.username = form.cleaned_data.get('username')
+            user.Customer.first_name = form.cleaned_data.get('first_name')
+            user.Customer.last_name = form.cleaned_data.get('last_name')
+            user.Customer.email = form.cleaned_data.get('email')
+            user.Customer.phone_number = form.cleaned_data.get('phone_number')
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            return render(request, "home_page.html", {})
+            return redirect(home_page_view)
         else: 
-            print("here")
             print(form.errors)  
     else:
         form = CustomerSignUpForm()
@@ -79,20 +81,22 @@ def business_signup_view(request, *args, **kwargs):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()
-            user.Business1.store_name = form.cleaned_data.get('store_name')
-            user.Business1.store_number = form.cleaned_data.get('store_number')
-            user.Business1.store_address = form.cleaned_data.get('store_address')
-            user.Business1.city = form.cleaned_data.get('city')
-            user.Business1.state = form.cleaned_data.get('state')
-            user.Business1.zipcode = form.cleaned_data.get('zipcode')
-            user.Business1.input_sex = form.cleaned_data.get('input_sex')
+            user.Business.store_name = form.cleaned_data.get('store_name')
+            user.Business.store_number = form.cleaned_data.get('store_number')
+            user.Business.store_address = form.cleaned_data.get('store_address')
+            user.Business.city = form.cleaned_data.get('city')
+            user.Business.state = form.cleaned_data.get('state')
+            user.Business.zipcode = form.cleaned_data.get('zipcode')
+            user.Business.input_sex = form.cleaned_data.get('input_sex')
             user.save()
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=user.username, password=raw_password)
-            login(request, user)
+            business = authenticate(username=user.username, password=raw_password)
+            login(request, business)
             return redirect(home_page_view)
-        else:
-            form = BusinessSignUpForm()
+        else: 
+            print(form.errors)
+    else:
+        form = BusinessSignUpForm()
         return render(request, 'b_signup.html', {'form': form})
     return render(request, "b_signup.html", {})
 

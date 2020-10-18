@@ -11,61 +11,51 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    middle_name = models.CharField(max_length=31, blank=True)
-    cell_number = models.CharField(max_length=12, blank=False)
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
-
+    
 #Customer Registration
 class Customer(models.Model):
-    first_name = models.CharField(max_length=30, default='')
-    last_name = models.CharField(max_length=30, default='')
-    email =  models.CharField(max_length=127, default='123@aol.com')
-    password = models.CharField(max_length=10, default='')
-
-    def __unicode__(self):
-        return u'%s %s %s %s' % (self.first_name, self.last_name, self.email, self.password)
-
-#business table
-class business(models.Model):
-    email = models.CharField(max_length=127, default='')
-    first_name = models.CharField(max_length=127, default='')
-    middle_name = models.CharField(max_length=127, default='')
-    last_name = models.CharField(max_length=127, default='')
-    password = models.CharField(max_length=127, default='')
-    cellnumber = models.CharField(max_length=127, default='')
-
-    
-#business table
-class Business1(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=12, blank=True)
-    store_name = models.CharField(max_length=100, blank=True)
-    store_number = models.CharField(max_length=12, blank=True)
-    store_address = models.CharField(max_length=100, blank=True)
-    city = models.CharField(max_length=30, default='Ny')
-    state = models.CharField(max_length=2, blank=True)
-    zipcode = models.CharField(max_length=5, blank=True)
-    input_sex = models.CharField(max_length=3, null=True)
+    customer = models.OneToOneField(User, default="", on_delete=models.CASCADE)
+    username = models.CharField(max_length=30, default="")
+    first_name = models.CharField(max_length=50, default="")
+    last_name = models.CharField(max_length=50, default="")
+    email = models.CharField(max_length=100, default="")
+    phone_number = models.CharField(max_length=12, default="")
+    password1 =  models.CharField(max_length=30, default="")
+    is_customer = models.BooleanField(default=True)
+    is_business = models.BooleanField(default=False)
 
 
 @receiver(post_save, sender=User)
-def create_user_profile1(sender, instance, created, **kwargs):
+def create_customer_profile(sender, instance, created, **kwargs):
     if created:
-        Business1.objects.create(user=instance)
+        Customer.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_customer_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+#business table
+class Business(models.Model):
+    business = models.OneToOneField(User, default="", on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=12, default="")
+    store_name = models.CharField(max_length=100, default="")
+    store_number = models.CharField(max_length=12, default="")
+    store_address = models.CharField(max_length=100, default="")
+    city = models.CharField(max_length=30, default="New York")
+    state = models.CharField(max_length=2, default="")
+    zipcode = models.CharField(max_length=5, default="")
+    input_sex = models.CharField(max_length=3, default="")
+    is_customer = models.BooleanField(default=False)
+    is_business = models.BooleanField(default=True)
 
 
 @receiver(post_save, sender=User)
-def save_user_profile1(sender, instance, **kwargs):
+def create_business_profile(sender, instance, created, **kwargs):
+    if created:
+        Business.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profileb(sender, instance, **kwargs):
     instance.profile.save()
 
