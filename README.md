@@ -109,5 +109,5 @@ inside the store and several customers outside the store in an inactive state. W
 
 2. type: "python manage.py runserver"
 
-3. open http://127.0.0.1:8000/admin or http://127.0.0.1:8000/hello
+3. open http://127.0.0.1:8000/admin or http://127.0.0.1:8000/
 
