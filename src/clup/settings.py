@@ -145,7 +145,6 @@ STATICFILES_DIRS = [
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django_ses.SESBackend'
-AWS_ACCESS_KEY_ID = 'AKIAJZ4LE5XCMX3PE64Q'
-AWS_SECRET_ACCESS_KEY = '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'
+
 AWS_SES_REGION_NAME = 'us-east-1' #(ex: us-east-2)
 AWS_SES_REGION_ENDPOINT ='email.us-east-1.amazonaws.com' #(ex: email.us-east-2.amazonaws.com)
