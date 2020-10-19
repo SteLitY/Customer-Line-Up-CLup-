@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style type="text/css">
+.row1{
+    text-align:center;
+    margin:0 auto;
+}
+
+.row1 .col-md-3{
+   display:inline-block;
+   vertical-align: middle;
+   float: none;
+}
+
+@media (max-width: 770px)  { 
+    
+.col-md-3 {
+
+   display: block;
+   vertical-align: middle;
+   float: none;
+   padding: 20px;
+    }
+}
+
+.button {
+text-align: center;
+
+}
+
+</style>
+
+
+
+
+
+{% comment %} // Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... } {% endcomment %}
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+{% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endcomment %}
+</head>
+
+
+<div class="container-fluid home-main">
+	<div class="row1">
+        <div class="col-md-3" style="padding=0.5em;">
+            <div class="card bg-dark">
+            <lable> You are now scheduled ...</lable>
+            </div>
+        </div>
+    </div>
+
+        <button onclick="location.href='/customer_control'" type="button"  class="btn btn-success">cancel schedule</button>
+
+</div>
+
+{% comment %} <div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-8 bg-dark">.col-xs-12 .col-sm-6 .col-md-8</div>
+  <div class="col-xs-6 col-md-4 bg-dark">.col-xs-6 .col-md-4</div>
+</div>
+<div class="row">
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+  <div class="clearfix visible-xs-block"></div>
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+</div> {% endcomment %}
+
+
+
+{% endblock %}

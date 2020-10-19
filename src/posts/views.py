@@ -86,3 +86,11 @@ def control_panel_view(request, *args, **kwargs):
 def profile_setting_view(request, *args, **kwargs):
     return render(request, "profile_setting.html", {})
 
+def customer_control_view(request, *args, **kwargs):
+    return render(request, "customer_control.html", {})
+
+def customer_profile_view(request, *args, **kwargs):
+    return render(request, "customer_profile.html", {})
+
+def scheduled_view(request, *args, **kwargs):
+    return render(request, "scheduled.html", {})

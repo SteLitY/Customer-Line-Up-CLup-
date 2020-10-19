@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    
+    .day-hour-form label{
+      display: inline-block;
+      width: 140px;
+      text-align: left;
+    }​
+
+</style>
+
+<form>
+    <div class="container-fluid home-main">
+        <!-- Customer Profile form-->
+        <h1 class="card-title"> Customer Account Profile </h1>
+            <div class="row">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="firstname" class="col-form-label">First Name</label>
+                        <input type="name" class="form-control" id="firstname" placeholder="First name" required>
+                        <div class="first-name">
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="lastname" class="col-form-label">Last Name</label>
+                            <input type="name" class="form-control" id="lastname" placeholder="Last name" required>
+                            <div class="last-name">
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
+                            <div class="email-feedback">
+                            </div>
+                        </div>  
+                                                      
+                        <div class="form-group">
+                            <label for="tel" class="col-form-label">Phone number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="718 555 5555" pattern="[0-9]{10}" required>
+                            <div class="phone-feedback">
+                            </div>
+                        </div>
+
+                        <div class="block">
+                            <label for="straddr" class="col-form-label">Street address</label>
+                            <input type="staddr" class="form-control" id="straddr" placeholder="5555 6th ave" required>
+                        </div>
+                    </br>
+                        <div class="block">
+                            <label for="scity" class="col-form-label">City </label>
+                            <input type="scity" class="form-control" id="scity" placeholder="Brooklyn" required>
+                        </br>
+                            <label for="sstate" class="col-form-label">State </label>
+                            <input list="states" class="form-control" id="state" placeholder="NY" required>
+                            <datalist id = states>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
+                            </datalist>      
+                        </br>
+                            <label for="szip" class="col-form-label">Zipcode </label>
+                            <input type="szip" class="form-control" id="szip" placeholder="11226" pattern="[0-9]{5}"required>
+                        </div>
+                    </br>
+                    </div>
+                        <!-- <form action="" method="post"> -->
+                        <div class="form-group">
+                            <label class="grey" for="password1">Current Password:</label>
+                            <input class="field" type="password" name="password1" id="password1" value="" size="23" />
+                            <label class="grey" for="password">New Password:</label>
+                            <input class="field" type="password" name="passwordnew1" id="passwordnew1" size="23" />
+                        </div>
+                    </div>
+                
+        </br>
+
+    </div>
+        <button onclick="location.href='/customer_control'" type="submit"  class="btn btn-success">Save Changes</button>
+</div>
+    
+    </br>
+        
+        </form>
+{% endblock %}
