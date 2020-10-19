@@ -100,7 +100,7 @@ inside the store and several customers outside the store in an inactive state. W
 
 6. Install crispy forms
 '''pip install django-crispy-forms'''
-* This will allow forgot password forms to work\
+* This will allow forgot password forms to work
 
 * If you encounter any errors with this, [click here](https://stackoverflow.com/questions/35190465/virtualenvpython3-4-pip-install-mysqlclient-error)
 ## How to use:
