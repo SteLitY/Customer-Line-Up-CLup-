@@ -147,6 +147,6 @@ STATICFILES_DIRS = [
 EMAIL_BACKEND = 'django_ses.SESBackend'
 
 AWS_SES_REGION_NAME = 'us-east-1' #(ex: us-east-2)
-AWS_ACCESS_KEY_ID = '' #cannot be posted on github. used for customer forgot password - David
-AWS_SECRET_ACCESS_KEY = '' #cannot be posted on github. used for customer forgot password - David
+AWS_ACCESS_KEY_ID = '' #cannot be posted on github. this is used for customer forgot password - David
+AWS_SECRET_ACCESS_KEY = '' #cannot be posted on github. this is used for customer forgot password - David
 AWS_SES_REGION_ENDPOINT ='email.us-east-1.amazonaws.com' #(ex: email.us-east-2.amazonaws.com)
