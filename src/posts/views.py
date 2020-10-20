@@ -20,21 +20,60 @@ from django.contrib import messages #import messages for passsword
 from posts.forms import CustomerSignUpForm
 
 
+#requires user to login before they are allowed to go a page - David
+def user_must_login(redirect_to):
+    def _method_wrapper(view_method):
+        def _arguments_wrapper(request, *args, **kwargs):
+            if (request.user.is_authenticated == False):
+                return redirect(redirect_to) 
+            return view_method(request, *args, **kwargs)
+        return _arguments_wrapper
+    return _method_wrapper
+
+#requires user to be logged OUT to go to that page
+def login_excluded(redirect_to):
+    def _method_wrapper(view_method):
+        def _arguments_wrapper(request, *args, **kwargs):
+            if request.user.is_authenticated:
+                return redirect(redirect_to) 
+            return view_method(request, *args, **kwargs)
+        return _arguments_wrapper
+    return _method_wrapper
+
+#########################################################################################
+
+
+def please_login_view(request,*args, **kwargs):
+    if request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect(home_page_view) 
+    return render(request, "please_login.html", {})
+
+
 def base_view(request, *args, **kwargs):
     return render(request, "base.html", {})
+
 
 def home_page_view(request,*args, **kwargs):
     print(request)
     print(request.user)
     return render(request, "home_page.html", {})
 
-def contact_page_view(request, *args, **kwargs):
 
+def contact_page_view(request, *args, **kwargs):
     return render(request, "contact_us.html", {})
+
 
 def about_us_page_view(request,*args, **kwargs):
     return render(request, "about_us.html", {})
 
+
+@login_excluded(home_page_view)
 def signup_signin_page_view(request, *args, **kwargs):
     if request.POST:
         username = request.POST['username']
@@ -44,14 +83,16 @@ def signup_signin_page_view(request, *args, **kwargs):
             if user.is_active:
                 login(request, user)
                 return redirect(home_page_view)
-
     return render(request, "signin.html", {})
+
 
 def signout_page_view(request):
     if request.method == "POST":
         logout(request)
         return render(request, "home_page.html", {})
 
+
+@login_excluded(home_page_view)
 def customer_signup_view(request, *args, **kwargs):
     if request.method == 'POST':
         form = CustomerSignUpForm(request.POST)
@@ -92,47 +133,23 @@ def customer_signup_view(request, *args, **kwargs):
         form = CustomerSignUpForm()
     return render(request, "signup.html", {'form': form})
 
-def business_signup_view(request, *args, **kwargs):
-    if request.method == 'POST':
-        form = BusinessSignUpForm(request.POST)
-        if form.is_valid():
-            # user = form.save()
-            # #Save to profiles
-            # user.refresh_from_db()
-            # user.profile.store_name = form.cleaned_data.get('store_name')
-            # user.profile.store_number = form.cleaned_data.get('store_number')
-            # user.profile.store_address = form.cleaned_data.get('store_address')
-            # user.profile.city = form.cleaned_data.get('city')
-            # user.profile.state = form.cleaned_data.get('state')
-            # user.profile.zipcode = form.cleaned_data.get('zipcode')
-            # user.profile.input_sex = form.cleaned_data.get('input_sex')
-            # user.save()
-            # #Save to db
 
-
-            # raw_password = form.cleaned_data.get('password1')
-            # # business = authenticate(username=user.username, password=raw_password)
-            # login(request, business)
-            return redirect(home_page_view)
-        else: 
-            print(form.errors)
-    else:
-        form = BusinessSignUpForm()
-        return render(request, 'b_signup.html', {'form': form})
-    return render(request, "b_signup.html", {})
-
-def business_login_view(request, *args, **kwargs):
-	return render(request, "b_login.html", {})
-
+@login_excluded(home_page_view)
 def forgot_password_view(request, *args, **kwargs):
 	return render(request, "reset.html", {})
 
+
+@user_must_login(please_login_view)
 def control_panel_view(request, *args, **kwargs):
     return render(request, "control_panel.html", {})
 
+
+@user_must_login(please_login_view)
 def profile_setting_view(request, *args, **kwargs):
     return render(request, "profile_setting.html", {})
 
+
+@login_excluded(home_page_view)
 def password_reset_request(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)
@@ -163,3 +180,39 @@ def password_reset_request(request):
 			messages.error(request, 'An invalid email has been entered.')
 	password_reset_form = PasswordResetForm()
 	return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})
+
+
+@login_excluded(control_panel_view)
+def business_signup_view(request, *args, **kwargs):
+    if request.method == 'POST':
+        form = BusinessSignUpForm(request.POST)
+        if form.is_valid():
+            # user = form.save()
+            # #Save to profiles
+            # user.refresh_from_db()
+            # user.profile.store_name = form.cleaned_data.get('store_name')
+            # user.profile.store_number = form.cleaned_data.get('store_number')
+            # user.profile.store_address = form.cleaned_data.get('store_address')
+            # user.profile.city = form.cleaned_data.get('city')
+            # user.profile.state = form.cleaned_data.get('state')
+            # user.profile.zipcode = form.cleaned_data.get('zipcode')
+            # user.profile.input_sex = form.cleaned_data.get('input_sex')
+            # user.save()
+            # #Save to db
+
+
+            # raw_password = form.cleaned_data.get('password1')
+            # # business = authenticate(username=user.username, password=raw_password)
+            # login(request, business)
+            return redirect(home_page_view)
+        else: 
+            print(form.errors)
+    else:
+        form = BusinessSignUpForm()
+        return render(request, 'b_signup.html', {'form': form})
+    return render(request, "b_signup.html", {})
+
+
+@login_excluded(control_panel_view)
+def business_login_view(request, *args, **kwargs):
+	return render(request, "b_login.html", {})
