@@ -21,7 +21,7 @@ class Profile(models.Model):
     email = models.CharField(max_length=100, blank=False)
     phone_number = models.CharField(max_length=12, blank=False)
     password1 =  models.CharField(max_length=30, blank=False)
-    is_customer = models.BooleanField(default=True)
+    is_customer = models.BooleanField(default=False)
     is_business = models.BooleanField(default=False)
 
 #Customer Registration
@@ -46,8 +46,11 @@ def save_user_profile(sender, instance, **kwargs):
      instance.profile.save()
 
 #business table
+
 class Business(models.Model):
-    business = models.OneToOneField(User, default="", on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=50, default="")
+    last_name = models.CharField(max_length=50, default="")
+    email = models.CharField(max_length=100, default="123@gmail.com")
     phone_number = models.CharField(max_length=12, default="")
     store_name = models.CharField(max_length=100, default="")
     store_number = models.CharField(max_length=12, default="")

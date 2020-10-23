@@ -38,5 +38,5 @@ class BusinessSignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'phone_number', 'store_name', 'store_number', 'password1',
+        fields = ('username','first_name', 'last_name', 'email', 'phone_number', 'store_name', 'store_number', 'password1',
                   'password2', 'store_address', 'city', 'state', 'zipcode', 'input_sex')

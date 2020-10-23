@@ -93,48 +93,6 @@ def signout_page_view(request):
 
 
 @login_excluded(home_page_view)
-def customer_signup_view(request, *args, **kwargs):
-    if request.method == 'POST' and request.POST['action'] == 'Customer':
-        form = CustomerSignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            user.refresh_from_db()  # load the profile instance created by the signal
-            user.profile.username = form.cleaned_data.get('username')
-            user.profile.first_name = form.cleaned_data.get('first_name')
-            user.profile.last_name = form.cleaned_data.get('last_name')
-            user.profile.email = form.cleaned_data.get('email')
-            user.profile.phone_number = form.cleaned_data.get('phone_number')
-            user.save()
-            #Save to db
-            userName = request.POST.get('username')
-            firstName = request.POST.get('first_name')
-            lastName = request.POST.get('last_name')
-            emailadd = request.POST.get('email')
-            passwordc = request.POST.get('password1')
-            passwordcon = request.POST.get('phone_number')
-
-            customer = Customer.objects.create(
-                user = user,
-                username = userName,
-                first_name= firstName, 
-                last_name= lastName, 
-                email= emailadd,
-                password1= passwordc
-                )
-            customer.save()
-
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=user.username, password=raw_password)
-            login(request, user)
-            return redirect(home_page_view) #needs to be enter queue page
-        else: 
-            print(form.errors)  
-    else:
-        form = CustomerSignUpForm()
-    return render(request, "signup.html", {'form': form})
-
-
-@login_excluded(home_page_view)
 def forgot_password_view(request, *args, **kwargs):
 	return render(request, "reset.html", {})
 
@@ -181,30 +139,81 @@ def password_reset_request(request):
 	password_reset_form = PasswordResetForm()
 	return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})
 
+@login_excluded(home_page_view)
+def customer_signup_view(request, *args, **kwargs):
+    if request.method == 'POST' and request.POST['action'] == 'Customer':
+        form = CustomerSignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            user.profile.username = form.cleaned_data.get('username')
+            user.profile.first_name = form.cleaned_data.get('first_name')
+            user.profile.last_name = form.cleaned_data.get('last_name')
+            user.profile.email = form.cleaned_data.get('email')
+            user.profile.phone_number = form.cleaned_data.get('phone_number')
+            user.profile.is_customer = True
+            user.save()
+            #Save to db
+            userName = request.POST.get('username')
+            firstName = request.POST.get('first_name')
+            lastName = request.POST.get('last_name')
+            emailadd = request.POST.get('email')
+            passwordc = request.POST.get('password1')
+            passwordcon = request.POST.get('phone_number')
+
+            customer = Customer.objects.create(
+                user = user,
+                username = userName,
+                first_name= firstName, 
+                last_name= lastName, 
+                email= emailadd,
+                )
+            customer.save()
+
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect(home_page_view) #needs to be enter queue page
+        else: 
+            print(form.errors)  
+    else:
+        form = CustomerSignUpForm()
+    return render(request, "signup.html", {'form': form})
 
 @login_excluded(control_panel_view)
 def business_signup_view(request, *args, **kwargs):
     if request.method == 'POST'and request.POST['action'] == 'Business':
         form = BusinessSignUpForm(request.POST)
         if form.is_valid():
-            # user = form.save()
-            # #Save to profiles
-            # user.refresh_from_db()
-            # user.profile.store_name = form.cleaned_data.get('store_name')
-            # user.profile.store_number = form.cleaned_data.get('store_number')
-            # user.profile.store_address = form.cleaned_data.get('store_address')
-            # user.profile.city = form.cleaned_data.get('city')
-            # user.profile.state = form.cleaned_data.get('state')
-            # user.profile.zipcode = form.cleaned_data.get('zipcode')
-            # user.profile.input_sex = form.cleaned_data.get('input_sex')
-            # user.save()
+            user = form.save()
+            #Save to profiles
+            user.refresh_from_db()
+            user.profile.username = form.cleaned_data.get('username')
+            user.profile.first_name = form.cleaned_data.get('first_name')
+            user.profile.last_name = form.cleaned_data.get('last_name')
+            user.profile.email = form.cleaned_data.get('email')
+            user.profile.phone_number = form.cleaned_data.get('phone_number')
+            user.profile.is_business = True
+            user.save()
             # #Save to db
-
-
-            # raw_password = form.cleaned_data.get('password1')
-            # # business = authenticate(username=user.username, password=raw_password)
-            # login(request, business)
-            return redirect(profile_setting_view)
+            business = Business.objects.create(
+                first_name = request.POST.get('first_name'),
+                last_name= request.POST.get('last_name'), 
+                email= request.POST.get('email'),
+                phone_number = request.POST.get('phone_number'),
+                store_name = request.POST.get('store_name'),
+                store_number = request.POST.get('store_number'),
+                store_address = request.POST.get('store_address'),
+                city = request.POST.get('city'),
+                state = request.POST.get('state'),
+                zipcode = request.POST.get('zipcode'),
+                input_sex = request.POST.get('input_sex')
+                )
+            userName = form.cleaned_data.get('email')
+            raw_password = form.cleaned_data.get('password1')
+            business = authenticate(username=user.username, password=raw_password)
+            login(request, business)
+            return redirect(home_page_view)
         else: 
             print(form.errors)
     else:
