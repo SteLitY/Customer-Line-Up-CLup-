@@ -94,7 +94,7 @@ def signout_page_view(request):
 
 @login_excluded(home_page_view)
 def customer_signup_view(request, *args, **kwargs):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST['action'] == 'Customer':
         form = CustomerSignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
@@ -184,7 +184,7 @@ def password_reset_request(request):
 
 @login_excluded(control_panel_view)
 def business_signup_view(request, *args, **kwargs):
-    if request.method == 'POST':
+    if request.method == 'POST'and request.POST['action'] == 'Business':
         form = BusinessSignUpForm(request.POST)
         if form.is_valid():
             # user = form.save()
@@ -204,7 +204,7 @@ def business_signup_view(request, *args, **kwargs):
             # raw_password = form.cleaned_data.get('password1')
             # # business = authenticate(username=user.username, password=raw_password)
             # login(request, business)
-            return redirect(home_page_view)
+            return redirect(profile_setting_view)
         else: 
             print(form.errors)
     else:
