@@ -107,9 +107,9 @@ inside the store and several customers outside the store in an inactive state. W
 
 ## How to use:
 
-1. open cmd (windows) or terminal and navigate to the src folder
+1. open cmd (windows) or terminal and navigate to the src folder using the cd command
 
 2. type: "python manage.py runserver"
 
-3. open http://127.0.0.1:8000/admin or http://127.0.0.1:8000/
+3. open http://127.0.0.1:8000/
 
