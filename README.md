@@ -100,9 +100,9 @@ inside the store and several customers outside the store in an inactive state. W
 * If you encounter any errors with this, [click here](https://stackoverflow.com/questions/35190465/virtualenvpython3-4-pip-install-mysqlclient-error)
 
 6. Install other libraries
-'''pip install django-crispy-forms'''
+```pip install django-crispy-forms```
 * This will allow forgot password forms to work
-'''pip install django-ses'
+```pip install django-ses```
 * This is for sending emails for things like "forgot password". There is a limit of 200 emails every 24 hours.
 
 ## How to use:
