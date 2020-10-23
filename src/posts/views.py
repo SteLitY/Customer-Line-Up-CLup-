@@ -209,7 +209,6 @@ def business_signup_view(request, *args, **kwargs):
                 zipcode = request.POST.get('zipcode'),
                 input_sex = request.POST.get('input_sex')
                 )
-            userName = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
             business = authenticate(username=user.username, password=raw_password)
             login(request, business)
