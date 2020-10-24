@@ -26,14 +26,27 @@
 
 .button {
 text-align: center;
-
 }
 
+.container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+footer {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #391c77;
+    align: center;
+    min-height: 10vh;
+    height: 15vh;
+    margin-top: 350px;
+    width: 100%;
+    postion absolute: ;
+}
 </style>
-
-
-
-
 
 {% comment %} // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { ... }
@@ -46,8 +59,6 @@ text-align: center;
 <meta charset="utf-8">
 {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endcomment %}
 </head>
-
-
 <div class="container-fluid home-main">
 	<div class="row1">
       <!-- <div class="block"> -->
@@ -146,20 +157,13 @@ text-align: center;
                 <option value="22:00">10:00 PM</option>
                 </select>
                 </br>
-            </div>
-        
+        </div>
             <button onclick="location.href='/scheduled'" type="scheduled"  class="btn btn-success">confirm schedule</button>
         </div>
-
-    <div style="margin-top: 1em;">
-    <button onclick="location.href='/customer_profile'" type="button" class="btn btn-default">View Profile</button>
-    </div>
-
+        <div style="margin-top: 1em;">
+            <button onclick="location.href='/customer_profile'" type="button" class="btn btn-default">View Profile</button>
+        </div>
 </br>
 </br>
 </div>
-
-
-
-
 {% endblock %}

@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
-
-
-
 {% block content %}
 <style type="text/css">
 h1 {
-  font-size: 30px;
+  font-size: 5vw;
 }
 
 h3 {
@@ -54,6 +51,24 @@ span{
 .content1-right {
   background-color:#D3D3D3;
 }
+{% comment %} To reduce the size of the animation {% endcomment %}
+.marquee-inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+footer {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #391c77;
+    align: center;
+    min-height: 10vh;
+    height: 24vh;
+    margin-top: 400px;
+    width: 100%;
+    postion: relative;
+}
   
 </style>
 
@@ -64,8 +79,7 @@ span{
     <input id="searchbar" onkeyup="search_store()" type="text" name="search" placeholder="Search for store.."> 
      -->
     <div class="main">
- 
-      <h2><div class ="marquee-inner"><marquee behavior ="scroll" direction ="left"><span class="blinker">🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️</span></marquee></div></h2>
+      <h2><div class ="marquee-inner"><marquee behavior ="scroll" direction ="left"><span class="blinker">🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️</span></marquee></div></h2>
     </div>
  
 
@@ -87,7 +101,7 @@ span{
     </br>
     </br>
     </br>
-    <button onclick="location.href='/business_sign_in'" type="button" class="btn btn-default">Business</button>
+    <button class="lower-button" onclick="location.href='/business_sign_in'" type="button" class="btn btn-default">Business</button>
 
 
   </div>
