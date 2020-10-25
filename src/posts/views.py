@@ -104,7 +104,8 @@ def control_panel_view(request, *args, **kwargs):
 
 @user_must_login(please_login_view)
 def profile_setting_view(request, *args, **kwargs):
-    return render(request, "profile_setting.html", {})
+    obj=Business.objects.all().filter(username = request.user.get_username())
+    return render(request, "profile_setting.html", {'obj': obj})
 
 
 @login_excluded(home_page_view)

@@ -36,18 +36,9 @@ class Customer(models.Model):
     is_customer = models.BooleanField(default=True)
     is_business = models.BooleanField(default=False)
 
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-     instance.profile.save()
-
 #business table
-
 class Business(models.Model):
+    username = models.CharField(max_length=30, default="")
     first_name = models.CharField(max_length=50, default="")
     last_name = models.CharField(max_length=50, default="")
     email = models.CharField(max_length=100, default="123@gmail.com")
@@ -62,14 +53,17 @@ class Business(models.Model):
     is_customer = models.BooleanField(default=False)
     is_business = models.BooleanField(default=True)
 
-
-# @receiver(post_save, sender=User)
-# def create_business_profile(sender, instance, created, **kwargs):
-#     if created:
-#         Profile.objects.create(user=instance)
-
-
-# @receiver(post_save, sender=User)
-# def save_user_profileb(sender, instance, **kwargs):
-#     instance.profile.save()
+    def __iter__(self):
+        return iter([self.username, self.first_name, self.last_name, self.email,
+         self.phone_number, self.store_name, self.store_number,
+         self.store_address, self.city, self.state, self.zipcode, 
+         self.input_sex, self.is_customer, self.is_business])
+    
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+     instance.profile.save()
 
