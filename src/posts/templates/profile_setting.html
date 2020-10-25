@@ -27,51 +27,51 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="firstname" class="col-form-label">First Name</label>
-                        <input type="name" class="form-control" id="firstname" placeholder= {{item.first_name}} required>
+                        <input type="name" class="form-control" id="firstname" value={{item.first_name}} placeholder="First Name" required>
                         <div class="first-name">
                         </div>
     
                         <div class="form-group">
                             <label for="lastname" class="col-form-label">Last Name</label>
-                            <input type="name" class="form-control" id="lastname" placeholder={{item.last_name}} required>
+                            <input type="name" class="form-control" id="lastname" value={{item.last_name}} placeholder="Last Name" required>
                             <div class="last-name">
                             </div>
                         </div>
     
                         <div class="form-group">
                             <label for="email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder={{item.email}} required>
+                            <input type="email" class="form-control" id="email" value={{item.email}} placeholder="mystore@mystore.com" required>
                             <div class="email-feedback">
                             </div>
                         </div>      
                         <div class="form-group">
                             <label for="tel" class="col-form-label">Phone number</label>
-                            <input type="tel" class="form-control" id="phone" placeholder={{item.phone_number}} pattern="[0-9]{10}" required>
+                            <input type="tel" class="form-control" id="phone" value={{item.phone_number}} placeholder="718 555 5555"pattern="[0-9]{10}" required>
                             <div class="phone-feedback">
                             </div>
                         </div>            
                         <div class="form-group">
                                     <label for="sname" class="col-form-label">Store name</label>
-                                    <input type="text" class="form-control" id="storename" placeholder={{item.store_name}} required>
+                                    <input type="text" class="form-control" id="storename" value={{item.store_name}} placeholder="My Store" required>
                                     <div class="sname-feedback">
                                     </div>
                         </div>          
                         <div class="form-group">
                                     <label for="stel" class="col-form-label">Store phone number</label>
-                                    <input type="tel" class="form-control" id="phone" placeholder= {{item.store_number}} pattern="[0-9]{10}" required>
+                                    <input type="tel" class="form-control" id="phone" value= {{item.store_number}} placeholder="718 555 5555" pattern="[0-9]{10}" required>
                                     <div class="stel-feedback">
                                     </div>
                         </div>
                         <div class="block">
                             <label for="sstradd" class="col-form-label">Store Street address</label>
-                            <input type="sstradd" class="form-control" id="sstradd" placeholder={{item.store_address}} required>
+                            <input type="sstradd" class="form-control" id="sstradd" value={{item.store_address}} placeholder="123 Shopping Street" required>
                         </div>
                         <div class="block">
                         <label for="scity" class="col-form-label">City </label>
-                        <input type="scity" class="form-control" id="scity" placeholder={{item.city}} required>
+                        <input type="scity" class="form-control" id="scity" value={{item.city}} placeholder="Brooklyn" required>
                 
                         <label for="sstate" class="col-form-label">State </label>
-                        <input list="states" class="form-control" id="sstate" placeholder={{item.state}} required>
+                        <input list="states" class="form-control" id="sstate" value={{item.state}} placeholder="NY" required>
                         <datalist id = states>
                             <option value="AL">Alabama</option>
                             <option value="AK">Alaska</option>
@@ -126,7 +126,7 @@
                             <option value="WY">Wyoming</option>
                          </datalist>      
                        <label for="szip" class="col-form-label">Zipcode </label>
-                        <input type="szip" class="form-control" id="szip" placeholder={{item.zipcode}} pattern="[0-9]{5}"required>
+                        <input type="szip" class="form-control" id="szip" value={{item.zipcode}} placeholder="12345" pattern="[0-9]{5}"required>
                     </div>
                 </div>
                 </div>
@@ -137,7 +137,7 @@
                                 <div class="block">
                                 <label> Sunday:    </label>
                                     <input class="field" type="time" id="appt" min="00:00" max="20:00" />
-                                    <label>to</label>
+                                    <label> to </label>
                                     <input class="field" type="time" id="appt" min="00:00" max="24:00" />
                                     <input type="checkbox" name="closed" value="closed">
                                     <font size="2"></font><span>Closed</span>
