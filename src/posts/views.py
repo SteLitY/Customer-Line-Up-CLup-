@@ -105,6 +105,35 @@ def control_panel_view(request, *args, **kwargs):
 @user_must_login(please_login_view)
 def profile_setting_view(request, *args, **kwargs):
     obj=Business.objects.all().filter(username = request.user.get_username())
+    if request.method == 'POST':
+        obj.update(first_name = request.POST.get('first_name')),
+        obj.update(last_name= request.POST.get('last_name')), 
+        obj.update(email= request.POST.get('email')),
+        obj.update(phone_number = request.POST.get('phone_number')),
+        obj.update(store_name = request.POST.get('store_name')),
+        obj.update(store_number = request.POST.get('store_number')),
+        obj.update(store_address = request.POST.get('store_address')),
+        obj.update(city = request.POST.get('city')),
+        obj.update(state = request.POST.get('state')),
+        obj.update(zipcode = request.POST.get('zipcode')),
+        obj.update(input_sex = request.POST.get('input_sex')),
+        obj.update(sunday_open = request.POST.get('sunday_open')),
+        obj.update(sunday_closed = request.POST.get('sunday_closed')),
+        obj.update(monday_open = request.POST.get('monday_open')),
+        obj.update(monday_closed = request.POST.get('monday_closed')),
+        obj.update(tuesday_open = request.POST.get('tuesday_open')),
+        obj.update(tuesday_closed = request.POST.get('tuesday_closed')),
+        obj.update(wednesday_open = request.POST.get('wednesday_open')),
+        obj.update(wednesday_closed = request.POST.get('wednesday_closed')),
+        obj.update(thursday_open = request.POST.get('thursday_open')),
+        obj.update(thursday_closed = request.POST.get('thursday_closed')),
+        obj.update(friday_open = request.POST.get('friday_open')),
+        obj.update(friday_closed = request.POST.get('friday_closed')),
+        obj.update(saturday_open = request.POST.get('saturday_open')),
+        obj.update(saturday_closed = request.POST.get('saturday_closed')),
+        for item in obj:
+            item.save()
+    obj=Business.objects.all().filter(username = request.user.get_username())
     return render(request, "profile_setting.html", {'obj': obj})
 
 
@@ -147,6 +176,7 @@ def customer_signup_view(request, *args, **kwargs):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
+            # Create user profile
             user.profile.username = form.cleaned_data.get('username')
             user.profile.first_name = form.cleaned_data.get('first_name')
             user.profile.last_name = form.cleaned_data.get('last_name')

@@ -52,6 +52,21 @@ class Business(models.Model):
     input_sex = models.CharField(max_length=3, default="")
     is_customer = models.BooleanField(default=False)
     is_business = models.BooleanField(default=True)
+    # business hours
+    sunday_open = models.CharField(max_length=5, default="")
+    sunday_closed = models.CharField(max_length=5, default="")
+    monday_open = models.CharField(max_length=5, default="")
+    monday_closed = models.CharField(max_length=5, default="")
+    tuesday_open = models.CharField(max_length=5, default="")
+    tuesday_closed = models.CharField(max_length=5, default="")
+    wednesday_open = models.CharField(max_length=5, default="")
+    wednesday_closed = models.CharField(max_length=5, default="")
+    thursday_open = models.CharField(max_length=5, default="")
+    thursday_closed = models.CharField(max_length=5, default="")
+    friday_open = models.CharField(max_length=5, default="")
+    friday_closed = models.CharField(max_length=5, default="")
+    saturday_open = models.CharField(max_length=5, default="")
+    saturday_closed = models.CharField(max_length=5, default="")
 
     def __iter__(self):
         return iter([self.username, self.first_name, self.last_name, self.email,
