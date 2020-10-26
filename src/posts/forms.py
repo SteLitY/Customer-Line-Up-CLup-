@@ -30,13 +30,8 @@ class BusinessSignUpForm(UserCreationForm):
     city = forms.CharField(max_length=30, help_text='')
     state = forms.CharField(max_length=2, help_text='')
     zipcode = forms.CharField(max_length=5, help_text='')
-    title_choice = (
-        ('Mr.', 'Mr.'),
-        ('Ms.', 'Ms.'),
-    )
-    input_sex = forms.ChoiceField(choices=title_choice)
 
     class Meta:
         model = User
         fields = ('username','first_name', 'last_name', 'email', 'phone_number', 'store_name', 'store_number', 'password1',
-                  'password2', 'store_address', 'city', 'state', 'zipcode', 'input_sex')
+                  'password2', 'store_address', 'city', 'state', 'zipcode')

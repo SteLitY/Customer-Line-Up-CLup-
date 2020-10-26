@@ -116,7 +116,6 @@ def profile_setting_view(request, *args, **kwargs):
         obj.update(city = request.POST.get('city')),
         obj.update(state = request.POST.get('state')),
         obj.update(zipcode = request.POST.get('zipcode')),
-        obj.update(input_sex = request.POST.get('input_sex')),
         obj.update(sunday_open = request.POST.get('sunday_open')),
         obj.update(sunday_closed = request.POST.get('sunday_closed')),
         obj.update(monday_open = request.POST.get('monday_open')),
@@ -238,7 +237,6 @@ def business_signup_view(request, *args, **kwargs):
                 city = request.POST.get('city'),
                 state = request.POST.get('state'),
                 zipcode = request.POST.get('zipcode'),
-                input_sex = request.POST.get('input_sex')
                 )
             raw_password = form.cleaned_data.get('password1')
             business = authenticate(username=user.username, password=raw_password)

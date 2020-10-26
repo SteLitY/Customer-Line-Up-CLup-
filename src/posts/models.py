@@ -49,7 +49,6 @@ class Business(models.Model):
     city = models.CharField(max_length=30, default="New York")
     state = models.CharField(max_length=2, default="")
     zipcode = models.CharField(max_length=5, default="")
-    input_sex = models.CharField(max_length=3, default="")
     is_customer = models.BooleanField(default=False)
     is_business = models.BooleanField(default=True)
     # business hours
@@ -72,7 +71,7 @@ class Business(models.Model):
         return iter([self.username, self.first_name, self.last_name, self.email,
          self.phone_number, self.store_name, self.store_number,
          self.store_address, self.city, self.state, self.zipcode, 
-         self.input_sex, self.is_customer, self.is_business])
+         self.is_customer, self.is_business])
     
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
