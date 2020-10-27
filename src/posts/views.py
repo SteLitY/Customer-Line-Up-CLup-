@@ -253,3 +253,12 @@ def business_signup_view(request, *args, **kwargs):
 @login_excluded(control_panel_view)
 def business_login_view(request, *args, **kwargs):
 	return render(request, "b_login.html", {})
+    
+def customer_control_view(request, *args, **kwargs):
+    return render(request, "customer_control.html", {})
+
+def customer_profile_view(request, *args, **kwargs):
+    return render(request, "customer_profile.html", {})
+
+def scheduled_view(request, *args, **kwargs):
+    return render(request, "scheduled.html", {})

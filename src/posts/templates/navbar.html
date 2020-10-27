@@ -7,10 +7,11 @@
   .nav.navbar-nav.navbar-right li a {
     color: blue;
   }
+  {% comment %} This was responsible for the thin white line at the bottom of the control_panel.html page {% endcomment %}
    body{
        margin:0;
        padding:0;
-       background:white;
+       background:#5812c5;
    }
    .header{
      width:1100px;
@@ -143,6 +144,9 @@ color: #004d40;
       </li>
       <li class="nav-item active">
         <a class="color-me" style="text-decoration:none;" href="/control_panel">Control Panel</a>
+      </li>
+      <li class="nav-item active">
+        <a class ="color-me" style="text-decoration: none;" href="/customer_control">Customer Control</a>
       </li>
     </ul>
     {% if user.is_authenticated %}

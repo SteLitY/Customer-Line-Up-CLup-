@@ -9,11 +9,11 @@ img {
 h1, p {
  text-align:center;
 }
-
+{% comment %} Added a padding top to fix the customer_control.html footer  {% endcomment %}
   .home-main{
       background: #5812c5;
       color:#fff;
-      padding: 18%;
+      padding-top: 12%;
       text-align: center;
     }
     .blinker{
@@ -24,16 +24,23 @@ h1, p {
       opacity: 0;
       }
     }
+
+    button {
+     border-radius:1;
+    }
+   
     .home-main button{
       background: #fff;
       color: #5812c5;
-      border-radius: 0;
+      border-radius: 1;
       font-size: 3.25vw;
       width: 50%;
       height: 2.5em;
       top: 4%;
-      margin-top: 3%;
+      margin-top: 2vw;
+      margin-bottom: 8vw;
     }
+    
     .home-main button:hover{
       transition: 1s ease;
       color:#5812c5;
@@ -61,6 +68,29 @@ h1, p {
     .card {
     background: #89239;
  }
+ body {
+   min-height: 76vh;
+   background-color: white;
+ }
+
+ a:hover {
+  color:white;
+}
+.container-fluid {
+  min-height: 80vh;
+}
+
+footer {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #391c77;
+    align: center;
+    min-height: 10vh;
+    height: 24vh;
+    margin-top: 400px;
+    width: 100%;
+    postion absolute: ;
+}
 
 </style>
   <head>

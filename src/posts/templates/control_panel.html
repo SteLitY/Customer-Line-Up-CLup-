@@ -13,6 +13,12 @@
    float: none;
 }
 
+body{
+    margin:0;
+    padding:0;
+    background:#5812c5;
+}
+
 @media (max-width: 770px)  { 
     
 .col-md-3 {
@@ -23,6 +29,18 @@
    padding: 20px;
     }
 }
+
+.button {
+text-align: center;
+}
+
+.home-main{
+    background: #5812c5;
+    color:#fff;
+    padding: 22%;
+    text-align: center;
+}
+
 
 </style>
 
@@ -42,9 +60,6 @@
 {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endcomment %}
 </head>
 
-<div style="margin-top: 1em;">
-    <button onclick="location.href='/profile_setting'" type="button" class="btn btn-default">profile</button>
-</div>
 
 <div class="container-fluid home-main">
 	<div class="row1">
@@ -78,9 +93,13 @@
             </div>
         </div>
       </div>
+    <div style="margin-top: 1em;">
+    <button onclick="location.href='/profile_setting'" type="button" class="btn btn-default">View Profile</button>
+   </div>
  </div>
 
-{% comment %} <div class="row">
+{% comment %} 
+<div class="row">
   <div class="col-xs-12 col-sm-6 col-md-8 bg-dark">.col-xs-12 .col-sm-6 .col-md-8</div>
   <div class="col-xs-6 col-md-4 bg-dark">.col-xs-6 .col-md-4</div>
 </div>
@@ -90,7 +109,9 @@
   <!-- Optional: clear the XS cols if their content doesn't match in height -->
   <div class="clearfix visible-xs-block"></div>
   <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-</div> {% endcomment %}
+</div> 
+
+{% endcomment %}
 
 
 {% endblock %}

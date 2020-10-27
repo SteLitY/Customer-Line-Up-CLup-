@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
-
-
-
 {% block content %}
 <style type="text/css">
 h1 {
-  font-size: 24px;
+  font-size: 5vw;
 }
 
 h3 {
@@ -42,13 +39,56 @@ span{
   0%,30%{ width: 7px; }
   70%,100%{ width: 10vw; }
 }
+
+.container-fluid {
+  min-height: 20vh;
+}
+
+.content1-left {
+  background-color:white;
+}
+
+.content1-right {
+  background-color:#D3D3D3;
+}
+{% comment %} To reduce the size of the animation {% endcomment %}
+.marquee-inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.lower-button {
+  border:none;
+  border-radius:0;
+}
+
+footer {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #391c77;
+    align: center;
+    min-height: 10vh;
+    height: 24vh;
+    margin-top: 400px;
+    width: 100%;
+    postion: relative;
+}
   
 </style>
 
  <div class="container-fluid home-main">
     <h1>Line Up </h1>
-    <h2><span class="blinker">🚶🏽‍♀️🚶🏻‍♂️🚶🏼‍♀️🚶🏻‍♀️🚶🏿‍♂️🚶🏾‍♀️</span></h2>
+    </br>
+<!-- 
+    <input id="searchbar" onkeyup="search_store()" type="text" name="search" placeholder="Search for store.."> 
+     -->
     <div class="main">
+      <h2><div class ="marquee-inner"><marquee behavior ="scroll" direction ="left"><span class="blinker">🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️</span></marquee></div></h2>
+    </div>
+ 
+
+    <!-- <div class="main">
   <h2>
     <span class="blinker" >🚶🏽‍♀️</span>
     <span class="letter">6'</span>
@@ -61,7 +101,7 @@ span{
     <span>🚶🏾‍♀️</span>
     <span class="letter">6'</span>
   </h2>
-</div>
+</div> -->
     <button onclick="location.href='/signin'" type="button" class="btn btn-default">Customer</button>
     </br>
     </br>
