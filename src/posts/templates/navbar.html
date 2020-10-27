@@ -149,6 +149,16 @@ color: #004d40;
         <a class ="color-me" style="text-decoration: none;" href="/customer_control">Customer Control</a>
       </li>
     </ul>
+    {% if user.is_authenticated %}
+{{ request.user }} <a href="#" onClick="document.getElementById('logoutform').submit()"><button type="button">Logout</button></a>
+<form id="logoutform" method="POST" action="{% url 'customer_sign_out' %}">
+{% csrf_token %}
+<input type="hidden">
+</form>
+{% else %}
+<a href="{% url 'customer_signup_view' %}">Sign up</a>  <a href="{% url 'customer_login' %}">login</a>
+{% endif %}
+
   </div>
 </nav>
 </body>

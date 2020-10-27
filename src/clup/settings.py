@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'posts',
-    # 'crispy_forms'
+    'crispy_forms',
 ]
 
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -142,3 +142,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django_ses.SESBackend'
+
+AWS_SES_REGION_NAME = 'us-east-1' #(ex: us-east-2)
+AWS_ACCESS_KEY_ID = '' #cannot be posted on github. this is used for customer forgot password - David
+AWS_SECRET_ACCESS_KEY = '' #cannot be posted on github. this is used for customer forgot password - David
+AWS_SES_REGION_ENDPOINT ='email.us-east-1.amazonaws.com' #(ex: email.us-east-2.amazonaws.com)
