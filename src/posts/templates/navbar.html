@@ -4,6 +4,10 @@
     color:#5812c5;
   }
 
+  .login-signup {
+    font-color: black;
+  }
+
   .nav.navbar-nav.navbar-right li a {
     color: blue;
   }
@@ -32,7 +36,6 @@
    }
    li {
        text-decoration: none;
-       float: right;
    }
    .logo img{
        position:absolute;
@@ -41,13 +44,15 @@
    }
 
    nav a{
-       width: 100%;
        display:block;
-       padding:1.5vw 2vw;
+       padding:1.5vw 1vw;
        font-family:Arial;
        color:#f2f2f2;
        text-align:center; 
        float: right;
+       margin-left: auto;
+       margin-right: auto;
+       border:1px;
    }
 
    .nav-item .right {
@@ -89,7 +94,7 @@ color: #004d40;
 
 
 {% comment %} Mobile - Friendly View  {% endcomment %}
-@media (min-width: 1000px) {
+@media (min-width: 1001px) {
   .navbar-light {
     display:none;
   }
@@ -107,7 +112,7 @@ color: #004d40;
 
 }
 
-@media (max-width: 999px) { 
+@media (max-width: 1000px) { 
    .center-align {
      width:145%;
    } 
@@ -130,34 +135,40 @@ color: #004d40;
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-custom">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <li class="nav-item right" style="list-style-type:none;" >
         <a class="color-me" style="text-decoration:none;" href="/home"><h4><b>LineUp</b></h4><span class="sr-only"></span></a>
         <!-- <a href="#" class="color-me"><h5>LineUp</h5><span class="glyphicon glyphicon-list-alt"></span></a> -->
       </li>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;" href="/about_us">About Us</a>
+        <a class="color-me" style="text-decoration:none;float:none;" href="/about_us">About Us</a>
       </li>
       <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;float:right;" href="/contact_us">Contact</a>
+        <a class="color-me" style="text-decoration:none;float:none;" href="/contact_us">Contact</a>
       </li>
       <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;" href="/control_panel">Control Panel</a>
+        <a class="color-me" style="text-decoration:none;float:none;" href="/control_panel">Control Panel</a>
       </li>
       <li class="nav-item active">
-        <a class ="color-me" style="text-decoration: none;" href="/customer_control">Customer Control</a>
+        <a class ="color-me" style="text-decoration: none;float:none;" href="/customer_control">Customer Control</a>
       </li>
+      {% if user.is_authenticated %}
+  {{ request.user }} <a href="#" onClick="document.getElementById('logoutform').submit()"><button type="button">Logout</button></a>
+  <form id="logoutform" method="POST" action="{% url 'customer_sign_out' %}">
+  {% csrf_token %}
+  <input type="hidden">
+  </form>
+  {% else %}
+
+    <li class="nav-item active">
+      <a class ="color-me" style="text-decoration: none;float:right;" href="{% url 'customer_signup_view' %}">Sign up</a>
+      </li> 
+    <li class="nav-item active">
+      <a class ="color-me" style="text-decoration: none;float:right;" href="{% url 'customer_login' %}">login</a>
+      </li>
+  {% endif %}
     </ul>
-    {% if user.is_authenticated %}
-{{ request.user }} <a href="#" onClick="document.getElementById('logoutform').submit()"><button type="button">Logout</button></a>
-<form id="logoutform" method="POST" action="{% url 'customer_sign_out' %}">
-{% csrf_token %}
-<input type="hidden">
-</form>
-{% else %}
-<a href="{% url 'customer_signup_view' %}">Sign up</a>  <a href="{% url 'customer_login' %}">login</a>
-{% endif %}
 
   </div>
 </nav>
