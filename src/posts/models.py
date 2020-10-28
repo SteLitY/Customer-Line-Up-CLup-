@@ -23,6 +23,8 @@ class Profile(models.Model):
     password1 =  models.CharField(max_length=30, blank=False)
     is_customer = models.BooleanField(default=False)
     is_business = models.BooleanField(default=False)
+    def __str__(self):
+        return self.username
 
 #Customer Registration
 class Customer(models.Model):
@@ -35,6 +37,8 @@ class Customer(models.Model):
     password1 =  models.CharField(max_length=30, default="")
     is_customer = models.BooleanField(default=True)
     is_business = models.BooleanField(default=False)
+    def __str__(self):
+        return self.username
 
 #business table
 class Business(models.Model):
@@ -66,6 +70,9 @@ class Business(models.Model):
     friday_closed = models.CharField(max_length=5, default="")
     saturday_open = models.CharField(max_length=5, default="")
     saturday_closed = models.CharField(max_length=5, default="")
+    
+    def __str__(self):
+        return self.store_name
 
     def __iter__(self):
         return iter([self.username, self.first_name, self.last_name, self.email,
