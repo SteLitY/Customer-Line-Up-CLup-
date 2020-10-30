@@ -20,11 +20,15 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=50, blank=False)
     email = models.CharField(max_length=100, blank=False)
     phone_number = models.CharField(max_length=12, blank=False)
-    password1 =  models.CharField(max_length=30, blank=False)
     is_customer = models.BooleanField(default=False)
     is_business = models.BooleanField(default=False)
     def __str__(self):
         return self.username
+
+class All_Customers(models.Model):
+    name = models.CharField(max_length=30, default="")
+    position = models.CharField(max_length=5, default=0)
+
 
 #Customer Registration
 class Customer(models.Model):
@@ -34,7 +38,6 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=50, default="")
     email = models.CharField(max_length=100, default="123@gmail.com")
     phone_number = models.CharField(max_length=12, default="")
-    password1 =  models.CharField(max_length=30, default="")
     is_customer = models.BooleanField(default=True)
     is_business = models.BooleanField(default=False)
     def __str__(self):
@@ -70,6 +73,17 @@ class Business(models.Model):
     friday_closed = models.CharField(max_length=5, default="")
     saturday_open = models.CharField(max_length=5, default="")
     saturday_closed = models.CharField(max_length=5, default="")
+    #capacity
+    store_capacity = models.CharField(max_length=5, default="")
+    #group limit
+    group_limit = models.CharField(max_length=2, default="")
+    #for queue
+    in_line =  models.CharField(max_length=5, default=0)
+    in_store = models.CharField(max_length=5, default=0)
+    scheduled = models.CharField(max_length=5, default=0)
+    #List of cutomers
+    all_tickets = models.ForeignKey(All_Customers, on_delete=models.CASCADE, null = True)
+
     
     def __str__(self):
         return self.store_name
@@ -79,6 +93,7 @@ class Business(models.Model):
          self.phone_number, self.store_name, self.store_number,
          self.store_address, self.city, self.state, self.zipcode, 
          self.is_customer, self.is_business])
+        
     
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

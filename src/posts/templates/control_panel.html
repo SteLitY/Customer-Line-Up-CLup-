@@ -60,34 +60,33 @@ text-align: center;
 {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endcomment %}
 </head>
 
-
+{% for item in obj %}
 <div class="container-fluid home-main">
-	<div class="row1">
-        <div class="col-md-3" style="padding=0.5em;">
+	<div class="row">
+        <div class="col-md-4" style="padding=0.5em;">
             <div class="card bg-dark">
             	<h4 class="card-header">In line</h4>
                 <div class="card-body home-main">
-                    <h2 class="card-title">6</h2>
+                   <tb>{{item.in_line}}</tb>
                 </br>
             </div>
             </div>
         </div>
-         <div class="col-md-3" style="padding=0.5em;">
+         <div class="col-md-4" style="padding=0.5em;">
             <div class="card bg-dark">
             	<h4 class="card-header">In store</h4>
                 <div class="card-body home-main">
-                    <!-- <h2 class="card-title">In store</h2> -->
-                    <h2 class="card-title">5</h2>
+                     <tb>{{item.in_store}}</tb>
                 </br>
                 </div>
             </div>
         </div>
-         <div class="col-md-3" style="padding=0.5vw;">
-         	 <!-- <h2 class="card-title">Scheduled</h2> -->
+         <div class="col-md-4" style="padding=0.5vw;">
             <div class="card bg-dark">
             	<h4 class="card-header">Scheduled</h4>
                 <div class="card-body home-main">
-                    <h2 class="card-title">16</h2>
+                    <tb>{{item.scheduled}}</tb>
+
                 </br>
                 </div>
             </div>
@@ -97,7 +96,7 @@ text-align: center;
     <button onclick="location.href='/profile_setting'" type="button" class="btn btn-default">View Profile</button>
    </div>
  </div>
-
+    {% endfor %}
 {% comment %} 
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-8 bg-dark">.col-xs-12 .col-sm-6 .col-md-8</div>

@@ -99,7 +99,8 @@ def forgot_password_view(request, *args, **kwargs):
 
 @user_must_login(please_login_view)
 def control_panel_view(request, *args, **kwargs):
-    return render(request, "control_panel.html", {})
+    obj=Business.objects.all().filter(username = request.user.get_username())
+    return render(request, "control_panel.html", {'obj':obj})
 
 
 @user_must_login(please_login_view)
@@ -130,6 +131,8 @@ def profile_setting_view(request, *args, **kwargs):
         obj.update(friday_closed = request.POST.get('friday_closed')),
         obj.update(saturday_open = request.POST.get('saturday_open')),
         obj.update(saturday_closed = request.POST.get('saturday_closed')),
+        obj.update(group_limit = request.POST.get('group_limit')),
+        obj.update(store_capacity = request.POST.get('store_capacity'))
         for item in obj:
             item.save()
     obj=Business.objects.all().filter(username = request.user.get_username())

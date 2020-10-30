@@ -127,6 +127,18 @@
                        <label for="szip" class="col-form-label">Zipcode </label>
                         <input type="szip" class="form-control" id="szip" value="{{item.zipcode}}" name="zipcode" placeholder="12345" pattern="[0-9]{5}"required>
                     </div>
+                    <div class="form-group">
+                            <label for="store_capacity" class="col-form-label">Store Capacity</label>
+                            <input type="store_capacity" class="form-control" id="store_capacity" value="{{item.store_capacity}}" name="store_capacity" placeholder="50" required>
+                            <div class="store_capacity-feedback">
+                            </div>
+                        </div>      
+                    <div class="form-group">
+                            <label for="group_limit" class="col-form-label">Group Limit</label>
+                            <input type="group_limit" class="form-control" id="group_limit" value="{{item.group_limit}}" name="group_limit" placeholder="5" required>
+                            <div class="group_limit-feedback">
+                            </div>
+                        </div>   
                 </div>
                 </div>
              </div>
@@ -136,27 +148,27 @@
 <div id="business-form" class="day-hour-form">
                                 <div class="block">
                                 <label> Sunday:    </label>
-                                    <input class="field" type="time" name="sunday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"min="00:00" max="24:00" value="{{item.sunday_open}}" />
+                                    <input class="field" type="time" name="sunday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"min="00:00" max="24:00" value="{{item.sunday_open}}" placeholder="00:00"/>
                                     <label> to </label>
-                                    <input class="field" type="time" name="sunday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.sunday_closed}}" />
+                                    <input class="field" type="time" name="sunday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.sunday_closed}}" placeholder="00:00"/>
                                     <input type="checkbox" name="closed" value="closed">
                                     <font size="2"></font><span>Closed</span>
                                 </div>
                                 </br>
                                 <div class="block">
                                 <label> Monday:    </label>
-                                    <input class="field" type="time" name="monday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.monday_open}}" /> 
+                                    <input class="field" type="time" name="monday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.monday_open}}" placeholder="00:00"/> 
                                     <label>to</label>
-                                    <input class="field" type="time" name="monday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.monday_closed}}" />
+                                    <input class="field" type="time" name="monday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.monday_closed}}" placeholder="00:00"/>
                                     <input type="checkbox" name="closed" value="closed">
                                     <font size="2"></font><span>Closed</span>
                                 </div>
                                 </br>
                                 <div class="block">
                                 <label>Tuesday:    </label>                                    
-                                    <input class="field" type="time" name="tuesday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.tuesday_open}}" />
+                                    <input class="field" type="time" name="tuesday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.tuesday_open}}" placeholder="00:00"/>
                                     <label>to</label>
-                                    <input class="field" type="time" name="tuesday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.tuesday_closed}}" />
+                                    <input class="field" type="time" name="tuesday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.tuesday_closed}}" placeholder="00:00"/>
                                     <input type="checkbox" name="closed" value="closed">
                                     <font size="2"></font><span>Closed</span>
                                 </div>
@@ -164,9 +176,9 @@
 
                                 <div class="block">
                                 <label>Wednesday:    </label>                                    
-                                    <input class="field" type="time" name="wednesday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.wednesday_open}}" />
+                                    <input class="field" type="time" name="wednesday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.wednesday_open}}" placeholder="00:00"/>
                                     <label>to</label>
-                                    <input class="field" type="time" name="wednesday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.wednesday_closed}}" />
+                                    <input class="field" type="time" name="wednesday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.wednesday_closed}}" placeholder="00:00"/>
                                     <input type="checkbox" name="closed" value="closed">
                                     <font size="2"></font><span>Closed</span>
                                 </div>
@@ -174,9 +186,9 @@
 
                                 <div class="block">
                                 <label>Thursday:    </label>                                    
-                                    <input class="field" type="time" name="thursday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.thursday_open}}" />
+                                    <input class="field" type="time" name="thursday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.thursday_open}}" placeholder="00:00"/>
                                     <label>to</label>
-                                    <input class="field" type="time" name="thursday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.thursday_closed}}" />
+                                    <input class="field" type="time" name="thursday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.thursday_closed}}" placeholder="00:00" />
                                     <input type="checkbox" name="closed" value="closed">
                                     <font size="2"></font><span>Closed</span>
                                 </div>
@@ -184,18 +196,18 @@
 
                                 <div class="block">
                                 <label>Friday:    </label>     
-                                    <input class="field" type="time" name="friday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.friday_open}}" />
+                                    <input class="field" type="time" name="friday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.friday_open}}"  placeholder="00:00"/>
                                     <label>to</label>
-                                    <input class="field" type="time" name="friday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.friday_closed}}" />
+                                    <input class="field" type="time" name="friday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.friday_closed}}" placeholder="00:00"/>
                                     <input type="checkbox" name="closed" value="closed">
                                     <font size="2"></font><span>Closed</span>
                                 </div>
                                 </br>
                                 <div class="block">
                                 <label>Saturday:    </label>
-                                    <input class="field" type="time" name="saturday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.saturday_open}}" />
+                                    <input class="field" type="time" name="saturday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.saturday_open}}" placeholder="00:00"/>
                                     <label>to</label>
-                                    <input class="field" type="time" name="saturday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.saturday_closed}}" />
+                                    <input class="field" type="time" name="saturday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.saturday_closed}}"placeholder="00:00" />
                                     <input type="checkbox" name="closed" value="">
                                     <font size="2"></font><span>Closed</span>
                                 </div>
