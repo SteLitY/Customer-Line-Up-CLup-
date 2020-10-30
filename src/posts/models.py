@@ -32,14 +32,12 @@ class All_Customers(models.Model):
 
 #Customer Registration
 class Customer(models.Model):
-    user = models.OneToOneField(User, default="", on_delete=models.CASCADE)
     username = models.CharField(max_length=30, default="")
     first_name = models.CharField(max_length=50, default="")
     last_name = models.CharField(max_length=50, default="")
     email = models.CharField(max_length=100, default="123@gmail.com")
     phone_number = models.CharField(max_length=12, default="")
-    is_customer = models.BooleanField(default=True)
-    is_business = models.BooleanField(default=False)
+    is_customer = models.BooleanField(default=True)    
     def __str__(self):
         return self.username
 

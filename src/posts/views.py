@@ -99,83 +99,106 @@ def forgot_password_view(request, *args, **kwargs):
 
 @user_must_login(please_login_view)
 def control_panel_view(request, *args, **kwargs):
+    if request.user.profile.is_customer == True:
+        return redirect(home_page_view)
     obj=Business.objects.all().filter(username = request.user.get_username())
     return render(request, "control_panel.html", {'obj':obj})
 
 
 @user_must_login(please_login_view)
 def profile_setting_view(request, *args, **kwargs):
-    obj=Business.objects.all().filter(username = request.user.get_username())
-    if request.method == 'POST':
-        closed = request.POST.get("closed", None)
-        obj.update(first_name = request.POST.get('first_name')),
-        obj.update(last_name= request.POST.get('last_name')), 
-        obj.update(email= request.POST.get('email')),
-        obj.update(phone_number = request.POST.get('phone_number')),
-        obj.update(store_name = request.POST.get('store_name')),
-        obj.update(store_number = request.POST.get('store_number')),
-        obj.update(store_address = request.POST.get('store_address')),
-        obj.update(city = request.POST.get('city')),
-        obj.update(state = request.POST.get('state')),
-        obj.update(zipcode = request.POST.get('zipcode')),
-        if closed in ["sclosed"]:
-            obj.update(sunday_open = "00:00"),
-            obj.update(sunday_closed = "00:00"),
-        else:
-            obj.update(sunday_open = request.POST.get('sunday_open')),
-            obj.update(sunday_closed = request.POST.get('sunday_closed')),
-        if closed in ["mclosed"]:
-            obj.update(monday_open = "00:00"),
-            obj.update(monday_closed = "00:00"),
-        else:
-            obj.update(monday_open = request.POST.get('monday_open')),
-            obj.update(monday_closed = request.POST.get('monday_closed')),
-        if closed in ["tclosed"]:
-            obj.update(tuesday_open = "00:00"),
-            obj.update(tuesday_closed = "00:00"),
-        else:
-            obj.update(tuesday_open = request.POST.get('tuesday_open')),
-            obj.update(tuesday_closed = request.POST.get('tuesday_closed')),
-        if closed in ["wclosed"]:
-            obj.update(wednesday_open = "00:00"),
-            obj.update(wednesday_closed = "00:00"),
-        else:
-            obj.update(wednesday_open = request.POST.get('wednesday_open')),
-            obj.update(wednesday_closed = request.POST.get('wednesday_closed')),
-        if closed in ["thclosed"]:
-            obj.update(thursday_open = "00:00"),
-            obj.update(thursday_closed = "00:00"),
-        else:
-            obj.update(thursday_open = request.POST.get('thursday_open')),
-            obj.update(thursday_closed = request.POST.get('thursday_closed')),
-        if closed in ["fclosed"]:
-            obj.update(friday_open = "00:00"),
-            obj.update(friday_closed = "00:00"),
-        else:
-            obj.update(friday_open = request.POST.get('friday_open')),
-            obj.update(friday_closed = request.POST.get('friday_closed')),
-        if closed in ["saclosed"]:
-            obj.update(saturday_open = "00:00"),
-            obj.update(saturday_closed = "00:00"),
-        else:
-            obj.update(saturday_open = request.POST.get('saturday_open')),
-            obj.update(saturday_closed = request.POST.get('saturday_closed')),
-        obj.update(group_limit = request.POST.get('group_limit')),
-        obj.update(store_capacity = request.POST.get('store_capacity'))
-        for item in obj:
-            item.save()
-        password = request.POST.get("password2", None)
-        if password is not None:
-            username = request.user.get_username()
-            password = request.POST['password1']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                new = User.objects.get(username= request.user.get_username())
-                new.set_password(request.POST.get('password2'))
-                new.save()
-        return redirect(control_panel_view)
-    obj=Business.objects.all().filter(username = request.user.get_username())
-    return render(request, "profile_setting.html", {'obj': obj})
+    bus=Business.objects.all().filter(username = request.user.get_username())
+    cus = Customer.objects.all().filter(username = request.user.get_username())
+    #For Business
+    if request.user.profile.is_business == True :
+        if request.method == 'POST':
+            closed = request.POST.get("closed", None)
+            bus.update(first_name = request.POST.get('first_name')),
+            bus.update(last_name= request.POST.get('last_name')), 
+            bus.update(email= request.POST.get('email')),
+            bus.update(phone_number = request.POST.get('phone_number')),
+            bus.update(store_name = request.POST.get('store_name')),
+            bus.update(store_number = request.POST.get('store_number')),
+            bus.update(store_address = request.POST.get('store_address')),
+            bus.update(city = request.POST.get('city')),
+            bus.update(state = request.POST.get('state')),
+            bus.update(zipcode = request.POST.get('zipcode')),
+            if closed in ["sclosed"]:
+                bus.update(sunday_open = "00:00"),
+                bus.update(sunday_closed = "00:00"),
+            else:
+                bus.update(sunday_open = request.POST.get('sunday_open')),
+                bus.update(sunday_closed = request.POST.get('sunday_closed')),
+            if closed in ["mclosed"]:
+                bus.update(monday_open = "00:00"),
+                bus.update(monday_closed = "00:00"),
+            else: 
+                bus.update(monday_open = request.POST.get('monday_open')),
+                bus.update(monday_closed = request.POST.get('monday_closed')),
+            if closed in ["tclosed"]:
+                bus.update(tuesday_open = "00:00"),
+                bus.update(tuesday_closed = "00:00"),
+            else:
+                bus.update(tuesday_open = request.POST.get('tuesday_open')),
+                bus.update(tuesday_closed = request.POST.get('tuesday_closed')),
+            if closed in ["wclosed"]:
+                bus.update(wednesday_open = "00:00"),
+                bus.update(wednesday_closed = "00:00"),
+            else:
+                bus.update(wednesday_open = request.POST.get('wednesday_open')),
+                bus.update(wednesday_closed = request.POST.get('wednesday_closed')),
+            if closed in ["thclosed"]:
+                bus.update(thursday_open = "00:00"),
+                bus.update(thursday_closed = "00:00"),
+            else:
+                bus.update(thursday_open = request.POST.get('thursday_open')),
+                bus.update(thursday_closed = request.POST.get('thursday_closed')),
+            if closed in ["fclosed"]:
+                bus.update(friday_open = "00:00"),
+                bus.update(friday_closed = "00:00"),
+            else:
+                bus.update(friday_open = request.POST.get('friday_open')),
+                bus.update(friday_closed = request.POST.get('friday_closed')),
+            if closed in ["saclosed"]:
+                bus.update(saturday_open = "00:00"),
+                bus.update(saturday_closed = "00:00"),
+            else:
+                bus.update(saturday_open = request.POST.get('saturday_open')),
+                bus.update(saturday_closed = request.POST.get('saturday_closed')),
+            bus.update(group_limit = request.POST.get('group_limit')),
+            bus.update(store_capacity = request.POST.get('store_capacity'))
+            for item in obj:
+                item.save()
+            password = request.POST.get("password2", None)
+            if password is not None:
+                username = request.user.get_username()
+                password = request.POST['password1']
+                user = authenticate(request, username=username, password=password)
+                if user is not None:
+                    new = User.objects.get(username= request.user.get_username())
+                    new.set_password(request.POST.get('password2'))
+                    new.save()
+        bus=Business.objects.all().filter(username = request.user.get_username())
+    #For customer
+    if request.user.profile.is_customer == True :
+        if request.method == 'POST':
+            cus.update(first_name = request.POST.get('first_name')),
+            cus.update(last_name = request.POST.get('last_name')),
+            cus.update(email = request.POST.get('email')),
+            cus.update(phone_number = request.POST.get('phone_number')),
+            for item in cus:
+                item.save()
+            password = request.POST.get("password4", None)
+            if password is not None:
+                username = request.user.get_username()
+                password = request.POST['password3']
+                user = authenticate(request, username=username, password=password)
+                if user is not None:
+                    new = User.objects.get(username= request.user.get_username())
+                    new.set_password(request.POST.get('password2'))
+                    new.save()
+        return render(request, "profile_setting.html", { 'cus': cus, 'bus': bus})
+    return render(request, "profile_setting.html", { 'cus': cus, 'bus': bus})
 
 
 @login_excluded(home_page_view)
@@ -226,25 +249,16 @@ def customer_signup_view(request, *args, **kwargs):
             user.profile.is_customer = True
             user.save()
             #Save to db
-            userName = request.POST.get('username')
-            firstName = request.POST.get('first_name')
-            lastName = request.POST.get('last_name')
-            emailadd = request.POST.get('email')
-            passwordc = request.POST.get('password1')
-            passwordcon = request.POST.get('phone_number')
-
             customer = Customer.objects.create(
-                user = user,
-                username = userName,
-                first_name= firstName, 
-                last_name= lastName, 
-                email= emailadd,
+                username = request.POST.get('username'),
+                first_name= request.POST.get('first_name'), 
+                last_name= request.POST.get('last_name'), 
+                email= request.POST.get('email'),
+                phone_number  = request.POST.get('phone_number')
                 )
-            customer.save()
-
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=user.username, password=raw_password)
-            login(request, user)
+            customer = authenticate(username=user.username, password=raw_password)
+            login(request, customer)
             return redirect(home_page_view) #needs to be enter queue page
         else: 
             print(form.errors)  

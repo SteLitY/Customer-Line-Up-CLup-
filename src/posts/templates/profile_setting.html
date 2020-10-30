@@ -17,7 +17,9 @@
     
 </style>
 <table>
-	{% for item in obj %}
+{% comment %} for business {% endcomment %}
+{% if request.user.profile.is_business %}
+	{% for item in bus %}
 <form action="" method="POST">
 	{% csrf_token %}
     <div class="container-fluid home-main">
@@ -232,5 +234,65 @@
     </div>
     </form>
     {% endfor %}
+      {% endif %}
+
+
+ {% comment %} for customer {% endcomment %}      
+{% if request.user.profile.is_customer %}
+<div class="container-fluid home-main">
+    {% for item in cus %}
+    <!-- Sign up form -->
+    <form action = "" method="POST">
+    {% csrf_token %}
+        <h1 class="card-title"> Account Profile <span class="blinker">!</span></h1>
+        <div class="row">
+            <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="first_name" class="col-form-label">First Name</label>
+                            <input type="name" class="form-control" id="first_name" name="first_name" value="{{item.first_name}}" placeholder="First name" required>
+                            <div class="first_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name" class="col-form-label">Last Name</label>
+                            <input type="name" class="form-control" id="last_name" name="last_name" value="{{item.last_name}}" placeholder="Last name" required>
+                            <div class="last_name">
+                            </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{item.email}}"placeholder="example@gmail.com" required>
+                            <div class="email-feedback">
+                            </div>
+
+                        <div class="form-group">
+                            <label for="phone_number" class="col-form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone_number" name="phone_number" value="{{item.phone_number}}" placeholder="718 555 5555" required>
+                            <div class="tel-feedback">    
+                            </div>
+                        </div>
+                                                </div>  
+
+                        <div class="row-center">
+                             <div class="form-group">
+                                    <!-- check tis password agains db , to make sure theyre approved to change password -->
+                                    <label class="grey" for="password1">Current Password:</label>
+                                    <input class="form-control" type="password" name="password3" id="password1" />
+                                    <label class="grey" for="password">New Password:</label>
+                                    <input class="form-control" type="password" name="password4" id="password2" />
+                                </div>
+                            </div>
+                        </div>
+                </div> 
+        </div>
+        <!-- <div style="margin-top: 1em;"> -->
+             <button type="submit" name="action" value="Business" class="btn btn-success">Save Changes</button>
+        </div>
+        <br>
+        </form>
+</div>
     </table>
+    {% endfor %}
+    {% endif %}
 {% endblock %}
