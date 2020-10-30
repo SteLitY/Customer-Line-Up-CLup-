@@ -107,6 +107,7 @@ def control_panel_view(request, *args, **kwargs):
 def profile_setting_view(request, *args, **kwargs):
     obj=Business.objects.all().filter(username = request.user.get_username())
     if request.method == 'POST':
+        closed = request.POST.get("closed", None)
         obj.update(first_name = request.POST.get('first_name')),
         obj.update(last_name= request.POST.get('last_name')), 
         obj.update(email= request.POST.get('email')),
@@ -117,24 +118,53 @@ def profile_setting_view(request, *args, **kwargs):
         obj.update(city = request.POST.get('city')),
         obj.update(state = request.POST.get('state')),
         obj.update(zipcode = request.POST.get('zipcode')),
-        obj.update(sunday_open = request.POST.get('sunday_open')),
-        obj.update(sunday_closed = request.POST.get('sunday_closed')),
-        obj.update(monday_open = request.POST.get('monday_open')),
-        obj.update(monday_closed = request.POST.get('monday_closed')),
-        obj.update(tuesday_open = request.POST.get('tuesday_open')),
-        obj.update(tuesday_closed = request.POST.get('tuesday_closed')),
-        obj.update(wednesday_open = request.POST.get('wednesday_open')),
-        obj.update(wednesday_closed = request.POST.get('wednesday_closed')),
-        obj.update(thursday_open = request.POST.get('thursday_open')),
-        obj.update(thursday_closed = request.POST.get('thursday_closed')),
-        obj.update(friday_open = request.POST.get('friday_open')),
-        obj.update(friday_closed = request.POST.get('friday_closed')),
-        obj.update(saturday_open = request.POST.get('saturday_open')),
-        obj.update(saturday_closed = request.POST.get('saturday_closed')),
+        if closed in ["sclosed"]:
+            obj.update(sunday_open = "00:00"),
+            obj.update(sunday_closed = "00:00"),
+        else:
+            obj.update(sunday_open = request.POST.get('sunday_open')),
+            obj.update(sunday_closed = request.POST.get('sunday_closed')),
+        if closed in ["mclosed"]:
+            obj.update(monday_open = "00:00"),
+            obj.update(monday_closed = "00:00"),
+        else:
+            obj.update(monday_open = request.POST.get('monday_open')),
+            obj.update(monday_closed = request.POST.get('monday_closed')),
+        if closed in ["tclosed"]:
+            obj.update(tuesday_open = "00:00"),
+            obj.update(tuesday_closed = "00:00"),
+        else:
+            obj.update(tuesday_open = request.POST.get('tuesday_open')),
+            obj.update(tuesday_closed = request.POST.get('tuesday_closed')),
+        if closed in ["wclosed"]:
+            obj.update(wednesday_open = "00:00"),
+            obj.update(wednesday_closed = "00:00"),
+        else:
+            obj.update(wednesday_open = request.POST.get('wednesday_open')),
+            obj.update(wednesday_closed = request.POST.get('wednesday_closed')),
+        if closed in ["thclosed"]:
+            obj.update(thursday_open = "00:00"),
+            obj.update(thursday_closed = "00:00"),
+        else:
+            obj.update(thursday_open = request.POST.get('thursday_open')),
+            obj.update(thursday_closed = request.POST.get('thursday_closed')),
+        if closed in ["fclosed"]:
+            obj.update(friday_open = "00:00"),
+            obj.update(friday_closed = "00:00"),
+        else:
+            obj.update(friday_open = request.POST.get('friday_open')),
+            obj.update(friday_closed = request.POST.get('friday_closed')),
+        if closed in ["saclosed"]:
+            obj.update(saturday_open = "00:00"),
+            obj.update(saturday_closed = "00:00"),
+        else:
+            obj.update(saturday_open = request.POST.get('saturday_open')),
+            obj.update(saturday_closed = request.POST.get('saturday_closed')),
         obj.update(group_limit = request.POST.get('group_limit')),
         obj.update(store_capacity = request.POST.get('store_capacity'))
         for item in obj:
             item.save()
+        return redirect(control_panel_view)
     obj=Business.objects.all().filter(username = request.user.get_username())
     return render(request, "profile_setting.html", {'obj': obj})
 

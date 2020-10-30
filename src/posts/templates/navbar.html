@@ -138,7 +138,6 @@ color: #004d40;
   <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <li class="nav-item right" style="list-style-type:none;" >
         <a class="color-me" style="text-decoration:none;" href="/home"><h4><b>LineUp</b></h4><span class="sr-only"></span></a>
-        <!-- <a href="#" class="color-me"><h5>LineUp</h5><span class="glyphicon glyphicon-list-alt"></span></a> -->
       </li>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -154,18 +153,23 @@ color: #004d40;
         <a class ="color-me" style="text-decoration: none;float:none;" href="/customer_control">Customer Control</a>
       </li>
       {% if user.is_authenticated %}
-  {{ request.user }} <a href="#" onClick="document.getElementById('logoutform').submit()"><button type="button">Logout</button></a>
-  <form id="logoutform" method="POST" action="{% url 'customer_sign_out' %}">
+      <li class="nav-item active">
+        <a class="color-me" style="text-decoration:none;float:none;color:black;" href="/profile_setting"> {{ request.user }} </a>
+        </li>
+        <li class="nav-item disabled">
+        <a class="color-me" href="#" onClick="document.getElementById('logoutform').submit()"><button class="color-me" type="button">Logout</button></a>
+        </li>
+        <form id="logoutform" method="POST" action="{% url 'customer_sign_out' %}">
   {% csrf_token %}
-  <input type="hidden">
+    <input type="hidden">
   </form>
-  {% else %}
 
+  {% else %}
     <li class="nav-item active">
       <a class ="color-me" style="text-decoration: none;float:right;" href="{% url 'customer_signup_view' %}">Sign up</a>
       </li> 
     <li class="nav-item active">
-      <a class ="color-me" style="text-decoration: none;float:right;" href="{% url 'customer_login' %}">login</a>
+      <a class ="color-me" style="text-decoration: none;float:right;" href="{% url 'customer_login' %}">Login</a>
       </li>
   {% endif %}
     </ul>
