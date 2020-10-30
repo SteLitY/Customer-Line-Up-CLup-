@@ -164,6 +164,15 @@ def profile_setting_view(request, *args, **kwargs):
         obj.update(store_capacity = request.POST.get('store_capacity'))
         for item in obj:
             item.save()
+        password = request.POST.get("password2", None)
+        if password is not None:
+            username = request.user.get_username()
+            password = request.POST['password1']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                new = User.objects.get(username= request.user.get_username())
+                new.set_password(request.POST.get('password2'))
+                new.save()
         return redirect(control_panel_view)
     obj=Business.objects.all().filter(username = request.user.get_username())
     return render(request, "profile_setting.html", {'obj': obj})
