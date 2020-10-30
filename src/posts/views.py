@@ -269,6 +269,7 @@ def business_signup_view(request, *args, **kwargs):
             user.save()
             # #Save to db
             business = Business.objects.create(
+                username = request.POST.get('username'),
                 first_name = request.POST.get('first_name'),
                 last_name= request.POST.get('last_name'), 
                 email= request.POST.get('email'),
