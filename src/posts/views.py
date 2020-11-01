@@ -75,7 +75,7 @@ def about_us_page_view(request,*args, **kwargs):
     return render(request, "about_us.html", {})
 
 
-@login_excluded(home_page_view)
+@login_excluded('/line_up')
 def signup_signin_page_view(request, *args, **kwargs):
     if request.POST:
         username = request.POST['username']
@@ -235,7 +235,7 @@ def password_reset_request(request):
 	password_reset_form = PasswordResetForm()
 	return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})
 
-@login_excluded(home_page_view)
+@login_excluded('/line_up')
 def customer_signup_view(request, *args, **kwargs):
     if request.method == 'POST' and request.POST['action'] == 'Customer':
         form = CustomerSignUpForm(request.POST)
