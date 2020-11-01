@@ -32,7 +32,6 @@ class All_Customers(models.Model):
 
 #Customer Registration
 class Customer(models.Model):
-    user = models.OneToOneField(User, default="", on_delete=models.CASCADE)
     username = models.CharField(max_length=30, default="")
     first_name = models.CharField(max_length=50, default="")
     last_name = models.CharField(max_length=50, default="")
