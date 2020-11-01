@@ -73,9 +73,9 @@ class Business(models.Model):
     saturday_open = models.CharField(max_length=5, default="")
     saturday_closed = models.CharField(max_length=5, default="")
     #capacity
-    store_capacity = models.IntegerField(default="")
+    store_capacity = models.IntegerField(default=10)
     #group limit
-    group_limit = models.IntegerField(default="")
+    group_limit = models.IntegerField(default=1)
     #for queue
     in_line =  models.IntegerField(default=0)
     in_store = models.IntegerField(default=0)
