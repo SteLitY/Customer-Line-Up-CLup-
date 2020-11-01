@@ -167,7 +167,7 @@ def profile_setting_view(request, *args, **kwargs):
                 bus.update(saturday_closed = request.POST.get('saturday_closed')),
             bus.update(group_limit = request.POST.get('group_limit')),
             bus.update(store_capacity = request.POST.get('store_capacity'))
-            for item in obj:
+            for item in bus:
                 item.save()
             password = request.POST.get("password2", None)
             if password is not None:

@@ -146,15 +146,16 @@ color: #004d40;
       <li class="nav-item active">
         <a class="color-me" style="text-decoration:none;float:none;" href="/contact_us">Contact</a>
       </li>
-      <li class="nav-item active">
-        <a class ="color-me" style="text-decoration: none;float:none;" href="/customer_control">Customer Control</a>
-      </li>
       {% if user.is_authenticated %}
+
             {% if request.user.profile.is_business %}
       <li class="nav-item active">
         <a class="color-me" style="text-decoration:none;float:none;" href="/control_panel">Control Panel</a>
       </li>
       {% endif %}
+       <li class="nav-item active">
+        <a class ="color-me" style="text-decoration: none;float:none;" href="/customer_control">Customer Control</a>
+      </li>
         <li class="nav-item active">
         <a class="color-me" style="text-decoration:none;float:none;" href="/profile_setting"> {{ request.user }} </a>
         </li>
