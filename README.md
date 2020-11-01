@@ -81,22 +81,20 @@ inside the store and several customers outside the store in an inactive state. W
 ### Dependencies
 1. Donwload Python 3.8 
 <https://www.python.org/downloads/>
-
+* Create / Activate the environment\
+	```pipenv shell``
 * ```pip install requirements.txt``` 
 
-2. Create / Activate the environment\
-```pipenv shell```
-
-3. While in the virtual environment 
+2. While in the virtual environment 
 * You will see *(project-clup-*******)* prefacing your CLI input
     * This means you are in your virtual environment  
 
-4. Install mySQL
+3. Install mySQL
 * This will allow you to manage data migrations\
 ```pip install mysqlclient```
 * If you encounter any errors with this, [click here](https://stackoverflow.com/questions/35190465/virtualenvpython3-4-pip-install-mysqlclient-error)
 
-5. Install other libraries
+4. Install other libraries
 * ```pip install django-crispy-forms``` This will allow forgot password forms to work
 
 * ```pip install django-ses``` This is for sending emails for things like "forgot password". 
