@@ -100,6 +100,7 @@ inside the store and several customers outside the store in an inactive state. W
 * If you encounter any errors with this, [click here](https://stackoverflow.com/questions/35190465/virtualenvpython3-4-pip-install-mysqlclient-error)
 
 6. Install other libraries
+
 ```pip install django-crispy-forms```
 * This will allow forgot password forms to work
 ```pip install django-ses```
