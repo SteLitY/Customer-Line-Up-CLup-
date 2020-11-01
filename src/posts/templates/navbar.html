@@ -140,6 +140,12 @@ color: #004d40;
         <a class="color-me" style="text-decoration:none;" href="/home"><h4><b>LineUp</b></h4><span class="sr-only"></span></a>
       </li>
     <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="color-me" style="text-decoration:none;" href="/line_up">Enter The Line</a>
+      </li>
+      <li class="nav-item active">
+        {% endif %}
       <li class="nav-item active">
         <a class="color-me" style="text-decoration:none;float:none;" href="/about_us">About Us</a>
       </li>
