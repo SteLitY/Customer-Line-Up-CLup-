@@ -1,6 +1,4 @@
 from django.http import HttpResponse
-from .models import *
-from .forms import CustomerSignUpForm, BusinessSignUpForm
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
@@ -18,7 +16,11 @@ from django.db.models.query_utils import Q #password reset
 from django.contrib.auth.tokens import default_token_generator #password reset
 from django.contrib import messages #import messages for passsword
 from posts.forms import CustomerSignUpForm
+from django.forms import inlineformset_factory
 
+from .models import *
+from .forms import CustomerSignUpForm, BusinessSignUpForm
+from .filters import business_search_filter
 
 #requires user to login before they are allowed to go a page - David
 def user_must_login(redirect_to):
@@ -319,3 +321,10 @@ def customer_profile_view(request, *args, **kwargs):
 
 def scheduled_view(request, *args, **kwargs):
     return render(request, "scheduled.html", {})
+
+@user_must_login(control_panel_view)
+def line_up_view(request,*args, **kwargs):
+    business = Business.objects.all()
+    # myFilter = OrderFilter()
+    return render(request, "lineup.html", {'business':business})
+
