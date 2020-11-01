@@ -32,12 +32,14 @@ class All_Customers(models.Model):
 
 #Customer Registration
 class Customer(models.Model):
+    user = models.OneToOneField(User, default="", on_delete=models.CASCADE)
     username = models.CharField(max_length=30, default="")
     first_name = models.CharField(max_length=50, default="")
     last_name = models.CharField(max_length=50, default="")
     email = models.CharField(max_length=100, default="123@gmail.com")
     phone_number = models.CharField(max_length=12, default="")
-    is_customer = models.BooleanField(default=True)    
+    is_customer = models.BooleanField(default=True)
+    is_business = models.BooleanField(default=False)
     def __str__(self):
         return self.username
 
@@ -76,9 +78,9 @@ class Business(models.Model):
     #group limit
     group_limit = models.CharField(max_length=2, default="")
     #for queue
-    in_line =  models.CharField(max_length=5, default=0)
-    in_store = models.CharField(max_length=5, default=0)
-    scheduled = models.CharField(max_length=5, default=0)
+    in_line =  models.IntegerField(max_length=5, default=0)
+    in_store = models.IntegerField(max_length=5, default=0)
+    scheduled = models.IntegerField(max_length=5, default=0)
     #List of cutomers
     all_tickets = models.ForeignKey(All_Customers, on_delete=models.CASCADE, null = True)
 
@@ -100,4 +102,3 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
      instance.profile.save()
-
