@@ -73,13 +73,13 @@ class Business(models.Model):
     saturday_open = models.CharField(max_length=5, default="")
     saturday_closed = models.CharField(max_length=5, default="")
     #capacity
-    store_capacity = models.CharField(max_length=5, default="")
+    store_capacity = models.IntegerField(default="")
     #group limit
-    group_limit = models.CharField(max_length=2, default="")
+    group_limit = models.IntegerField(default="")
     #for queue
-    in_line =  models.IntegerField(max_length=5, default=0)
-    in_store = models.IntegerField(max_length=5, default=0)
-    scheduled = models.IntegerField(max_length=5, default=0)
+    in_line =  models.IntegerField(default=0)
+    in_store = models.IntegerField(default=0)
+    scheduled = models.IntegerField(default=0)
     #List of cutomers
     all_tickets = models.ForeignKey(All_Customers, on_delete=models.CASCADE, null = True)
 
