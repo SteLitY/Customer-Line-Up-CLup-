@@ -1,8 +1,8 @@
 from django.contrib import admin
-from django.urls import path, include #new
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth import views as auth_views #new
+from django.contrib.auth import views as auth_views
 
 from posts.views import *
 from posts import views
@@ -12,11 +12,11 @@ urlpatterns = [
     path('', home_page_view),
     path('home/', home_page_view),
     path('admin/', admin.site.urls),
-    path('clup/', include('django.contrib.auth.urls')), #new
+    path('clup/', include('django.contrib.auth.urls')),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password/password_reset_done.html'), name='password_reset_done'),#new
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="password/password_reset_confirm.html"), name='password_reset_confirm'),#new
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password/password_reset_complete.html'), name='password_reset_complete'),  #new
-    path("password_reset", views.password_reset_request, name="password_reset"), #new
+    path("password_reset", views.password_reset_request, name="password_reset"),
     path('contact_us/', contact_page_view),
     path('about_us/', about_us_page_view),
     path('signin/', signup_signin_page_view, name='customer_login'),
@@ -31,6 +31,6 @@ urlpatterns = [
     path('customer_profile/', customer_profile_view),
     path('scheduled/', scheduled_view),
     path('please_login/', please_login_view),
-
+    path('line_up/', line_up_view), #new
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
