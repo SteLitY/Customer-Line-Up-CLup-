@@ -311,7 +311,15 @@ def business_signup_view(request, *args, **kwargs):
 
 @login_excluded(control_panel_view)
 def business_login_view(request, *args, **kwargs):
-	return render(request, "b_login.html", {})
+    if request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect(home_page_view) 
+    return render(request, "b_login.html", {})
     
 def customer_control_view(request, *args, **kwargs):
     return render(request, "customer_control.html", {})
