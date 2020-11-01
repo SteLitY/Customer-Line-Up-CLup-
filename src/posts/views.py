@@ -62,8 +62,6 @@ def base_view(request, *args, **kwargs):
 
 
 def home_page_view(request,*args, **kwargs):
-    print(request)
-    print(request.user)
     return render(request, "home_page.html", {})
 
 
