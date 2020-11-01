@@ -104,6 +104,8 @@ inside the store and several customers outside the store in an inactive state. W
 * This will allow forgot password forms to work
 ```pip install django-ses```
 * This is for sending emails for things like "forgot password". There is a limit of 200 emails every 24 hours.
+```pip install django-filter```
+* This is a search filter
 
 ## How to use:
 
