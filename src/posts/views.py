@@ -332,6 +332,7 @@ def scheduled_view(request, *args, **kwargs):
 @user_must_login(control_panel_view)
 def line_up_view(request,*args, **kwargs):
     business = Business.objects.all().order_by('store_name')
-    # myFilter = OrderFilter()
-    return render(request, "lineup.html", {'business':business})
+    myFilter = business_search_filter(request.GET ,queryset=business)
+    business = myFilter.qs
+    return render(request, "lineup.html", {'business':business, 'myFilter':myFilter})
 
