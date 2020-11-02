@@ -335,4 +335,3 @@ def line_up_view(request,*args, **kwargs):
     myFilter = business_search_filter(request.GET ,queryset=business)
     business = myFilter.qs
     return render(request, "lineup.html", {'business':business, 'myFilter':myFilter})
-
