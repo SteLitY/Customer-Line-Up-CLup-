@@ -77,6 +77,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'clup.wsgi.application'
+ASGI_APPLICATION = 'clup.routing.application'
 
 
 # Database
@@ -156,11 +157,11 @@ AWS_SES_REGION_ENDPOINT ='email.us-east-1.amazonaws.com' #(ex: email.us-east-2.a
 # Channels config
 #Tells us which backend needs to be used for 
 
-# CHANNEL_LAYERS  = {
-#     "default": {
-#         # One of our dependencies
-#         "BACKEND": "channels_redis.core.RedisChannelLayer", 
-#         "CONFIG": {"hosts": [("localhost", 6379)],
-#         }, 
-#     },
-# }
+CHANNEL_LAYERS  = {
+    "default": {
+        # One of our dependencies
+        "BACKEND": "channels_redis.core.RedisChannelLayer", 
+        "CONFIG": {"hosts": [("localhost", 6379)],
+        }, 
+    },
+}

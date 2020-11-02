@@ -10,6 +10,7 @@ from posts import views
 
 urlpatterns = [
     path('', home_page_view),
+    path('home2/', HomeView.as_view()),
     path('home/', home_page_view),
     path('admin/', admin.site.urls),
     path('clup/', include('django.contrib.auth.urls')),

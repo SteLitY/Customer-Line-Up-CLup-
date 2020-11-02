@@ -21,6 +21,7 @@ from django.forms import inlineformset_factory
 from .models import *
 from .forms import CustomerSignUpForm, BusinessSignUpForm
 from .filters import business_search_filter
+from django.views.generic import TemplateView
 
 #requires user to login before they are allowed to go a page - David
 def user_must_login(redirect_to):
@@ -62,8 +63,6 @@ def base_view(request, *args, **kwargs):
 
 
 def home_page_view(request,*args, **kwargs):
-    print(request)
-    print(request.user)
     return render(request, "home_page.html", {})
 
 
@@ -84,10 +83,10 @@ def signup_signin_page_view(request, *args, **kwargs):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect(home_page_view)
+                return redirect('/line_up')
     return render(request, "signin.html", {})
 
-
+@user_must_login(home_page_view)
 def signout_page_view(request):
     if request.method == "POST":
         logout(request)
@@ -261,7 +260,7 @@ def customer_signup_view(request, *args, **kwargs):
             raw_password = form.cleaned_data.get('password1')
             customer = authenticate(username=user.username, password=raw_password)
             login(request, customer)
-            return redirect(home_page_view) #needs to be enter queue page
+            return redirect('\line_up') 
         else: 
             print(form.errors)  
     else:
@@ -318,7 +317,7 @@ def business_login_view(request, *args, **kwargs):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect(home_page_view) 
+                return redirect('/control_panel') 
     return render(request, "b_login.html", {})
     
 def customer_control_view(request, *args, **kwargs):
@@ -336,3 +335,5 @@ def line_up_view(request,*args, **kwargs):
     # myFilter = OrderFilter()
     return render(request, "lineup.html", {'business':business})
 
+class HomeView(TemplateView):
+    template_name = "home2.html"
