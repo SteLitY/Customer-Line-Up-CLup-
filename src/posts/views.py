@@ -299,7 +299,7 @@ def business_signup_view(request, *args, **kwargs):
             raw_password = form.cleaned_data.get('password1')
             business = authenticate(username=user.username, password=raw_password)
             login(request, business)
-            return redirect(home_page_view)
+            return redirect(profile_setting_view)
         else: 
             print(form.errors)
     else:
