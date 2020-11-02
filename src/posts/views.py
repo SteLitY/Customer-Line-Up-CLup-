@@ -45,6 +45,7 @@ def login_excluded(redirect_to):
 #########################################################################################
 
 
+@login_excluded('/')
 def please_login_view(request,*args, **kwargs):
     if request.POST:
         username = request.POST['username']
@@ -53,7 +54,7 @@ def please_login_view(request,*args, **kwargs):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect(home_page_view) 
+                return redirect('/') 
     return render(request, "please_login.html", {})
 
 
@@ -330,7 +331,7 @@ def scheduled_view(request, *args, **kwargs):
 
 @user_must_login(control_panel_view)
 def line_up_view(request,*args, **kwargs):
-    business = Business.objects.all()
+    business = Business.objects.all().order_by('store_name')
     # myFilter = OrderFilter()
     return render(request, "lineup.html", {'business':business})
 
