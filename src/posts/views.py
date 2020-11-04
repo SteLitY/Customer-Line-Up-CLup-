@@ -86,11 +86,13 @@ def signup_signin_page_view(request, *args, **kwargs):
                 return redirect('/line_up')
     return render(request, "signin.html", {})
 
-@user_must_login(home_page_view)
+
 def signout_page_view(request):
-    if request.method == "POST":
-        logout(request)
-        return render(request, "home_page.html", {})
+    # if request.method == "POST":
+    logout(request)
+    return render(request, "home_page.html", {})
+    # return render(request, "home_page.html", {})
+    
 
 
 @login_excluded(home_page_view)
@@ -260,7 +262,7 @@ def customer_signup_view(request, *args, **kwargs):
             raw_password = form.cleaned_data.get('password1')
             customer = authenticate(username=user.username, password=raw_password)
             login(request, customer)
-            return redirect('\line_up') 
+            return redirect('/line_up') 
         else: 
             print(form.errors)  
     else:
