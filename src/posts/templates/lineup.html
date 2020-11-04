@@ -52,7 +52,10 @@ span{
 
       <div class="col-md-10">
         <div class="card card-body">
-          
+          <form method="get">
+            {{myFilter.form}}
+            <button class="btn btn-primary" type="submit">Search</button>
+          </form>
           <table class="table">
             <tr>
               <th>Store Name</th>
@@ -65,7 +68,7 @@ span{
             {% for num in business %}
               <tr>
                 <td>{{num.store_name}}</td>
-                <td>{{num.store_address}}.<br>{{num.city}}, {{num.state}}. {{num.zipcode}}</td>
+                <td>{{num.store_address}}<br>{{num.city}}, {{num.state}}. {{num.zipcode}}</td>
                 <td></td>
                 <td></td>
                 <td></td>

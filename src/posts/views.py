@@ -46,6 +46,7 @@ def login_excluded(redirect_to):
 #########################################################################################
 
 
+@login_excluded('/')
 def please_login_view(request,*args, **kwargs):
     if request.POST:
         username = request.POST['username']
@@ -54,7 +55,7 @@ def please_login_view(request,*args, **kwargs):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect(home_page_view) 
+                return redirect('/') 
     return render(request, "please_login.html", {})
 
 
@@ -86,11 +87,13 @@ def signup_signin_page_view(request, *args, **kwargs):
                 return redirect('/line_up')
     return render(request, "signin.html", {})
 
-@user_must_login(home_page_view)
+
 def signout_page_view(request):
-    if request.method == "POST":
-        logout(request)
-        return render(request, "home_page.html", {})
+    # if request.method == "POST":
+    logout(request)
+    return render(request, "home_page.html", {})
+    # return render(request, "home_page.html", {})
+    
 
 
 @login_excluded(home_page_view)
@@ -299,7 +302,7 @@ def business_signup_view(request, *args, **kwargs):
             raw_password = form.cleaned_data.get('password1')
             business = authenticate(username=user.username, password=raw_password)
             login(request, business)
-            return redirect(home_page_view)
+            return redirect(profile_setting_view)
         else: 
             print(form.errors)
     else:
@@ -331,9 +334,14 @@ def scheduled_view(request, *args, **kwargs):
 
 @user_must_login(control_panel_view)
 def line_up_view(request,*args, **kwargs):
+
     business = Business.objects.all()
     # myFilter = OrderFilter()
-    return render(request, "lineup.html", {'business':business})
+    business = Business.objects.all().order_by('store_name')
+    myFilter = business_search_filter(request.GET ,queryset=business)
+    business = myFilter.qs
+    return render(request, "lineup.html", {'business':business, 'myFilter':myFilter})
+
 
 class HomeView(TemplateView):
     template_name = "home2.html"
