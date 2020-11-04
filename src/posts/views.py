@@ -22,6 +22,7 @@ from .models import *
 from .forms import CustomerSignUpForm, BusinessSignUpForm
 from .filters import business_search_filter
 from django.views.generic import TemplateView
+from django.contrib import messages
 
 #requires user to login before they are allowed to go a page - David
 def user_must_login(redirect_to):
@@ -55,6 +56,7 @@ def please_login_view(request,*args, **kwargs):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                messages.success(request, "Successfuly Logged in for Line Up")
                 return redirect('/') 
     return render(request, "please_login.html", {})
 
@@ -84,6 +86,7 @@ def signup_signin_page_view(request, *args, **kwargs):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                messages.success(request, "Successfuly Logged in")
                 return redirect('/line_up')
     return render(request, "signin.html", {})
 
@@ -91,6 +94,7 @@ def signup_signin_page_view(request, *args, **kwargs):
 def signout_page_view(request):
     # if request.method == "POST":
     logout(request)
+    messages.success(request, "Successfuly Logged Out")
     return render(request, "home_page.html", {})
     # return render(request, "home_page.html", {})
     
@@ -182,7 +186,13 @@ def profile_setting_view(request, *args, **kwargs):
                     new = User.objects.get(username= request.user.get_username())
                     new.set_password(request.POST.get('password2'))
                     new.save()
+                    messages.success(request, "Successfuly Logged In as Business")
+
         bus=Business.objects.all().filter(username = request.user.get_username())
+    else:
+        messages.success(request, "You are not a business")
+
+
     #For customer
     if request.user.profile.is_customer == True :
         if request.method == 'POST':
@@ -201,6 +211,7 @@ def profile_setting_view(request, *args, **kwargs):
                     new = User.objects.get(username= request.user.get_username())
                     new.set_password(request.POST.get('password2'))
                     new.save()
+                    messages.success(request, "Successfuly Logged In as Customer")
         return render(request, "profile_setting.html", { 'cus': cus, 'bus': bus})
     return render(request, "profile_setting.html", { 'cus': cus, 'bus': bus})
 
@@ -252,6 +263,7 @@ def customer_signup_view(request, *args, **kwargs):
             user.profile.phone_number = form.cleaned_data.get('phone_number')
             user.profile.is_customer = True
             user.save()
+            messages.success(request, "Successfuly Signed Up for Line Up")
             #Save to db
             customer = Customer.objects.create(
                 username = request.POST.get('username'),
@@ -285,6 +297,7 @@ def business_signup_view(request, *args, **kwargs):
             user.profile.phone_number = form.cleaned_data.get('phone_number')
             user.profile.is_business = True
             user.save()
+            messages.success(request, "Successfuly Signed Up for Line Up")
             # #Save to db
             business = Business.objects.create(
                 username = request.POST.get('username'),
