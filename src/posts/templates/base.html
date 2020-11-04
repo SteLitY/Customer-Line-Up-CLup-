@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <style>
@@ -109,6 +110,29 @@ footer {
 
   <body>
     {% include 'navbar.html' %}
+
+ <title>Notifier</title>
+    <script src="{% static '/channels/js/websocketbridge.js' %}" type="text/javascript"></script>
+  </head>
+    <ul id="notifylist"></ul>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const webSocketBridge = new channels.WebSocketBridge();
+      const nl = document.querySelector("#notifylist");
+      
+      webSocketBridge.connect('/notifications/');
+      webSocketBridge.listen(function(action, stream) {
+        console.log("RESPONSE:", action);
+        if(action.event == "New User") {
+          var el = document.createElement("li");
+          el.innerHTML = `New user <b>${action.username}</b> has joined!`;
+          nl.appendChild(el);
+        }
+      })
+      document.ws = webSocketBridge; /* for debugging */
+    })
+    </script>
+
     {% block content %}
     <h1>Customer LineUp!</h1>
     </br>
