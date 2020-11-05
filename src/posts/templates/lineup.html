@@ -32,6 +32,19 @@ span{
   width: 100px;
   animation: letter 3s ease-in-out infinite alternate;
 }
+
+.home-main button{
+  background: #fff;
+  color: #5812c5;
+  border-radius: 1;
+  font-size: 2vw;
+  width: 30%;
+  height: 2.5em;
+  top: 4%;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+}
+
 @keyframes span {
   0%,30%{ margin: 0 5px; }
   70%,100%{ margin: 0 2px; }
@@ -47,15 +60,20 @@ span{
 </style>
   
  <div class="container-fluid home-main">
+  <div class="search-bar">
+      <form method="get">
+      </form>
+      <button class="btn btn-primary" type="submit">Search</button> {{myFilter.form}}
+  </div>
     <div class="main">
       <!-- {{myFilter.form}} -->
 
       <div class="col-md-10">
         <div class="card card-body">
-          <form method="get">
+          {% comment %} <form method="get">
             {{myFilter.form}}
             <button class="btn btn-primary" type="submit">Search</button>
-          </form>
+          </form> {% endcomment %}
           <table class="table">
             <tr>
               <th>Store Name</th>
@@ -74,17 +92,10 @@ span{
                 <td></td>
               </tr>
             {% endfor %}
-            
-    
-        
-          </table>
-        </div>
+        </table>
       </div>
-        
-      </div>
-
-
-
+    </div>
+  </div>
 </div>
 
 <!-- To do:

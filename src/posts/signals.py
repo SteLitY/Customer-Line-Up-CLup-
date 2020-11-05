@@ -13,3 +13,4 @@ def announce_new_user(sender, instance, created, **kwargs):
             "gossip", {"type": "user.gossip",
                        "event": "New User",
                        "username": instance.username})
+
