@@ -1,5 +1,3 @@
-
-import django_heroku
 from pathlib import Path
 import os
 
@@ -24,6 +22,7 @@ ALLOWED_HOSTS = ['127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'posts',
     'channels',
     # 'notifier',
     'django.contrib.admin',
@@ -32,7 +31,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'posts',
     'crispy_forms',
 ]
 
@@ -156,5 +154,7 @@ CHANNEL_LAYERS  = {
     },
 }
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
+# # Activate Django-Heroku.
+# django_heroku.settings(locals())
+# import dj_database_url
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
