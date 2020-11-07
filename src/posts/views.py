@@ -102,6 +102,7 @@ def forgot_password_view(request, *args, **kwargs):
 
 @user_must_login(please_login_view)
 def control_panel_view(request, *args, **kwargs):
+    #redirect customers if they find themselves at this link 
     if request.user.profile.is_customer == True:
         return redirect(home_page_view)
     obj=Business.objects.all().filter(username = request.user.get_username())
@@ -137,6 +138,7 @@ def control_panel_view(request, *args, **kwargs):
 
 @user_must_login(please_login_view)
 def profile_setting_view(request, *args, **kwargs):
+    #Get table for customer/business
     bus=Business.objects.all().filter(username = request.user.get_username())
     cus = Customer.objects.all().filter(username = request.user.get_username())
     #For Business

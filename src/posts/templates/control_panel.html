@@ -40,13 +40,7 @@ text-align: center;
     padding: 22%;
     text-align: center;
 }
-
-
 </style>
-
-
-
-
 
 {% comment %} // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { ... }
@@ -60,10 +54,13 @@ text-align: center;
 {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endcomment %}
 </head>
 <form action = "" method="POST">
-  {% csrf_token %}
+{% csrf_token %}
+<!-- To iterate through business database -->
 {% for item in obj %}
+<!-- Containers for "in line, in store, scheduled" -->
 <div class="container-fluid home-main">
 	<div class="row">
+    <!-- Customers in line  -->
     <div class="col-md-4" style="padding=0.5em;">
         <div class="card bg-dark">
         	<h4 class="card-header">In line</h4>
@@ -73,6 +70,7 @@ text-align: center;
         </div>
         </div>
     </div>
+    <!-- Customers in store  -->
      <div class="col-md-4" style="padding=0.5em;">
         <div class="card bg-dark">
         	<h4 class="card-header">In store</h4>
@@ -82,6 +80,7 @@ text-align: center;
             </div>
         </div>
     </div>
+    <!-- Customers scheduled  -->
      <div class="col-md-4" style="padding=0.5vw;">
         <div class="card bg-dark">
         	<h4 class="card-header">Scheduled</h4>
@@ -93,8 +92,9 @@ text-align: center;
     </div>
       </div>
        <div class = "col-md-10 mx-auto">
-         <button button type="submit" type="button" name="action" value ="add" class="btn btn-default">Check In </button>
-         <label>                                                         </label>
+        <!-- Add customer manually -->
+        <button button type="submit" type="button" name="action" value ="add" class="btn btn-default">Check In </button>
+         <!-- Create space between the buttons -->
          <label></label>
          <label></label>
          <label></label>
@@ -103,8 +103,11 @@ text-align: center;
          <label></label>
          <label></label>
          <label></label>
-      <button button type="submit" type="button" name="action" value ="remove" class="btn btn-default">Check Out</button>
+         <label></label>
+        <!-- Remove customers manually -->
+        <button button type="submit" type="button" name="action" value ="remove" class="btn btn-default">Check Out</button>
    </div>
+   <!-- Go to Profile settings -->
     <div style="margin-top: 1em;">
     <button onclick="location.href='/profile_setting'" type="button" class="btn btn-default">View Profile</button>
    </div>
