@@ -105,19 +105,30 @@ def control_panel_view(request, *args, **kwargs):
     if request.user.profile.is_customer == True:
         return redirect(home_page_view)
     obj=Business.objects.all().filter(username = request.user.get_username())
+    #Add customer to queue
     if request.method == 'POST' and request.POST['action'] == 'add':
         for item in obj:
+            #If adding one more customer goes over store capacity, then dont add
+            if item.store_capacity+1 > item.store_capacity:
+                pass
+            #If adding one more customer doesntgoes over store capacity, then add
+            if item.store_capacity +1 <= item.store_capacity:
                 inside = item.in_store + 1
                 obj.update(in_store = inside)
+        #Update database
         for item in obj:
                 item.save()
+    #Remove customer from queue
     if request.method == 'POST' and request.POST['action'] == 'remove':
         for item in obj:
+            #If removing one more customer goes under 0, then dont remove
             if item.in_store-1 == 0:
                 obj.update(in_store = 0)
+            #If removing one more customer doesnt goes under 0, then remove
             if item.in_store-1 > 0:
                 inside = item.in_store - 1
                 obj.update(in_store = inside)
+        #Update database
         for item in obj:
                 item.save()
     obj=Business.objects.all().filter(username = request.user.get_username())
@@ -132,6 +143,7 @@ def profile_setting_view(request, *args, **kwargs):
     if request.user.profile.is_business == True :
         if request.method == 'POST':
             closed = request.POST.get("closed", None)
+            #Update every field except store hours
             bus.update(first_name = request.POST.get('first_name')),
             bus.update(last_name= request.POST.get('last_name')), 
             bus.update(email= request.POST.get('email')),
@@ -142,81 +154,107 @@ def profile_setting_view(request, *args, **kwargs):
             bus.update(city = request.POST.get('city')),
             bus.update(state = request.POST.get('state')),
             bus.update(zipcode = request.POST.get('zipcode')),
+            bus.update(group_limit = request.POST.get('group_limit')),
+            bus.update(store_capacity = request.POST.get('store_capacity'))
+            #If Sunday is checked closed, set values to closed
             if closed in ["sclosed"]:
                 bus.update(sunday_open = "00:00"),
                 bus.update(sunday_closed = "00:00"),
+            #else set to choosen hours   
             else:
                 bus.update(sunday_open = request.POST.get('sunday_open')),
                 bus.update(sunday_closed = request.POST.get('sunday_closed')),
+            #If Monday is checked closed, set values to closed
             if closed in ["mclosed"]:
                 bus.update(monday_open = "00:00"),
                 bus.update(monday_closed = "00:00"),
+            #else set to choosen hours  
             else: 
                 bus.update(monday_open = request.POST.get('monday_open')),
                 bus.update(monday_closed = request.POST.get('monday_closed')),
+            #If Tuesday is checked closed, set values to closed
             if closed in ["tclosed"]:
                 bus.update(tuesday_open = "00:00"),
                 bus.update(tuesday_closed = "00:00"),
+            #else set to choosen hours  
             else:
                 bus.update(tuesday_open = request.POST.get('tuesday_open')),
                 bus.update(tuesday_closed = request.POST.get('tuesday_closed')),
+            #If Wednesday is checked closed, set values to closed
             if closed in ["wclosed"]:
                 bus.update(wednesday_open = "00:00"),
                 bus.update(wednesday_closed = "00:00"),
+            #else set to choosen hours  
             else:
                 bus.update(wednesday_open = request.POST.get('wednesday_open')),
                 bus.update(wednesday_closed = request.POST.get('wednesday_closed')),
+            #If Thursday is checked closed, set values to closed
             if closed in ["thclosed"]:
                 bus.update(thursday_open = "00:00"),
                 bus.update(thursday_closed = "00:00"),
+            #else set to choosen hours  
             else:
                 bus.update(thursday_open = request.POST.get('thursday_open')),
                 bus.update(thursday_closed = request.POST.get('thursday_closed')),
+            #If Friday is checked closed, set values to closed
             if closed in ["fclosed"]:
                 bus.update(friday_open = "00:00"),
                 bus.update(friday_closed = "00:00"),
+            #else set to choosen hours  
             else:
                 bus.update(friday_open = request.POST.get('friday_open')),
                 bus.update(friday_closed = request.POST.get('friday_closed')),
+            #If Saturday is checked closed, set values to closed
             if closed in ["saclosed"]:
                 bus.update(saturday_open = "00:00"),
                 bus.update(saturday_closed = "00:00"),
+            #else set to choosen hours  
             else:
                 bus.update(saturday_open = request.POST.get('saturday_open')),
                 bus.update(saturday_closed = request.POST.get('saturday_closed')),
-            bus.update(group_limit = request.POST.get('group_limit')),
-            bus.update(store_capacity = request.POST.get('store_capacity'))
+            #Update database
             for item in bus:
                 item.save()
+            #If there is a value in password2 (meaning changing password)
             password = request.POST.get("password2", None)
             if password is not None:
+                #Check entered 'current password' against password in database
                 username = request.user.get_username()
                 password = request.POST['password1']
+                #If the passwords match
                 user = authenticate(request, username=username, password=password)
+                #Set password to the newly entered password
                 if user is not None:
                     new = User.objects.get(username= request.user.get_username())
                     new.set_password(request.POST.get('password2'))
                     new.save()
-        bus=Business.objects.all().filter(username = request.user.get_username())
+        #Refresh database
+    bus = Business.objects.all().filter(username = request.user.get_username())
     #For customer
     if request.user.profile.is_customer == True :
         if request.method == 'POST':
+            #Update every field
             cus.update(first_name = request.POST.get('first_name')),
             cus.update(last_name = request.POST.get('last_name')),
             cus.update(email = request.POST.get('email')),
             cus.update(phone_number = request.POST.get('phone_number')),
+            #Update database
             for item in cus:
                 item.save()
+            #If there is a value in password4 (meaning changing password)
             password = request.POST.get("password4", None)
             if password is not None:
+                #Check entered 'current password' against password in database
                 username = request.user.get_username()
                 password = request.POST['password3']
+                #If the passwords match
                 user = authenticate(request, username=username, password=password)
+                #Set password to the newly entered password
                 if user is not None:
                     new = User.objects.get(username= request.user.get_username())
                     new.set_password(request.POST.get('password2'))
                     new.save()
-        return render(request, "profile_setting.html", { 'cus': cus, 'bus': bus})
+        cus = Customer.objects.all().filter(username = request.user.get_username())
     return render(request, "profile_setting.html", { 'cus': cus, 'bus': bus})
 
 
