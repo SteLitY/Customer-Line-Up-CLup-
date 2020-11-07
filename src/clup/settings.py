@@ -23,7 +23,11 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 INSTALLED_APPS = [
     'posts',
+<<<<<<< HEAD
     # 'channels',
+=======
+    'channels',
+>>>>>>> 065e83a003aa33fc1302fc4a32f2ec7172a9da0b
     # 'notifier',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -145,6 +149,7 @@ AWS_SES_REGION_ENDPOINT ='email.us-east-1.amazonaws.com' #(ex: email.us-east-2.a
 # Channels config
 #Tells us which backend needs to be used for 
 
+<<<<<<< HEAD
 # CHANNEL_LAYERS  = {
 #     "default": {
 #         # One of our dependencies
@@ -153,6 +158,16 @@ AWS_SES_REGION_ENDPOINT ='email.us-east-1.amazonaws.com' #(ex: email.us-east-2.a
 #         }, 
 #     },
 # }
+=======
+CHANNEL_LAYERS  = {
+    "default": {
+        # One of our dependencies
+        "BACKEND": "channels_redis.core.RedisChannelLayer", 
+        "CONFIG": {"hosts": [("localhost", 6379)],
+        }, 
+    },
+}
+>>>>>>> 065e83a003aa33fc1302fc4a32f2ec7172a9da0b
 
 # # Activate Django-Heroku.
 # django_heroku.settings(locals())
