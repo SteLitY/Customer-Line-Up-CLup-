@@ -48,13 +48,10 @@ span{
   
  <div class="container-fluid home-main">
     <div class="main">
-      <!-- {{myFilter.form}} -->
-
       <div class="col-md-10">
         <div class="card card-body">
           <form method="get">
             {{myFilter.form}}
-            <button class="btn btn-primary" type="submit">Search</button>
           </form>
           <table class="table">
             <tr>
@@ -64,7 +61,6 @@ span{
               <th>Enter Line</th>
               <th>Leave Line</th>
             </tr>
-    
             {% for num in business %}
               <tr>
                 <td>{{num.store_name}}</td>
@@ -74,9 +70,6 @@ span{
                 <td></td>
               </tr>
             {% endfor %}
-            
-    
-        
           </table>
         </div>
       </div>

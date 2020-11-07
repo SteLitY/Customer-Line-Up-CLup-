@@ -59,42 +59,56 @@ text-align: center;
 <meta charset="utf-8">
 {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endcomment %}
 </head>
-
+<form action = "" method="POST">
+  {% csrf_token %}
 {% for item in obj %}
 <div class="container-fluid home-main">
 	<div class="row">
-        <div class="col-md-4" style="padding=0.5em;">
-            <div class="card bg-dark">
-            	<h4 class="card-header">In line</h4>
-                <div class="card-body home-main">
-                   <tb>{{item.in_line}}</tb>
-                </br>
-            </div>
+    <div class="col-md-4" style="padding=0.5em;">
+        <div class="card bg-dark">
+        	<h4 class="card-header">In line</h4>
+            <div class="card-body home-main">
+               <tb>{{item.in_line}}</tb>
+            </br>
+        </div>
+        </div>
+    </div>
+     <div class="col-md-4" style="padding=0.5em;">
+        <div class="card bg-dark">
+        	<h4 class="card-header">In store</h4>
+            <div class="card-body home-main">
+                 <tb>{{item.in_store}}</tb>
+            </br>
             </div>
         </div>
-         <div class="col-md-4" style="padding=0.5em;">
-            <div class="card bg-dark">
-            	<h4 class="card-header">In store</h4>
-                <div class="card-body home-main">
-                     <tb>{{item.in_store}}</tb>
-                </br>
-                </div>
+    </div>
+     <div class="col-md-4" style="padding=0.5vw;">
+        <div class="card bg-dark">
+        	<h4 class="card-header">Scheduled</h4>
+            <div class="card-body home-main">
+                <tb>{{item.scheduled}}</tb>
+            </br>
             </div>
         </div>
-         <div class="col-md-4" style="padding=0.5vw;">
-            <div class="card bg-dark">
-            	<h4 class="card-header">Scheduled</h4>
-                <div class="card-body home-main">
-                    <tb>{{item.scheduled}}</tb>
-
-                </br>
-                </div>
-            </div>
-        </div>
+    </div>
       </div>
+       <div class = "col-md-10 mx-auto">
+         <button button type="submit" type="button" name="action" value ="add" class="btn btn-default">Check In </button>
+         <label>                                                         </label>
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+      <button button type="submit" type="button" name="action" value ="remove" class="btn btn-default">Check Out</button>
+   </div>
     <div style="margin-top: 1em;">
     <button onclick="location.href='/profile_setting'" type="button" class="btn btn-default">View Profile</button>
    </div>
+   
  </div>
     {% endfor %}
 {% comment %} 
@@ -109,7 +123,7 @@ text-align: center;
   <div class="clearfix visible-xs-block"></div>
   <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
 </div> 
-
+</form>
 {% endcomment %}
 
 

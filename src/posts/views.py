@@ -105,6 +105,22 @@ def control_panel_view(request, *args, **kwargs):
     if request.user.profile.is_customer == True:
         return redirect(home_page_view)
     obj=Business.objects.all().filter(username = request.user.get_username())
+    if request.method == 'POST' and request.POST['action'] == 'add':
+        for item in obj:
+                inside = item.in_store + 1
+                obj.update(in_store = inside)
+        for item in obj:
+                item.save()
+    if request.method == 'POST' and request.POST['action'] == 'remove':
+        for item in obj:
+            if item.in_store-1 == 0:
+                obj.update(in_store = 0)
+            if item.in_store-1 > 0:
+                inside = item.in_store - 1
+                obj.update(in_store = inside)
+        for item in obj:
+                item.save()
+    obj=Business.objects.all().filter(username = request.user.get_username())
     return render(request, "control_panel.html", {'obj':obj})
 
 

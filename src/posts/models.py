@@ -27,7 +27,10 @@ class Profile(models.Model):
 
 class All_Customers(models.Model):
     name = models.CharField(max_length=30, default="")
-    position = models.CharField(max_length=5, default=0)
+    position = models.IntegerField(default=0)
+    group_size = models.IntegerField(default=10)
+    def __iter__(self):
+        return iter([self.name, self.position, self.group_size])
 
 
 #Customer Registration
@@ -91,7 +94,7 @@ class Business(models.Model):
         return iter([self.username, self.first_name, self.last_name, self.email,
          self.phone_number, self.store_name, self.store_number,
          self.store_address, self.city, self.state, self.zipcode, 
-         self.is_customer, self.is_business])
+         self.is_customer, self.is_business, self.in_store])
         
     
 @receiver(post_save, sender=User)
