@@ -60,11 +60,12 @@ text-align: center;
 <!-- Containers for "in line, in store, scheduled" -->
 <div class="container-fluid home-main">
   <h1 class="card-title"> Control Panel <span class="blinker">!</span></h1>
+</br>
 	<div class="row">
     <!-- Customers in line  -->
     <div class="col-md-4" style="padding=0.5em;">
-        <div class="card bg-dark">
-        	<h4 class="card-header">In line</h4>
+        <div class="card bg-light">
+        	<h4 class="card-header" style="color: #5812c5">In line</h4>
             <div class="card-body home-main">
                <tb>{{item.in_line}}</tb>
             </br>
@@ -73,8 +74,8 @@ text-align: center;
     </div>
     <!-- Customers in store  -->
      <div class="col-md-4" style="padding=0.5em;">
-        <div class="card bg-dark">
-        	<h4 class="card-header">In store</h4>
+        <div class="card bg-light">
+        	<h4 class="card-header" style="color: #5812c5">In store</h4>
             <div class="card-body home-main">
                  <tb>{{item.in_store}}</tb>
             </br>
@@ -83,8 +84,8 @@ text-align: center;
     </div>
     <!-- Customers scheduled  -->
      <div class="col-md-4" style="padding=0.5vw;">
-        <div class="card bg-dark">
-        	<h4 class="card-header">Scheduled</h4>
+        <div class="card bg-light">
+        	<h4 class="card-header" style="color: #5812c5">Scheduled</h4>
             <div class="card-body home-main">
                 <tb>{{item.scheduled}}</tb>
             </br>
@@ -92,6 +93,8 @@ text-align: center;
         </div>
     </div>
       </div>
+      </br>
+    </br>
        <div class = "col-md-10 mx-auto">
         <!-- Add customer manually -->
         <button button type="submit" type="button" name="action" value ="add" class="btn btn-default">Check In </button>
