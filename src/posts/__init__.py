@@ -1,1 +1,1 @@
-default_app_config = 'posts.apps.NotifierConfig'
+default_app_config = 'posts.apps.PostsConfig'
