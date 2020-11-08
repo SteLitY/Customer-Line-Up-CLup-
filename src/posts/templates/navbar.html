@@ -168,7 +168,7 @@ color: #004d40;
         <a class="color-me" style="text-decoration:none;float:none;" href="/profile_setting"> {{ request.user }} </a>
         </li>
         <li class="nav-item disabled">
-        <a class="color-me" href="#" onClick="document.getElementById('logoutform').submit()"><button class="btn btn-light color-me" type="button">Logout</button></a>
+        <a class="color-me" href="#" onClick="document.getElementById('logoutform').submit()">Logout</a>
         </li>
         <form id="logoutform" method="POST" action="{% url 'customer_sign_out' %}">
   {% csrf_token %}
