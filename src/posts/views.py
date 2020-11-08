@@ -110,11 +110,12 @@ def control_panel_view(request, *args, **kwargs):
     if request.method == 'POST' and request.POST['action'] == 'add':
         for item in obj:
             #If adding one more customer goes over store capacity, then dont add
-            if item.store_capacity+1 > item.store_capacity:
+            if item.in_store+1 > item.store_capacity:
                 pass
             #If adding one more customer doesntgoes over store capacity, then add
-            if item.store_capacity +1 <= item.store_capacity:
+            if item.in_store+1 <= item.store_capacity:
                 inside = item.in_store + 1
+                print(inside)
                 obj.update(in_store = inside)
         #Update database
         for item in obj:
