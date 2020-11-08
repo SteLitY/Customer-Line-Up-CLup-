@@ -49,7 +49,8 @@ span{
 
 }
 </style>
-  
+
+
  <div class="container-fluid home-main">
     <div class="main">
       <div class="col-md-10">
@@ -58,12 +59,12 @@ span{
           <form method="get" style="color: black">
             <!-- Form to search for store -->
            <h3> {{myFilter.form}} 
-            <!-- Search button for filter -->
+            <!-- Search button for filter  -->
             <button type="submt" type="button" class="btn btn-light" style="transition: none; width: auto; margin-bottom: 2em">Search</button>
             </h3>
           </form>
           </div>
-          <!-- Categories for tables -->
+          <!--Categories for tables -->
           <table class="table">
             <tr>
               <th>Store Name</th>
@@ -72,12 +73,14 @@ span{
               <th>Enter Line</th>
               <th>Leave Line</th>
             </tr>
-            <!-- Retrieves store information from database -->
+            <!-- Retrieves store information from database  -->
             {% for num in business %}
               <tr>
-                <td>{{num.store_name}}</td>
-                <td>{{num.store_address}}<br>{{num.city}}, {{num.state}}. {{num.zipcode}}</td>
-                <td></td>
+                <td><a href='/customer_control'>{{num.store_name}}</a></td>
+               
+                <td><a href="http://maps.google.com/maps?q={{num.store_address}}, {{num.city}}, {{num.state}}. {{num.zipcode}}">
+                  {{num.store_address}}, {{num.city}}, {{num.state}}. {{num.zipcode}}</a></td>
+        
                 <td></td>
                 <td></td>
               </tr>
@@ -112,6 +115,6 @@ NEW PAGE to allow user to exit queue
 
 "
 
--->
- 
+
+  -->
 {% endblock %} 
