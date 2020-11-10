@@ -22,6 +22,10 @@ from .models import *
 from .forms import CustomerSignUpForm, BusinessSignUpForm
 from .filters import business_search_filter
 
+#########################################################################################
+#                                  Requirements                                         #
+#########################################################################################
+
 #requires user to login before they are allowed to go a page - David
 def user_must_login(redirect_to):
     def _method_wrapper(view_method):
@@ -43,6 +47,8 @@ def login_excluded(redirect_to):
     return _method_wrapper
 
 #########################################################################################
+#                                  Exclusions                                           #
+#########################################################################################
 
 # If trying to access a page that you need to be logged on to see,
 # redirects to 'Please login' view
@@ -59,7 +65,7 @@ def please_login_view(request,*args, **kwargs):
     return render(request, "please_login.html", {})
 
 #########################################################################################
-                                    #Default views
+#                                   Default views                                       #
 #########################################################################################
 
 # Displays the homepage
@@ -77,7 +83,7 @@ def about_us_page_view(request,*args, **kwargs):
     return render(request, "about_us.html", {})
 
 #########################################################################################
-                                    #Forgot password views and Sign out
+#                                Forgot password views and Sign OUT                     #
 #########################################################################################
 
 #This page allows clients to reset their password via email
@@ -125,7 +131,7 @@ def signout_page_view(request):
     return render(request, "home_page.html", {}) 
 
 #########################################################################################
-                                    #Sign in views
+#                                   Sign in views              c                        #
 #########################################################################################
 
 #Customer sign in page
@@ -158,7 +164,7 @@ def business_login_view(request, *args, **kwargs):
     return render(request, "b_sigin.html", {})
 
 #########################################################################################
-                                    #Sign up views
+#                                    Sign up views                                      #
 #########################################################################################
 
 #Customer sign up view
@@ -202,7 +208,8 @@ def customer_signup_view(request, *args, **kwargs):
 #Asks for username, name, email, number, store: name, address, number
 #Username and password set is now their sigin information
 #Once signed in, they're redirected to 'Profile Settings' where they can input 
-#other information such as: Store hours, group limit, store capacity and able to change password
+#other information such as: Store hours, group limit, store capacity 
+#and able to change password
 def business_signup_view(request, *args, **kwargs):
     if request.method == 'POST'and request.POST['action'] == 'Business':
         form = BusinessSignUpForm(request.POST)
@@ -243,7 +250,7 @@ def business_signup_view(request, *args, **kwargs):
     return render(request, "b_signup.html", {})
 
 #########################################################################################
-                                    #Personalized views
+#                                   Personalized views                                  #
 #########################################################################################
 
 #Control panel
@@ -420,7 +427,7 @@ def profile_setting_view(request, *args, **kwargs):
     return render(request, "profile_setting.html", { 'cus': cus, 'bus': bus})
 
 #########################################################################################
-                                    #Ticketing views
+#                                    Ticketing views                                    #
 #########################################################################################
 
 #Displays store information: address, number and hours
@@ -433,7 +440,7 @@ def line_up_view(request,*args, **kwargs):
     myFilter = business_search_filter(request.GET ,queryset=business)
     business = myFilter.qs
     return render(request, "lineup.html", {'business':business, 'myFilter':myFilter})
-    
+
 #Allows customer to schedule a time slot for a ticket
 @user_must_login(please_login_view)
 def customer_control_view(request, *args, **kwargs):
