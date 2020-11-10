@@ -26,7 +26,7 @@ from .filters import business_search_filter
 #                                  Requirements                                         #
 #########################################################################################
 
-#requires user to login before they are allowed to go a page - David
+#Requires user to login before they are allowed to go a page - David
 def user_must_login(redirect_to):
     def _method_wrapper(view_method):
         def _arguments_wrapper(request, *args, **kwargs):
@@ -36,7 +36,8 @@ def user_must_login(redirect_to):
         return _arguments_wrapper
     return _method_wrapper
 
-#requires user to be logged OUT to go to that page
+#Requires user to be logged OUT to go to that page
+#Redirects them to another page
 def login_excluded(redirect_to):
     def _method_wrapper(view_method):
         def _arguments_wrapper(request, *args, **kwargs):
@@ -52,7 +53,7 @@ def login_excluded(redirect_to):
 
 # If trying to access a page that you need to be logged on to see,
 # redirects to 'Please login' view
-@login_excluded('/') #Doesnt stop anything
+@login_excluded('/') 
 def please_login_view(request,*args, **kwargs):
     if request.POST:
         username = request.POST['username']
