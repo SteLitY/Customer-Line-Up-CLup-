@@ -44,8 +44,9 @@ def login_excluded(redirect_to):
 
 #########################################################################################
 
-
-@login_excluded('/')
+# If trying to access a page that you need to be logged on to see,
+# redirects to 'Please login' view
+@login_excluded('/') #Doesnt stop anything
 def please_login_view(request,*args, **kwargs):
     if request.POST:
         username = request.POST['username']
@@ -57,24 +58,80 @@ def please_login_view(request,*args, **kwargs):
                 return redirect('/') 
     return render(request, "please_login.html", {})
 
+#########################################################################################
+                                    #Default views
+#########################################################################################
 
-def base_view(request, *args, **kwargs):
-    return render(request, "base.html", {})
-
-
+# Displays the homepage
+# If signed in, displays the username, and appropriate links in navbar
+# else, displays 'Line Up', and non-personal links in navbar
 def home_page_view(request,*args, **kwargs):
     return render(request, "home_page.html", {})
 
-
+#Displays our github link
 def contact_page_view(request, *args, **kwargs):
     return render(request, "contact_us.html", {})
 
-
+#Displays our project mission 
 def about_us_page_view(request,*args, **kwargs):
     return render(request, "about_us.html", {})
 
+#########################################################################################
+                                    #Forgot password views and Sign out
+#########################################################################################
 
-@login_excluded('/line_up')
+#This page allows clients to reset their password via email
+#@login_excluded(home_page_view) #Doesnt stop anything
+def forgot_password_view(request, *args, **kwargs):
+    return render(request, "reset.html", {})
+#This page allows clients to reset their password via email
+#Checked email against database, if found, send them the link 
+#Else displays invalid email
+@login_excluded(home_page_view)
+def password_reset_request(request):
+    if request.method == "POST":
+        password_reset_form = PasswordResetForm(request.POST)
+        if password_reset_form.is_valid():
+            data = password_reset_form.cleaned_data['email']
+            associated_users = User.objects.filter(Q(email=data))
+            if associated_users.exists():
+                for user in associated_users:
+                    subject = "Password Reset Requested"
+                    email_template_name = "password/password_reset_email.txt"
+                    c = {
+                    "email":user.email,
+                    'domain':'127.0.0.1:8000',
+                    'site_name': 'Line Up',
+                    "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': default_token_generator.make_token(user),
+                    'protocol': 'http',
+                    }
+                    email = render_to_string(email_template_name, c)
+                    try:
+                        send_mail(subject, email, 'david.chen68@myhunter.cuny.edu', [user.email], fail_silently=False)
+                    except BadHeaderError:
+
+                        return HttpResponse('Invalid header found.')
+                        
+                    messages.success(request, 'A message with the reset password instructions has been sent to your inbox.')
+                    return redirect ("/password_reset/done/")
+            messages.error(request, 'An invalid email has been entered.')
+    password_reset_form = PasswordResetForm()
+    return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})
+
+#Signs client out and redirects to homepage
+def signout_page_view(request):
+    logout(request)
+    return render(request, "home_page.html", {}) 
+
+#########################################################################################
+                                    #Sign in views
+#########################################################################################
+
+#Customer sign in page
+#Asks for username and password, checks against database
+#if valid, login in the customer
+@login_excluded('/line_up') 
 def signup_signin_page_view(request, *args, **kwargs):
     if request.POST:
         username = request.POST['username']
@@ -86,20 +143,112 @@ def signup_signin_page_view(request, *args, **kwargs):
                 return redirect('/line_up')
     return render(request, "signin.html", {})
 
+#Business sign in page
+#Asks for username and password, checks against database
+#if valid, login in the business
+def business_login_view(request, *args, **kwargs):
+    if request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('/control_panel') 
+    return render(request, "b_sigin.html", {})
 
-def signout_page_view(request):
-    # if request.method == "POST":
-    logout(request)
-    return render(request, "home_page.html", {})
-    # return render(request, "home_page.html", {})
-    
+#########################################################################################
+                                    #Sign up views
+#########################################################################################
 
+#Customer sign up view
+#Asks for username, name, email, number
+#Username and password set is now their sigin information
+#Redicts to 'line up' page where they can immediately get a ticket for a store 
+def customer_signup_view(request, *args, **kwargs):
+    if request.method == 'POST' and request.POST['action'] == 'Customer':
+        form = CustomerSignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            # Create user profile
+            user.profile.username = form.cleaned_data.get('username')
+            user.profile.first_name = form.cleaned_data.get('first_name')
+            user.profile.last_name = form.cleaned_data.get('last_name')
+            user.profile.email = form.cleaned_data.get('email')
+            user.profile.phone_number = form.cleaned_data.get('phone_number')
+            user.profile.is_customer = True
+            user.save()
+            #Save to db
+            customer = Customer.objects.create(
+                username = request.POST.get('username'),
+                first_name= request.POST.get('first_name'), 
+                last_name= request.POST.get('last_name'), 
+                email= request.POST.get('email'),
+                phone_number  = request.POST.get('phone_number')
+                )
+            raw_password = form.cleaned_data.get('password1')
+            customer = authenticate(username=user.username, password=raw_password)
+            login(request, customer)
+            return redirect('/line_up') 
+        else: 
+            print(form.errors)  
+    else:
+        form = CustomerSignUpForm()
+    return render(request, "signup.html", {'form': form})
 
-@login_excluded(home_page_view)
-def forgot_password_view(request, *args, **kwargs):
-	return render(request, "reset.html", {})
+#Business sign up view
+#At sign up, only ask for basic infomation, for the page to not look over crowded
+#Asks for username, name, email, number, store: name, address, number
+#Username and password set is now their sigin information
+#Once signed in, they're redirected to 'Profile Settings' where they can input 
+#other information such as: Store hours, group limit, store capacity and able to change password
+def business_signup_view(request, *args, **kwargs):
+    if request.method == 'POST'and request.POST['action'] == 'Business':
+        form = BusinessSignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            #Save to profiles
+            user.refresh_from_db()
+            user.profile.username = form.cleaned_data.get('username')
+            user.profile.first_name = form.cleaned_data.get('first_name')
+            user.profile.last_name = form.cleaned_data.get('last_name')
+            user.profile.email = form.cleaned_data.get('email')
+            user.profile.phone_number = form.cleaned_data.get('phone_number')
+            user.profile.is_business = True
+            user.save()
+            # #Save to db
+            business = Business.objects.create(
+                username = request.POST.get('username'),
+                first_name = request.POST.get('first_name'),
+                last_name= request.POST.get('last_name'), 
+                email= request.POST.get('email'),
+                phone_number = request.POST.get('phone_number'),
+                store_name = request.POST.get('store_name'),
+                store_number = request.POST.get('store_number'),
+                store_address = request.POST.get('store_address'),
+                city = request.POST.get('city'),
+                state = request.POST.get('state'),
+                zipcode = request.POST.get('zipcode'),
+                )
+            raw_password = form.cleaned_data.get('password1')
+            business = authenticate(username=user.username, password=raw_password)
+            login(request, business)
+            return redirect(profile_setting_view)
+        else: 
+            print(form.errors)
+    else:
+        form = BusinessSignUpForm()
+        return render(request, 'b_signup.html', {'form': form})
+    return render(request, "b_signup.html", {})
 
+#########################################################################################
+                                    #Personalized views
+#########################################################################################
 
+#Control panel
+#Able to see the number of customers in store, in line and schedule to arrive
+#Can manually checkin and check out customers as well
 @user_must_login(please_login_view)
 def control_panel_view(request, *args, **kwargs):
     #redirect customers if they find themselves at this link 
@@ -136,7 +285,17 @@ def control_panel_view(request, *args, **kwargs):
     obj=Business.objects.all().filter(username = request.user.get_username())
     return render(request, "control_panel.html", {'obj':obj})
 
-
+#Shows profile settings based on who is logged in
+#If you are a customer displays:
+#   username, email, name, number and option to change password
+#If you are a business displays:
+#   Personal: username, email, name, number and option to change password
+#   Store: name, address, number, hours, group limit, group capacity
+#For password change, it only changes password if there is information 
+#entered in the 'new password' field. 
+#Upon entering, it validates 'current password' against database,
+#if it is valid, it changes, else it does nothing.
+#Upon hitting save, all information is updated in database
 @user_must_login(please_login_view)
 def profile_setting_view(request, *args, **kwargs):
     #Get table for customer/business
@@ -260,137 +419,27 @@ def profile_setting_view(request, *args, **kwargs):
         cus = Customer.objects.all().filter(username = request.user.get_username())
     return render(request, "profile_setting.html", { 'cus': cus, 'bus': bus})
 
+#########################################################################################
+                                    #Ticketing views
+#########################################################################################
 
-@login_excluded(home_page_view)
-def password_reset_request(request):
-	if request.method == "POST":
-		password_reset_form = PasswordResetForm(request.POST)
-		if password_reset_form.is_valid():
-			data = password_reset_form.cleaned_data['email']
-			associated_users = User.objects.filter(Q(email=data))
-			if associated_users.exists():
-				for user in associated_users:
-					subject = "Password Reset Requested"
-					email_template_name = "password/password_reset_email.txt"
-					c = {
-					"email":user.email,
-					'domain':'127.0.0.1:8000',
-					'site_name': 'Line Up',
-					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
-					'token': default_token_generator.make_token(user),
-					'protocol': 'http',
-					}
-					email = render_to_string(email_template_name, c)
-					try:
-						send_mail(subject, email, 'david.chen68@myhunter.cuny.edu', [user.email], fail_silently=False)
-					except BadHeaderError:
-
-						return HttpResponse('Invalid header found.')
-						
-					messages.success(request, 'A message with the reset password instructions has been sent to your inbox.')
-					return redirect ("/password_reset/done/")
-			messages.error(request, 'An invalid email has been entered.')
-	password_reset_form = PasswordResetForm()
-	return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})
-
-@login_excluded('/line_up')
-def customer_signup_view(request, *args, **kwargs):
-    if request.method == 'POST' and request.POST['action'] == 'Customer':
-        form = CustomerSignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            user.refresh_from_db()  # load the profile instance created by the signal
-            # Create user profile
-            user.profile.username = form.cleaned_data.get('username')
-            user.profile.first_name = form.cleaned_data.get('first_name')
-            user.profile.last_name = form.cleaned_data.get('last_name')
-            user.profile.email = form.cleaned_data.get('email')
-            user.profile.phone_number = form.cleaned_data.get('phone_number')
-            user.profile.is_customer = True
-            user.save()
-            #Save to db
-            customer = Customer.objects.create(
-                username = request.POST.get('username'),
-                first_name= request.POST.get('first_name'), 
-                last_name= request.POST.get('last_name'), 
-                email= request.POST.get('email'),
-                phone_number  = request.POST.get('phone_number')
-                )
-            raw_password = form.cleaned_data.get('password1')
-            customer = authenticate(username=user.username, password=raw_password)
-            login(request, customer)
-            return redirect('/line_up') 
-        else: 
-            print(form.errors)  
-    else:
-        form = CustomerSignUpForm()
-    return render(request, "signup.html", {'form': form})
-
-@login_excluded(control_panel_view)
-def business_signup_view(request, *args, **kwargs):
-    if request.method == 'POST'and request.POST['action'] == 'Business':
-        form = BusinessSignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            #Save to profiles
-            user.refresh_from_db()
-            user.profile.username = form.cleaned_data.get('username')
-            user.profile.first_name = form.cleaned_data.get('first_name')
-            user.profile.last_name = form.cleaned_data.get('last_name')
-            user.profile.email = form.cleaned_data.get('email')
-            user.profile.phone_number = form.cleaned_data.get('phone_number')
-            user.profile.is_business = True
-            user.save()
-            # #Save to db
-            business = Business.objects.create(
-                username = request.POST.get('username'),
-                first_name = request.POST.get('first_name'),
-                last_name= request.POST.get('last_name'), 
-                email= request.POST.get('email'),
-                phone_number = request.POST.get('phone_number'),
-                store_name = request.POST.get('store_name'),
-                store_number = request.POST.get('store_number'),
-                store_address = request.POST.get('store_address'),
-                city = request.POST.get('city'),
-                state = request.POST.get('state'),
-                zipcode = request.POST.get('zipcode'),
-                )
-            raw_password = form.cleaned_data.get('password1')
-            business = authenticate(username=user.username, password=raw_password)
-            login(request, business)
-            return redirect(profile_setting_view)
-        else: 
-            print(form.errors)
-    else:
-        form = BusinessSignUpForm()
-        return render(request, 'b_signup.html', {'form': form})
-    return render(request, "b_signup.html", {})
-
-
-@login_excluded(control_panel_view)
-def business_login_view(request, *args, **kwargs):
-    if request.POST:
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('/control_panel') 
-    return render(request, "b_login.html", {})
-    
-def customer_control_view(request, *args, **kwargs):
-    return render(request, "customer_control.html", {})
-
-def customer_profile_view(request, *args, **kwargs):
-    return render(request, "customer_profile.html", {})
-
-def scheduled_view(request, *args, **kwargs):
-    return render(request, "scheduled.html", {})
-
-@user_must_login(control_panel_view)
+#Displays store information: address, number and hours
+#Allows client to search for  store and filters out the list
+#Allows client to enter/leave a line for a specific businesss
+#Displays client's place in line, if the entered line
+@user_must_login(please_login_view)
 def line_up_view(request,*args, **kwargs):
     business = Business.objects.all().order_by('store_name')
     myFilter = business_search_filter(request.GET ,queryset=business)
     business = myFilter.qs
     return render(request, "lineup.html", {'business':business, 'myFilter':myFilter})
+    
+#Allows customer to schedule a time slot for a ticket
+@user_must_login(please_login_view)
+def customer_control_view(request, *args, **kwargs):
+    return render(request, "customer_control.html", {})
+
+#Notifies customer that they have been scheduled
+@user_must_login(please_login_view)
+def scheduled_view(request, *args, **kwargs):
+    return render(request, "scheduled.html", {})
