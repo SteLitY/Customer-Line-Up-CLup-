@@ -24,6 +24,7 @@ p {
         {% csrf_token %} 
         <h3 class="card-title"> Line Up for Business <span class="blinker">!</span></h2>
         <div class="row">
+            <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
                     <div class="card-body">
                         
                         <div class="form-group">
@@ -38,20 +39,20 @@ p {
                             <input type="password" class="form-control" name="password" placeholder="Type your password" required>
                             <div class="password-feedback">
                             
-                            </div>
                         </div>
-                        </div>
-                        
+                     </div>
+                </div>
+             </div>
         </div>
         <div style="margin-top: 1em;">
             <button button type="submit" type="button" class="btn btn-default">Login</button>
         </div>
         <br>
-        <p><a href="/password_reset">Forgot password ?  </a>  | 
+        <p><a href="/password_reset">Forgot password?</a>  | 
 
-         <a href="/business_sign_up">Sign up for Line Up</a> |
+         <a href="/business_sign_up">Sign up your Business</a> |
 
-     <a href="/signin"> Customer</a></p>  
+     <a href="/signin"> Customers Click Here!</a></p>  
         </form>
 </div>
 {% endblock %}

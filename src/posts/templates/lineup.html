@@ -44,15 +44,27 @@ span{
   padding: 0.875rem 1.25rem;
   font-size: 1.2rem;
 }
+#form{
+  color: black;
+
+}
 </style>
-  
+
+
  <div class="container-fluid home-main">
     <div class="main">
-      <!-- {{myFilter.form}} -->
-
       <div class="col-md-10">
         <div class="card card-body">
-          
+          <div class="card-body">
+          <form method="get" style="color: black">
+            <!-- Form to search for store -->
+           <h3> {{myFilter.form}} 
+            <!-- Search button for filter  -->
+            <button type="submt" type="button" class="btn btn-light" style="transition: none; width: auto; margin-bottom: 2em">Search</button>
+            </h3>
+          </form>
+          </div>
+          <!--Categories for tables -->
           <table class="table">
             <tr>
               <th>Store Name</th>
@@ -61,19 +73,18 @@ span{
               <th>Enter Line</th>
               <th>Leave Line</th>
             </tr>
-    
+            <!-- Retrieves store information from database  -->
             {% for num in business %}
               <tr>
-                <td>{{num.store_name}}</td>
-                <td>{{num.store_address}}.<br>{{num.city}}, {{num.state}}. {{num.zipcode}}</td>
-                <td></td>
+                <td><a href='/customer_control'>{{num.store_name}}</a></td>
+               
+                <td><a href="http://maps.google.com/maps?q={{num.store_address}}, {{num.city}}, {{num.state}}. {{num.zipcode}}">
+                  {{num.store_address}}, {{num.city}}, {{num.state}}. {{num.zipcode}}</a></td>
+        
                 <td></td>
                 <td></td>
               </tr>
             {% endfor %}
-            
-    
-        
           </table>
         </div>
       </div>
@@ -104,6 +115,6 @@ NEW PAGE to allow user to exit queue
 
 "
 
--->
- 
+
+  -->
 {% endblock %} 

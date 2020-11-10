@@ -37,16 +37,11 @@ text-align: center;
 .home-main{
     background: #5812c5;
     color:#fff;
-    padding: 22%;
+    padding: 10%;
     text-align: center;
+
 }
-
-
 </style>
-
-
-
-
 
 {% comment %} // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { ... }
@@ -59,42 +54,67 @@ text-align: center;
 <meta charset="utf-8">
 {% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endcomment %}
 </head>
-
+<form action = "" method="POST">
+{% csrf_token %}
+<!-- To iterate through business database -->
 {% for item in obj %}
+<!-- Containers for "in line, in store, scheduled" -->
 <div class="container-fluid home-main">
+  <h1 class="card-title"> Control Panel <span class="blinker">!</span></h1>
+</br>
 	<div class="row">
-        <div class="col-md-4" style="padding=0.5em;">
-            <div class="card bg-dark">
-            	<h4 class="card-header">In line</h4>
-                <div class="card-body home-main">
-                   <tb>{{item.in_line}}</tb>
-                </br>
-            </div>
+    <!-- Customers in line  -->
+    <div class="col-md-4" style="padding=0.5em;">
+        <div class="card bg-light">
+        	<h4 class="card-header" style="color: #5812c5">In line</h4>
+            <div class="card-body home-main">
+               <tb>{{item.in_line}}</tb>
+            </br>
+        </div>
+        </div>
+    </div>
+    <!-- Customers in store  -->
+     <div class="col-md-4" style="padding=0.5em;">
+        <div class="card bg-light">
+        	<h4 class="card-header" style="color: #5812c5">In store</h4>
+            <div class="card-body home-main">
+                 <tb>{{item.in_store}}</tb>
+            </br>
             </div>
         </div>
-         <div class="col-md-4" style="padding=0.5em;">
-            <div class="card bg-dark">
-            	<h4 class="card-header">In store</h4>
-                <div class="card-body home-main">
-                     <tb>{{item.in_store}}</tb>
-                </br>
-                </div>
+    </div>
+    <!-- Customers scheduled  -->
+     <div class="col-md-4" style="padding=0.5vw;">
+        <div class="card bg-light">
+        	<h4 class="card-header" style="color: #5812c5">Scheduled</h4>
+            <div class="card-body home-main">
+                <tb>{{item.scheduled}}</tb>
+            </br>
             </div>
         </div>
-         <div class="col-md-4" style="padding=0.5vw;">
-            <div class="card bg-dark">
-            	<h4 class="card-header">Scheduled</h4>
-                <div class="card-body home-main">
-                    <tb>{{item.scheduled}}</tb>
-
-                </br>
-                </div>
-            </div>
-        </div>
+    </div>
       </div>
+      </br>
+    </br>
+       <div class = "col-md-10 mx-auto">
+        <!-- Add customer manually -->
+        <button button type="submit" type="button" name="action" value ="add" class="btn btn-default">Check In </button>
+         <!-- Create space between the buttons -->
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+        <!-- Remove customers manually -->
+        <button button type="submit" type="button" name="action" value ="remove" class="btn btn-default">Check Out</button>
+   </div>
+   <!-- Go to Profile settings -->
     <div style="margin-top: 1em;">
     <button onclick="location.href='/profile_setting'" type="button" class="btn btn-default">View Profile</button>
    </div>
+   
  </div>
     {% endfor %}
 {% comment %} 
@@ -109,7 +129,7 @@ text-align: center;
   <div class="clearfix visible-xs-block"></div>
   <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
 </div> 
-
+</form>
 {% endcomment %}
 
 
