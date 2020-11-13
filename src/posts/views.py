@@ -17,6 +17,7 @@ from django.contrib.auth.tokens import default_token_generator #password reset
 from django.contrib import messages #import messages for passsword
 from posts.forms import CustomerSignUpForm
 from django.forms import inlineformset_factory
+from .sms import sendtext
 
 from .models import *
 from .forms import CustomerSignUpForm, BusinessSignUpForm
@@ -186,6 +187,7 @@ def customer_signup_view(request, *args, **kwargs):
             user.profile.phone_number = form.cleaned_data.get('phone_number')
             user.profile.is_customer = True
             user.save()
+           #sendtext(user.profile.phone_number, user.profile.first_name)  #sends text to customer when they sign up
             #Save to db
             customer = Customer.objects.create(
                 username = request.POST.get('username'),
