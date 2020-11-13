@@ -17,6 +17,7 @@ from django.contrib.auth.tokens import default_token_generator #password reset
 from django.contrib import messages #import messages for passsword
 from posts.forms import CustomerSignUpForm
 from django.forms import inlineformset_factory
+from .sms import sendtext
 
 from .models import *
 from .forms import CustomerSignUpForm, BusinessSignUpForm
@@ -191,6 +192,7 @@ def customer_signup_view(request, *args, **kwargs):
             user.profile.is_customer = True
             user.save()
             messages.success(request, "Successfully Signed Up for Line Up!")
+           #sendtext(user.profile.phone_number, user.profile.first_name)  #sends text to customer when they sign up
             #Save to db
             customer = Customer.objects.create(
                 username = request.POST.get('username'),
@@ -307,7 +309,7 @@ def control_panel_view(request, *args, **kwargs):
 #If you are a business displays:
 #   Personal: username, email, name, number and option to change password
 #   Store: name, address, number, hours, group limit, group capacity
-#For password change, it only changes password if there is information 
+#For password change, it only changes password if there is information
 #entered in the 'new password' field. 
 #Upon entering, it validates 'current password' against database,
 #if it is valid, it changes, else it does nothing.
