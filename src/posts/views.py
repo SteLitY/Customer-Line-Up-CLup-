@@ -62,7 +62,8 @@ def please_login_view(request,*args, **kwargs):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect('/') 
+                return redirect('/')
+        messages.success(request, "Successfuly Logged in for Line Up") 
     return render(request, "please_login.html", {})
 
 #########################################################################################
@@ -120,7 +121,7 @@ def password_reset_request(request):
 
                         return HttpResponse('Invalid header found.')
                         
-                    messages.success(request, 'A message with the reset password instructions has been sent to your inbox.')
+                    messages.success(request, 'Password reset instructions have been sent to your email')
                     return redirect ("/password_reset/done/")
             messages.error(request, 'An invalid email has been entered.')
     password_reset_form = PasswordResetForm()
@@ -129,6 +130,7 @@ def password_reset_request(request):
 #Signs client out and redirects to homepage
 def signout_page_view(request):
     logout(request)
+    messages.success(request, "Successfully Logged Out")
     return render(request, "home_page.html", {}) 
 
 #########################################################################################
@@ -147,6 +149,7 @@ def signup_signin_page_view(request, *args, **kwargs):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                messages.success(request, "Successfuly Logged in for Line Up") 
                 return redirect('/line_up')
     return render(request, "signin.html", {})
 
@@ -161,6 +164,7 @@ def business_login_view(request, *args, **kwargs):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                messages.success(request, "Successfuly Logged in for Line Up") 
                 return redirect('/control_panel') 
     return render(request, "b_sigin.html", {})
 
@@ -186,6 +190,7 @@ def customer_signup_view(request, *args, **kwargs):
             user.profile.phone_number = form.cleaned_data.get('phone_number')
             user.profile.is_customer = True
             user.save()
+            messages.success(request, "Successfully Signed Up for Line Up!")
             #Save to db
             customer = Customer.objects.create(
                 username = request.POST.get('username'),
@@ -197,6 +202,7 @@ def customer_signup_view(request, *args, **kwargs):
             raw_password = form.cleaned_data.get('password1')
             customer = authenticate(username=user.username, password=raw_password)
             login(request, customer)
+            messages.success(request, "Successfuly Logged in for Line Up") 
             return redirect('/line_up') 
         else: 
             print(form.errors)  
@@ -225,6 +231,7 @@ def business_signup_view(request, *args, **kwargs):
             user.profile.phone_number = form.cleaned_data.get('phone_number')
             user.profile.is_business = True
             user.save()
+            messages.success(request, 'Successfully Signed Up for Line Up!')
             # #Save to db
             business = Business.objects.create(
                 username = request.POST.get('username'),
@@ -242,6 +249,7 @@ def business_signup_view(request, *args, **kwargs):
             raw_password = form.cleaned_data.get('password1')
             business = authenticate(username=user.username, password=raw_password)
             login(request, business)
+            messages.success(request, "Successfuly Logged in for Line Up") 
             return redirect(profile_setting_view)
         else: 
             print(form.errors)
@@ -385,6 +393,7 @@ def profile_setting_view(request, *args, **kwargs):
             #Update database
             for item in bus:
                 item.save()
+            messages.success(request, 'Successfully Updated Profile')
             #If there is a value in password2 (meaning changing password)
             password = request.POST.get("password2", None)
             if password is not None:
@@ -398,6 +407,7 @@ def profile_setting_view(request, *args, **kwargs):
                     new = User.objects.get(username= request.user.get_username())
                     new.set_password(request.POST.get('password2'))
                     new.save()
+                messages.success(request, 'Successfully Updated Password')
         #Refresh database
     bus = Business.objects.all().filter(username = request.user.get_username())
     #For customer
@@ -411,6 +421,7 @@ def profile_setting_view(request, *args, **kwargs):
             #Update database
             for item in cus:
                 item.save()
+            messages.success(request, 'Successfully Updated Profile')
             #If there is a value in password4 (meaning changing password)
             password = request.POST.get("password4", None)
             if password is not None:
@@ -424,6 +435,7 @@ def profile_setting_view(request, *args, **kwargs):
                     new = User.objects.get(username= request.user.get_username())
                     new.set_password(request.POST.get('password2'))
                     new.save()
+                messages.success(request, 'Successfully Updated Password')
         cus = Customer.objects.all().filter(username = request.user.get_username())
     return render(request, "profile_setting.html", { 'cus': cus, 'bus': bus})
 

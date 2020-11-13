@@ -6,9 +6,28 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
-h1, p {
+ul.messages {
+  padding: 0;
+  margin-left:auto;
+  margin-right:auto;
+  {% comment %} margin: 0vw 26vw 0vw 26vw; {% endcomment %}
+  float: center;
+}
+
+h1, p{
  text-align:center;
 }
+
+
+#messages {
+  background-color: #2e6da4;
+  color:white;
+  box-shadow: 12px 12px 12px #e61c66;
+  text-align:center; 
+  padding: 1vw 26vw 1vw 26vw; 
+  margin: 3vw 18vw;
+}
+
 {% comment %} Added a padding top to fix the customer_control.html footer  {% endcomment %}
   .home-main{
       background: #5812c5;
@@ -109,6 +128,20 @@ footer {
 
   <body>
     {% include 'navbar.html' %}
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li id="messages" {% if message.tags %} class="{{ message.tags }}" {% endif %}> 
+            {{ message }} 
+            </li>
+          {% endfor %} 
+        </ul>
+      {% endif %}
+    <script>
+      $('#messages').fadeIn('fast').delay(2000).fadeOut('fast');
+      $('#messages').fadeOut('slow').delay(2000).hide(0);
+    </script> 
+    
     {% block content %}
     <h1>Customer LineUp!</h1>
     </br>
