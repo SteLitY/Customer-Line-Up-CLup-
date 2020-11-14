@@ -18,7 +18,7 @@ from django.contrib import messages #import messages for passsword
 from posts.forms import CustomerSignUpForm
 from django.forms import inlineformset_factory
 from .sms import sendtext
-from posts.models import City
+
 
 from .models import *
 from .forms import CustomerSignUpForm, BusinessSignUpForm
