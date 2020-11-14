@@ -18,6 +18,7 @@ from django.contrib import messages #import messages for passsword
 from posts.forms import CustomerSignUpForm
 from django.forms import inlineformset_factory
 from .sms import sendtext
+from posts.models import City
 
 from .models import *
 from .forms import CustomerSignUpForm, BusinessSignUpForm
@@ -157,6 +158,7 @@ def signup_signin_page_view(request, *args, **kwargs):
 #Business sign in page
 #Asks for username and password, checks against database
 #if valid, login in the business
+@login_excluded('/')
 def business_login_view(request, *args, **kwargs):
     if request.POST:
         username = request.POST['username']
@@ -177,6 +179,7 @@ def business_login_view(request, *args, **kwargs):
 #Asks for username, name, email, number
 #Username and password set is now their sigin information
 #Redicts to 'line up' page where they can immediately get a ticket for a store 
+@login_excluded('/')
 def customer_signup_view(request, *args, **kwargs):
     if request.method == 'POST' and request.POST['action'] == 'Customer':
         form = CustomerSignUpForm(request.POST)
@@ -219,6 +222,7 @@ def customer_signup_view(request, *args, **kwargs):
 #Once signed in, they're redirected to 'Profile Settings' where they can input 
 #other information such as: Store hours, group limit, store capacity 
 #and able to change password
+@login_excluded('/')
 def business_signup_view(request, *args, **kwargs):
     if request.method == 'POST'and request.POST['action'] == 'Business':
         form = BusinessSignUpForm(request.POST)
