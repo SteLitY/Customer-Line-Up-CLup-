@@ -473,32 +473,74 @@ def scheduled_view(request, *args, **kwargs):
 
 
 #store details view
+@user_must_login(please_login_view)
 def store_details_view(request):
-    restaurant_name = request.GET.get('restName')
+    restaurant_name = request.GET.get('restName') #gets the store name
     current_business = Business.objects.filter(store_name=restaurant_name)[:1]
     restaurant = current_business.values()[0]
     res_num = restaurant["store_number"]
 
-    #input for the forms
-    current_user = request.user.get_username()
-    group = request.POST.get('group_size')
-   
     if request.method == 'POST':
         form = CustomerLineUpForm(request.POST)
 
+        #input for the forms
+        current_user = request.user.get_username()
+        group = request.POST.get('group_size')
+
+#this part checks for stupid user inputs
+        #checks group_size for stupid inputs like: abc@#. /?
+        if (group.isdigit() == False):
+            messages.error(request, "Please enter a valid number.")
+            new_link = "store_details.html\?restName=" + str(restaurant_name)
+            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "form": form})
+        
+        #checks to see if group_size is less than 1
+        if (int(group)) <= 0:
+            messages.error(request, "Your group size is too small.")
+            new_link = "store_details.html\?restName=" + str(restaurant_name)
+            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "form": form})
+
+        #checks to see if user is already in the queue for this business
+        if Customer_queue.objects.filter(store_name=restaurant_name, name = current_user).exists():
+            messages.error(request, "You are already on line for this store.")
+            new_link = "store_details.html\?restName=" + str(restaurant_name)
+            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "form": form})
+        
+        #checks to see if group_size > group limit set by the store
+        if (int(group)) > int(restaurant["group_limit"]):
+            messages.error(request, "Your group size exceeds the group size limit set by this store.")
+            new_link = "store_details.html\?restName=" + str(restaurant_name)
+            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "form": form})
+
+#this part is for position
+        #check if another user is already in queue. If not, position = 1.
+        # if Customer_queue.objects.filter(store_name=restaurant_name).exists():
+        #     user_position = (Customer_queue.objects.filter(store_name=restaurant_name, position).order_by('position')[0]) + 1
+        #     else:
+        #         user_position = 1        
+        
+    #to do: (writtem by: David)
+#   check if there's space in store:
+#   if sum_of_group_size_on_queue_for_this_business + current_user's group_size < group_capacity: 
+#       redirect to print QR code page and be sure to include webpage for "I'm near the vicinity"
+#
+#   each time a user checks out:
+#      check if users are on the queue (if sum_of_clients > group_limit). 
+#      if there are user(s) on the queue and not "in the vicinity of the store", 
+#           send email/text notifications to people who are next on line (ex: 5th online, 10th online, or 15th online, etc)
+
+
+
         EnterInMySQL = Customer_queue.objects.create(
             name = current_user,
-            # position = 1, // currently not working 
-            group_size = int(request.POST.get('group_size')),       
+            position = user_position, 
+            group_size = int(group),
             store_name = restaurant["store_name"],
-        )
-        
+            )
         EnterInMySQL.save()
         return redirect(line_up_view)
     else: 
         form = CustomerLineUpForm()
     return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "form": form})
-
-
 
 
