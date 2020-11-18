@@ -470,8 +470,6 @@ def customer_control_view(request, *args, **kwargs):
 def scheduled_view(request, *args, **kwargs):
     return render(request, "scheduled.html", {})
 
-
-
 #store details view
 @user_must_login(please_login_view)
 def store_details_view(request):
@@ -480,11 +478,16 @@ def store_details_view(request):
     restaurant = current_business.values()[0]
     res_num = restaurant["store_number"]
 
+    #reusable variables by David
+    store_group_limit = Business.objects.filter(store_name=restaurant_name)[0].group_limit #gets the store's group_limit
+    current_user = request.user.get_username() #gets the currently logged in user
+    is_user_in_queue = Customer_queue.objects.filter(store_name=restaurant_name, name = current_user).exists() #bool to check if user is already in the customer_queue for the current business
+    formatted_phone_number = res_num[:3] + '-' + res_num[3:6] + '-' + res_num[6:]
+
     if request.method == 'POST':
         form = CustomerLineUpForm(request.POST)
 
         #input for the forms
-        current_user = request.user.get_username()
         group = request.POST.get('group_size')
 
 #this part checks for stupid user inputs
@@ -492,32 +495,39 @@ def store_details_view(request):
         if (group.isdigit() == False):
             messages.error(request, "Please enter a valid number.")
             new_link = "store_details.html\?restName=" + str(restaurant_name)
-            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "form": form})
+            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "store_group_limit": store_group_limit,"form": form})
         
         #checks to see if group_size is less than 1
         if (int(group)) <= 0:
             messages.error(request, "Your group size is too small.")
             new_link = "store_details.html\?restName=" + str(restaurant_name)
-            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "form": form})
+            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "store_group_limit": store_group_limit,"form": form})
 
         #checks to see if user is already in the queue for this business
-        if Customer_queue.objects.filter(store_name=restaurant_name, name = current_user).exists():
+        if is_user_in_queue == True:
             messages.error(request, "You are already on line for this store.")
             new_link = "store_details.html\?restName=" + str(restaurant_name)
-            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "form": form})
+            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "store_group_limit": store_group_limit,"form": form})
         
-        #checks to see if group_size > group limit set by the store
-        if (int(group)) > int(restaurant["group_limit"]):
-            messages.error(request, "Your group size exceeds the group size limit set by this store.")
+        #checks to see if business has group limit set up
+        if (store_group_limit == '') or (int(store_group_limit) == 0):
+            messages.error(request, "Business is temporarily not accepting more customers.")
             new_link = "store_details.html\?restName=" + str(restaurant_name)
-            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "form": form})
+            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "store_group_limit": store_group_limit,"form": form})
+        
+
+        #checks to see if group_size > group limit set by the store
+        if (int(group)) > int(store_group_limit):
+            messages.error(request, "Your group size exceeds the limit.")
+            new_link = "store_details.html\?restName=" + str(restaurant_name)
+            return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "store_group_limit": store_group_limit,"form": form})
 
 #this part is for position
-        #check if another user is already in queue. If not, position = 1.
-        # if Customer_queue.objects.filter(store_name=restaurant_name).exists():
-        #     user_position = (Customer_queue.objects.filter(store_name=restaurant_name, position).order_by('position')[0]) + 1
-        #     else:
-        #         user_position = 1        
+        #check if another user is already in queue. If it is, then take the highest position in that store and add 1, if not, then position = 1.
+        if Customer_queue.objects.filter(store_name=restaurant_name).exists():
+            user_position = Customer_queue.objects.filter(store_name=restaurant_name).order_by('-position')[0].position + 1
+        else:
+            user_position = 1        
         
     #to do: (writtem by: David)
 #   check if there's space in store:
@@ -541,6 +551,6 @@ def store_details_view(request):
         return redirect(line_up_view)
     else: 
         form = CustomerLineUpForm()
-    return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "form": form})
+    return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "store_group_limit": store_group_limit,"formatted_phone_number":formatted_phone_number,"form": form})
 
 
