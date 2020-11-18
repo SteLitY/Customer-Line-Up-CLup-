@@ -45,7 +45,7 @@
         margin-left: auto;
         margin-right: auto;
         background-color: #391c77;
-        align: center;
+        /* align: center; */
         min-height: 10vh;
         height: 15vh;
         margin-top: 350px;
@@ -87,41 +87,88 @@
                                 style="color:white; text-decoration: underline;">Get Direction</a></h5>
                     </div>
     <br>
-                        <h3> Call us at:<a href="tel:{{num.phone_number}}"
-                                style="text-decoration: underline; color:white">{{store_number}}</a></h3>
-                    </br>
+                        <h3> Call us at: <a href="tel:{{store_number}}" style="text-decoration: underline; color:white"><p>{{store_number}}</p></a></h3>
 
+
+                            
+                    </br>
+                    {% if store_group_limit == '' %}
+                    <h4>Maximum Group Size: 0</h4>
+                    {% else %}
+                    <h4>Maximum Group Size: {{store_group_limit}}</h4>
+                    {% endif %}
                     <div class="bhours">
                         <br>
                         <h4>Business Hours:</h4>
-                        <div><a> Monday from {{monday_open}} to {{monday_closed}}</a></div>
-                        <div><a> Tuesday from {{tuesday_open}} to {{tuesday_closed}}</a></div>
-                        <div><a> Wednesday from {{wednesday_open}} to {{wednesday_closed}}</a></div>
-                        <div><a> Thursday from {{thursday_open}} to {{thursday_closed}}</a></div>
-                        <div><a> Friday from {{friday_open}} to {{friday_closed}}</a></div>
-                        <div><a> Saturday from {{saturday_open}} to {{saturday_closed}}</a></div>
-                        <div><a> Sunday from {{sunday_open}} to {{sunday_closed}}</a></div>
+                        {% if monday_open == ''  or monday_closed == "" %}
                         <br>
+                        <div><a><strong>Please Call Business.</strong></a></div>
+                        <div><a><strong>Hours have not been set!</strong></a></div>
+                        <br>
+                        {% else %}
+
+                            {% if monday_open == "00:00" and monday_closed == "00:00" %}
+                            <div><a> Monday <strong>Closed</strong></a></div>
+                            {% else %}
+                            <div><a> Monday from {{monday_open}} to {{monday_closed}}</a></div>
+                            {% endif %}
+
+                            {% if tuesday_open == "00:00" and tuesday_closed == "00:00" %}
+                            <div><a> Tuesday <strong>Closed</strong></a></div>
+                            {% else %}
+                            <div><a> Tuesday from {{tuesday_open}} to {{tuesday_closed}}</a></div>
+                            {% endif %}
+
+                            {% if wednesday_open == "00:00" and wednesday_closed == "00:00" %}
+                            <div><a> Wednesday <strong>Closed</strong></a></div>
+                            {% else %}
+                            <div><a> Wednesday from {{wednesday_open}} to {{wednesday_closed}}</a></div>
+                            {% endif %}
+
+                            {% if thursday_open == "00:00" and thursday_closed == "00:00" %}
+                            <div><a> Thursday <strong>Closed</strong></a></div>
+                            {% else %}
+                            <div><a> Thursday from {{thursday_open}} to {{thursday_closed}}</a></div>
+                            {% endif %}
+
+                            {% if friday_open == "00:00" and friday_closed == "00:00" %}
+                            <div><a> Friday <strong>Closed</strong></a></div>
+                            {% else %}
+                            <div><a> Friday from {{friday_open}} to {{friday_closed}}</a></div>
+                            {% endif %}
+
+                            {% if saturday_open == "00:00" and saturday_closed == "00:00" %}
+                            <div><a> Saturday <strong>Closed</strong></a></div>
+                            {% else %}
+                            <div><a> Saturday from {{saturday_open}} to {{saturday_closed}}</a></div>
+                            {% endif %}
+
+                            {% if sunday_open == "00:00" and sunday_closed == "00:00" %}
+                            <div><a> Sunday <strong>Closed</strong></a></div>
+                            {% else %}
+                            <div><a> Sunday from {{sunday_open}} to {{sunday_closed}}</a></div>
+                            {% endif %}    
+
+                        {% endif %}    
+                        <br>               
                     </div>
 
                 </div>
             </div>
             </br>
-
-            <div>
                 <h4 style="color:red">For your safety and efficiency, we limited our store capacity to
-                    {{store_capacity}} people</h4>
-            </div>
+                    {{store_capacity}} people.</h4>
             </br>
             <div class="gsize">
 
                 <form action="" method="POST">
                     {% csrf_token %}
-                    <a>Please provide your group size to enter the line</a>
+                    <a>Please provide your group size to enter the line:</a>
                     <br>
-                        <input type="text" name="group_size" value="" placeholder="0" required/>
+                        <input type="text" name="group_size" value="" placeholder=max={{store_group_limit}} required/>
                         <input type="submit" value="Enter the line" />
                 </form>
+
             </div>
 
         </div>
