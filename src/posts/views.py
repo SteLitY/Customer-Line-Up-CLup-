@@ -18,7 +18,7 @@ from django.contrib import messages #import messages for passsword
 from posts.forms import CustomerSignUpForm
 from django.forms import inlineformset_factory
 from .sms import sendtext
-
+from django.http import HttpResponse
 from .models import *
 from .forms import *
 from .filters import *
@@ -135,7 +135,7 @@ def signout_page_view(request):
     return render(request, "home_page.html", {}) 
 
 #########################################################################################
-#                                   Sign in views              c                        #
+#                                   Sign in views                                       #
 #########################################################################################
 
 #Customer sign in page
@@ -275,37 +275,46 @@ def control_panel_view(request, *args, **kwargs):
     #redirect customers if they find themselves at this link 
     if request.user.profile.is_customer == True:
         return redirect(home_page_view)
-    obj=Business.objects.all().filter(username = request.user.get_username())
-    #Add customer to queue
-    if request.method == 'POST' and request.POST['action'] == 'add':
-        for item in obj:
-            #If adding one more customer goes over store capacity, then dont add
-            if item.in_store+1 > item.store_capacity:
-                pass
-            #If adding one more customer doesntgoes over store capacity, then add
-            if item.in_store+1 <= item.store_capacity:
-                inside = item.in_store + 1
-                print(inside)
-                obj.update(in_store = inside)
-        #Update database
-        for item in obj:
-                item.save()
-    #Remove customer from queue
-    if request.method == 'POST' and request.POST['action'] == 'remove':
-        for item in obj:
-            #If removing one more customer goes under 0, then dont remove
-            if item.in_store-1 == 0:
-                obj.update(in_store = 0)
-            #If removing one more customer doesnt goes under 0, then remove
-            if item.in_store-1 > 0:
-                inside = item.in_store - 1
-                obj.update(in_store = inside)
-        #Update database
-        for item in obj:
-                item.save()
-    obj=Business.objects.all().filter(username = request.user.get_username())
-    return render(request, "control_panel.html", {'obj':obj})
 
+    obj=Business.objects.all().filter(username = request.user.get_username())
+
+    #Add customer to queue
+    # if ajax request
+    # is_ajax() = request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'. deprecated
+    if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
+        print("IM TRYNA AJAX")
+        if request.GET.get('change') == 'add':
+            print('added')
+            for item in obj:
+                #If adding one more customer goes over store capacity, then dont adds
+                if item.in_store+1 > item.store_capacity:
+                    return HttpResponse("Store at max capacity")
+                #If adding one more customer doesntgoes over store capacity, then add
+                if item.in_store+1 <= item.store_capacity:
+                    increase = item.in_store + 1
+                    obj.update(in_store = increase)
+            #Update database
+            for item in obj:
+                    item.save()
+            print(increase)
+            return HttpResponse (increase)
+        elif request.GET.get('change') == 'remove':
+            print('removed')
+            for item in obj:
+                #If removing one more customer goes under 0, then dont remove
+                if item.in_store-1 == 0:
+                    obj.update(in_store = 0)
+                #If removing one more customer doesnt goes under 0, then remove
+                if item.in_store-1 > 0:
+                    inside = item.in_store - 1
+                    obj.update(in_store = inside)
+                #Update database
+            for item in obj:
+                    item.save()
+            return HttpResponse (inside)
+    else:
+        #show page
+        return render(request, "control_panel.html", {'obj':obj})
 #Shows profile settings based on who is logged in
 #If you are a customer displays:
 #   username, email, name, number and option to change password
