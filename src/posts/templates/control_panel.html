@@ -41,6 +41,26 @@ text-align: center;
     text-align: center;
 
 }
+button {
+     border-radius:1;
+    }
+   
+    .home-main button{
+      background: #fff;
+      color: #5812c5;
+      border-radius: 1;
+      font-size: 2.5vw;
+      width: 25%;
+      height: auto;
+      top: 4%;
+      margin-top: 2vw;
+      margin-bottom: 8vw;
+    }
+    
+    .home-main button:hover{
+      transition: none;
+      color:#5812c5;
+    }
 </style>
 
 {% comment %} // Medium devices (tablets, 768px and up)
@@ -51,10 +71,9 @@ text-align: center;
 
 <html lang="en">
 <head>
-<meta charset="utf-8">
-{% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endcomment %}
+  <meta charset="utf-8">
 </head>
-<form action = "" method="POST">
+<form id = "panel" action = "" method="POST">
 {% csrf_token %}
 <!-- To iterate through business database -->
 {% for item in obj %}
@@ -63,42 +82,36 @@ text-align: center;
   <h1 class="card-title"> Control Panel <span class="blinker">!</span></h1>
 </br>
 	<div class="row">
-    <!-- Customers in line  -->
-    <div class="col-md-4" style="padding=0.5em;">
-        <div class="card bg-light">
-        	<h4 class="card-header" style="color: #5812c5">In line</h4>
-            <div class="card-body home-main">
-               <tb>{{item.in_line}}</tb>
-            </br>
-        </div>
-        </div>
-    </div>
     <!-- Customers in store  -->
-     <div class="col-md-4" style="padding=0.5em;">
+     <div class="col-md-6" style="padding=0.5em;">
         <div class="card bg-light">
         	<h4 class="card-header" style="color: #5812c5">In store</h4>
             <div class="card-body home-main">
-                 <tb>{{item.in_store}}</tb>
+                 <tb id = "instore" >{{item.in_store}}</tb>
             </br>
             </div>
         </div>
     </div>
     <!-- Customers scheduled  -->
-     <div class="col-md-4" style="padding=0.5vw;">
-        <div class="card bg-light">
-        	<h4 class="card-header" style="color: #5812c5">Scheduled</h4>
-            <div class="card-body home-main">
-                <tb>{{item.scheduled}}</tb>
-            </br>
-            </div>
-        </div>
+    <div class="col-md-6" style="padding=0.5em;">
+      <div class="card bg-light">
+        <h4 class="card-header" style="color: #5812c5">In line</h4>
+          <div class="card-body home-main">
+             <tb id = "inline">{{item.scheduled}}</tb>
+          </br>
+      </div>
+      </div>
     </div>
       </div>
+      </form>
       </br>
     </br>
        <div class = "col-md-10 mx-auto">
         <!-- Add customer manually -->
-        <button button type="submit" type="button" name="action" value ="add" class="btn btn-default">Check In </button>
+        <form id="added" action="" method="POST">
+          {% csrf_token %}
+         <button id="change" for= "change "type="submit" name="change" value ="add" class="btn btn-default">Check In </button>
+         </form>
          <!-- Create space between the buttons -->
          <label></label>
          <label></label>
@@ -108,7 +121,10 @@ text-align: center;
          <label></label>
          <label></label>
         <!-- Remove customers manually -->
+        <form id="removed" action="" method="POST">
+          {% csrf_token %}
         <button button type="submit" type="button" name="action" value ="remove" class="btn btn-default">Check Out</button>
+        </form>
    </div>
    <!-- Go to Profile settings -->
     <div style="margin-top: 1em;">
@@ -117,6 +133,56 @@ text-align: center;
    
  </div>
     {% endfor %}
+<!-- </form> -->
+<script>
+function increaseCus(e) {
+  console.log("i added yo")
+    e.stopImmediatePropagation()
+    e.preventDefault();
+    $.ajax({
+      url: '/control_panel/',
+        data: {
+          'change': 'add'
+        },
+        success: function (data) {
+          document.getElementById("instore").innerHTML = data;
+        }
+    })};
+  let increase_button = document.getElementById("added");
+  increase_button.addEventListener("click", increaseCus);
+
+
+    function decreaseCus(e) {
+      console.log("i remove sumn yo")
+    e.stopImmediatePropagation()
+    e.preventDefault();
+    $.ajax({
+      url: '/control_panel/',
+        data: {
+          'change': 'remove'
+        },
+        success: function (data) {
+          document.getElementById("instore").innerHTML = data;
+        }
+    })};
+  let decrease_button = document.getElementById("removed");
+  decrease_button.addEventListener("click", decreaseCus);
+</script>
+</html>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
 {% comment %} 
 <div class="row">
   <div class="col-xs-12 col-sm-6 col-md-8 bg-dark">.col-xs-12 .col-sm-6 .col-md-8</div>
@@ -131,6 +197,3 @@ text-align: center;
 </div> 
 </form>
 {% endcomment %}
-
-
-{% endblock %}
