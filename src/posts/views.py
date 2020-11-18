@@ -18,11 +18,11 @@ from django.contrib import messages #import messages for passsword
 from posts.forms import CustomerSignUpForm
 from django.forms import inlineformset_factory
 from .sms import sendtext
-
+from django.db.models import OuterRef, Subquery, Sum
 
 from .models import *
 from .forms import *
-from .filters import business_search_filter
+from .filters import *
 
 #########################################################################################
 #                                  Requirements                                         #
@@ -450,15 +450,19 @@ def profile_setting_view(request, *args, **kwargs):
 #########################################################################################
 
 #Displays store information: address, number and hours
-#Allows client to search for  store and filters out the list
+#Allows client to search for store and filters out the list
 #Allows client to enter/leave a line for a specific businesss
-#Displays client's place in line, if the entered line
 @user_must_login(please_login_view)
 def line_up_view(request,*args, **kwargs):
+    #search filter
     business = Business.objects.all().order_by('store_name')
-    myFilter = business_search_filter(request.GET ,queryset=business)
+    myFilter = business_search_filter(request.GET, queryset=business)
+    
+    #update business.in_line
+    for in_line in Business.objects.annotate(total)
     business = myFilter.qs
-    return render(request, "lineup.html", {'business':business, 'myFilter':myFilter})
+
+    return render(request, "lineup.html", {'business':business, 'myFilter':myFilter,})
 
 #Allows customer to schedule a time slot for a ticket
 @user_must_login(please_login_view)
@@ -549,6 +553,12 @@ def store_details_view(request):
             store_name = restaurant["store_name"],
             )
         EnterInMySQL.save()
+
+        #after entering the user in queue, we update the business' model scheduled with the group_size
+        
+
+
+
         return redirect(line_up_view)
     else: 
         form = CustomerLineUpForm()
