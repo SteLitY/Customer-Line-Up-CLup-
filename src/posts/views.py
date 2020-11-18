@@ -18,7 +18,6 @@ from django.contrib import messages #import messages for passsword
 from posts.forms import CustomerSignUpForm
 from django.forms import inlineformset_factory
 from .sms import sendtext
-from django.db.models import OuterRef, Subquery, Sum
 
 from .models import *
 from .forms import *
@@ -456,13 +455,9 @@ def profile_setting_view(request, *args, **kwargs):
 def line_up_view(request,*args, **kwargs):
     #search filter
     business = Business.objects.all().order_by('store_name')
-    myFilter = business_search_filter(request.GET, queryset=business)
-    
-    #update business.in_line
-    for in_line in Business.objects.annotate(total)
+    myFilter = business_search_filter(request.GET ,queryset=business)
     business = myFilter.qs
-
-    return render(request, "lineup.html", {'business':business, 'myFilter':myFilter,})
+    return render(request, "lineup.html", {'business':business, 'myFilter':myFilter})
 
 #Allows customer to schedule a time slot for a ticket
 @user_must_login(please_login_view)
@@ -501,32 +496,32 @@ def store_details_view(request):
         #checks group_size for stupid inputs like: abc@#. /?
         if (group.isdigit() == False):
             messages.error(request, "Please enter a valid number.")
-            new_link = "store_details.html\?restName=" + str(restaurant_name)
+            # new_link = "store_details.html\?restName=" + str(restaurant_name)
             return render(request, "store_details.html", context,)
         
         #checks to see if group_size is less than 1
         if (int(group)) <= 0:
             messages.error(request, "Your group size is too small.")
-            new_link = "store_details.html\?restName=" + str(restaurant_name)
+            # new_link = "store_details.html\?restName=" + str(restaurant_name)
             return render(request, "store_details.html", context,)
 
         #checks to see if user is already in the queue for this business
         if is_user_in_queue == True:
             messages.error(request, "You are already on line for this store.")
-            new_link = "store_details.html\?restName=" + str(restaurant_name)
+            # new_link = "store_details.html\?restName=" + str(restaurant_name)
             return render(request, "store_details.html", context,)
         
         #checks to see if business has group limit set up
         if (store_group_limit == '') or (int(store_group_limit) == 0):
             messages.error(request, "Business is temporarily not accepting more customers.")
-            new_link = "store_details.html\?restName=" + str(restaurant_name)
+            # new_link = "store_details.html\?restName=" + str(restaurant_name)
             return render(request, "store_details.html", context,)
         
 
         #checks to see if group_size > group limit set by the store
         if (int(group)) > int(store_group_limit):
             messages.error(request, "Your group size exceeds the limit.")
-            new_link = "store_details.html\?restName=" + str(restaurant_name)
+            # new_link = "store_details.html\?restName=" + str(restaurant_name)
             return render(request, "store_details.html", context, )
 
 #this part is for position
@@ -545,7 +540,7 @@ def store_details_view(request):
 #      check if users are on the queue (if sum_of_clients > group_limit). 
 #      if there are user(s) on the queue and not "in the vicinity of the store", 
 #           send email/text notifications to people who are next on line (ex: 5th online, 10th online, or 15th online, etc)
-
+#   subtract group_size from in line.
         EnterInMySQL = Customer_queue.objects.create(
             name = current_user,
             position = user_position, 
@@ -554,10 +549,11 @@ def store_details_view(request):
             )
         EnterInMySQL.save()
 
-        #after entering the user in queue, we update the business' model scheduled with the group_size
-        
-
-
+        #after entering the user in queue, we update the business' model with the group_size
+        bus = Business.objects.filter(store_name=restaurant_name)
+        for item in bus:
+            item.scheduled = item.scheduled + int(group)
+            item.save()
 
         return redirect(line_up_view)
     else: 
