@@ -31,5 +31,6 @@ urlpatterns = [
     path('scheduled/', scheduled_view),
     path('please_login/', please_login_view),
     path('line_up/', line_up_view), #new
+    path('store_details/', store_details_view),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

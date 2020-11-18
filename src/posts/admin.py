@@ -7,6 +7,6 @@ from .models import *
 admin.site.register(Business)
 admin.site.register(Profile) 
 admin.site.register(Customer)
-admin.site.register(All_Customers)
+admin.site.register(Customer_queue)
 
 

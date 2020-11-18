@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style type="text/css">
+    .row1 {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .row1 .col-md-3 {
+        display: inline-block;
+        vertical-align: middle;
+        float: none;
+    }
+
+    @media (max-width: 770px) {
+
+        .col-md-3 {
+
+            display: block;
+            vertical-align: middle;
+            float: none;
+            padding: 20px;
+        }
+    }
+
+    .button {
+        text-align: center;
+
+    }
+
+    .container-fluid,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        width: 100%;
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    footer {
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #391c77;
+        align: center;
+        min-height: 10vh;
+        height: 15vh;
+        margin-top: 350px;
+        width: 100%;
+        postion absolute: ;
+
+    }
+
+    .lineup {
+
+        border: 1px;
+        border-style: solid;
+        border-color: black;
+        border-radius: 2mm;
+        margin-left: 3ch;
+
+    }
+
+    .bhours {
+        border: 2px;
+        border-style: solid;
+        border-color: cornflowerblue;
+
+    }
+</style>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="container-fluid home-main">
+
+        <div class="row">
+            <div class="col-md-4 mx-auto" style="padding=0.5em;">
+                <div class="card-body">
+                    <h1><a style="color: black">Welcome to {{store_name}}</a></h1>
+                    </br>
+                    <div class="storeinfo">
+                        <div>
+                            <h4>Our Store Address:<a class="address">{{restaurant_address}}, {{city}}, {{state}}.
+                                    {{zipcode}}</a></h4>
+                            <h5><a href="http://maps.google.com/maps?q={{restaurant_address}}, {{city}}, {{state}}. {{zipcode}}"
+                                    style="color:white; text-decoration: underline;">Get Direction</a></h5>
+                        </div>
+                        <div>
+                            <h3> Call us at:<a href="tel:{{num.phone_number}}"
+                                    style="text-decoration: underline; color:white">{{restaurant_number}}</a></h3>
+                        </div>
+                        </br>
+
+                        <div class="bhours">
+                            </br>
+
+                            <h4>Business Hours:</h4>
+                            <div><a> Monday from {{monday_open}} to {{monday_closed}}</a></div>
+                            <div><a> Tuesday from {{tuesday_open}} to {{tuesday_closed}}</a></div>
+                            <div><a> Wednesday from {{wednesday_open}} to {{wednesday_closed}}</a></div>
+                            <div><a> Thursday from {{thursday_open}} to {{thursday_closed}}</a></div>
+                            <div><a> Friday from {{friday_open}} to {{friday_closed}}</a></div>
+                            <div><a> Saturday from {{saturday_open}} to {{saturday_closed}}</a></div>
+                            <div><a> Sunday from {{sunday_open}} to {{sunday_closed}}</a></div>
+                            </br>
+                        </div>
+                    </div>
+                </div>
+                </br>
+
+                <div>
+                    <h4 style="color:red">For you safety and efficiency, we limited our store capacity to
+                        {{store_capacity}} people</h4>
+                </div>
+                </br>
+                <div class="gsize">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <a>Please provide your group size to enter the line</a>
+                        <br>
+                        <p><input type="groupnum"name="enterline"></p>
+                        <input type="submit" value="Enter the line" />
+                    
+                    </form>
+                </div>
+            </div>
+</form>
+
+
+
+
+{% endblock %}

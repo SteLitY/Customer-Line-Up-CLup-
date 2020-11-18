@@ -25,13 +25,16 @@ class Profile(models.Model):
     def __str__(self):
         return self.username
 
-class All_Customers(models.Model):
-    name = models.CharField(max_length=30, default="")
+class Customer_queue(models.Model):
+    name = models.CharField(max_length=30)
+    store_name = models.CharField(max_length=100)
     position = models.IntegerField(default=0)
-    group_size = models.IntegerField(default=10)
-    def __iter__(self):
-        return iter([self.name, self.position, self.group_size])
+    group_size = models.IntegerField(default=2)
+    def __str__(self):
+        return (self.name)
 
+    def __iter__(self):
+        return iter([self.name, self.store_name, self.group_size])
 
 #Customer Registration
 class Customer(models.Model):
@@ -84,7 +87,7 @@ class Business(models.Model):
     in_store = models.IntegerField(default=0)
     scheduled = models.IntegerField(default=0)
     #List of cutomers
-    all_tickets = models.ForeignKey(All_Customers, on_delete=models.CASCADE, null = True)
+    # all_tickets = models.ForeignKey(All_Customers, on_delete=models.CASCADE, null = True)
 
     
     def __str__(self):

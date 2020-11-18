@@ -79,8 +79,8 @@ span{
             <!-- Retrieves store information from database  -->
             {% for num in business %}
               <tr>
-                <td><a href='/customer_control'>{{num.store_name}}</a></td>
-               
+                <td><a href='/store_details?restName={{num.store_name}}'>{{num.store_name}}</a></td>
+                            
                 <td><a href="http://maps.google.com/maps?q={{num.store_address}}, {{num.city}}, {{num.state}}. {{num.zipcode}}">
                   {{num.store_address}}, {{num.city}}, {{num.state}}. {{num.zipcode}}</a></td>
         

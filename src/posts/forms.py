@@ -1,4 +1,6 @@
 from django import forms
+from .models import Customer_queue
+from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -35,3 +37,13 @@ class BusinessSignUpForm(UserCreationForm):
         model = User
         fields = ('username','first_name', 'last_name', 'email', 'phone_number', 'store_name', 'store_number', 'password1',
                   'password2', 'store_address', 'city', 'state', 'zipcode')
+
+
+class CustomerLineUpForm(forms.ModelForm):
+    # name = forms.CharField(max_length=50, help_text='')
+    # store_name = forms.CharField(max_length=50, help_text='')
+    # position = forms.IntegerField()
+    group_size = forms.IntegerField()
+    class Meta:
+        model = Customer_queue
+        fields = ['name', 'store_name', 'position', 'group_size']

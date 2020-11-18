@@ -21,7 +21,7 @@ from .sms import sendtext
 
 
 from .models import *
-from .forms import CustomerSignUpForm, BusinessSignUpForm
+from .forms import *
 from .filters import business_search_filter
 
 #########################################################################################
@@ -469,3 +469,36 @@ def customer_control_view(request, *args, **kwargs):
 @user_must_login(please_login_view)
 def scheduled_view(request, *args, **kwargs):
     return render(request, "scheduled.html", {})
+
+
+
+#store details view
+def store_details_view(request):
+    restaurant_name = request.GET.get('restName')
+    current_business = Business.objects.filter(store_name=restaurant_name)[:1]
+    restaurant = current_business.values()[0]
+    res_num = restaurant["store_number"]
+
+    #input for the forms
+    current_user = request.user.get_username()
+    group = request.POST.get('group_size')
+   
+    if request.method == 'POST':
+        form = CustomerLineUpForm(request.POST)
+
+        EnterInMySQL = Customer_queue.objects.create(
+            name = current_user,
+            # position = 1, // currently not working 
+            group_size = int(request.POST.get('group_size')),       
+            store_name = restaurant["store_name"],
+        )
+        
+        EnterInMySQL.save()
+        return redirect(line_up_view)
+    else: 
+        form = CustomerLineUpForm()
+    return render(request, "store_details.html", {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "form": form})
+
+
+
+
