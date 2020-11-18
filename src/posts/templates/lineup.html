@@ -73,7 +73,7 @@ span{
             <tr>
               <th>Store Name</th>
               <th>Store Address</th>
-              <th>Place In Line</th>
+              <th>Line Status</th>
               <th>Enter Line</th>
               <th>Leave Line</th>
             </tr>
@@ -85,7 +85,7 @@ span{
                 <td><a href="http://maps.google.com/maps?q={{num.store_address}}, {{num.city}}, {{num.state}}. {{num.zipcode}}">
                   {{num.store_address}}, {{num.city}}, {{num.state}}. {{num.zipcode}}</a></td>
         
-                <td></td>
+                <td>{{num.scheduled}} / {{num.store_capacity}}</td>
                 <td></td>
               </tr>
             {% endfor %}
