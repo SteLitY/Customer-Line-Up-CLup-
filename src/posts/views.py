@@ -585,5 +585,5 @@ def store_details_view(request):
 
 #Page to leave the queue
 @user_must_login(please_login_view)
-def leave_queue_view(request, *args, **kwargs):
+def leave_line_view(request, *args, **kwargs):
     return render(request, "leave_queue.html", {})
