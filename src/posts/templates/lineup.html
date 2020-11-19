@@ -55,7 +55,7 @@ span{
 
 
  <div class="container-fluid home-main">
-    <div class="main">
+<    <div class="main">
       <div class="col-md-10">
         <div class="card card-body">
           <div class="card-body">
@@ -73,9 +73,9 @@ span{
             <tr>
               <th>Store Name</th>
               <th>Store Address</th>
-              <th>Line Status (amount of people / store capacity)</th>
-              <th>Enter Line</th>
-              <th>Leave Line</th>
+              <th>Number of People in Store / Store Capacity</th>
+              <th>Register to Visit Store</th>
+              <th>Cancel Visit</th>
             </tr>
             <!-- Retrieves store information from database  -->
             {% for num in business %}
@@ -85,7 +85,7 @@ span{
                 <td><a href="http://maps.google.com/maps?q={{num.store_address}}, {{num.city}}, {{num.state}}. {{num.zipcode}}">
                   {{num.store_address}}, {{num.city}}, {{num.state}}. {{num.zipcode}}</a></td>
         
-                <td>{{num.scheduled}} / {{num.store_capacity}}</td>
+                <td>{{num.in_store}} / {{num.store_capacity}}</td>
                 <td></td>
               </tr>
             {% endfor %}
@@ -93,6 +93,6 @@ span{
         </div>
       </div>
         
-      </div>
+      </div>>
 </div>
 {% endblock %} 
