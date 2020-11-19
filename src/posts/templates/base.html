@@ -10,8 +10,8 @@ ul.messages {
   padding: 0;
   margin-left:auto;
   margin-right:auto;
-  {% comment %} margin: 0vw 26vw 0vw 26vw; {% endcomment %}
-  float: center;
+  /* {% comment %} margin: 0vw 26vw 0vw 26vw; {% endcomment %}
+  float: center; */
 }
 
 h1, p{
@@ -20,18 +20,20 @@ h1, p{
 
 
 #messages {
-  background-color: #2e6da4;
+  /* background-color: #1b1b5f; */
   color:white;
-  box-shadow: 12px 12px 12px #e61c66;
+  box-shadow: 12px 12px 12px #ffffff;
   text-align:center; 
   padding: 1vw 26vw 1vw 26vw; 
   margin: 3vw 18vw;
+  border-style: ridge;
+  border-color: #ffffff
 }
 
-{% comment %} Added a padding top to fix the customer_control.html footer  {% endcomment %}
+/* {% comment %} Added a padding top to fix the customer_control.html footer  {% endcomment %} */
   .home-main{
       background: #5812c5;
-      color:#fff;
+      color:#ffffff;
       padding-top: 12%;
       text-align: center;
     }
@@ -49,7 +51,7 @@ h1, p{
     }
    
     .home-main button{
-      background: #fff;
+      background: #ffffff;
       color: #5812c5;
       border-radius: 1;
       font-size: 3.25vw;
@@ -84,9 +86,9 @@ h1, p{
     .home-content2 p span{
       font-weight: 500;
     }
-    .card {
+    /* .card {
     background: #89239;
- }
+ } */
  body {
    min-height: 76vh;
    background-color: white;
@@ -103,12 +105,12 @@ footer {
     margin-left: auto;
     margin-right: auto;
     background-color: #391c77;
-    align: center;
+    /* align: center; */
     min-height: 10vh;
     height: 24vh;
     margin-top: 400px;
     width: 100%;
-    postion absolute: ;
+    /* postion absolute: ; */
 }
 
 </style>
@@ -138,7 +140,7 @@ footer {
         </ul>
       {% endif %}
     <script>
-      $('#messages').fadeIn('fast').delay(2000).fadeOut('fast');
+      $('#messages').fadeIn('fast').delay(3000).fadeOut('fast');
       $('#messages').fadeOut('slow').delay(2000).hide(0);
     </script> 
     
