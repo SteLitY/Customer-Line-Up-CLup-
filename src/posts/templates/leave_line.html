@@ -1,14 +1,51 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
+<style type="text/css">
+
+.p{
+ a:link, a:visited {
+  color: #ffffff
+}
+}
+</style>
    <!-- each time a user checks out:
       check if users are on the queue (if sum_of_clients > group_limit). 
       if there are user(s) on the queue and not "in the vicinity of the store", 
            send email/text notifications to people who are next on line (ex: 5th online, 10th online, or 15th online, etc)
    subtract group_size from in line. -->
 <div class="container-fluid home-main">
-<p>hi!</p>
+   <div id="home" class="div">
 
+<form action="" method="POST">
+
+   {% csrf_token %}
+   <h2>Do You Want to Leave The Line for {{storeName}}?</h2>
+   <br>
+
+   {% if groupSize > 1 %}
+   <h3>You Currently have {{groupSize}} people on the line</h3>
+   <br>
+   <input type="submit" value="Leave" class="David" />
+
+   {% elif groupSize == 1 %}
+   <h3>You Currently have 1 person registered in this group</h3>
+   <br>
+   <br>
+   <input type="submit" value="Leave" class="David" />
+
+   {% else %}
+   <h3>You aren't registered for this store. Please refresh the page.
+      <br>
+      <a href="/line_up/" style="color: #ffffff">Click here to go to Enter The Line page.</a></h3>
+   {% endif %}
+   <br>
+      
+</form>
 
 </div>
+</div>
 {% endblock %}
+
+
