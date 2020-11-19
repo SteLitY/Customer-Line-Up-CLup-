@@ -25,20 +25,20 @@
    <br>
 
    {% if groupSize > 1 %}
-   <h3>You Currently have {{groupSize}} people on the line</h3>
+   <h3>You Currently have {{groupSize}} People in Your Group on This Line.</h3>
    <br>
    <input type="submit" value="Leave" class="David" />
 
    {% elif groupSize == 1 %}
-   <h3>You Currently have 1 person registered in this group</h3>
+   <h3>You Currently have 1 Person Registered in This Group</h3>
    <br>
    <br>
    <input type="submit" value="Leave" class="David" />
 
    {% else %}
-   <h3>You aren't registered for this store. Please refresh the page.
+   <h3>Too bad. You aren't registered for this store.
       <br>
-      <a href="/line_up/" style="color: #ffffff">Click here to go to Enter The Line page.</a></h3>
+      <a href="/line_up/" style="color: #ffffff">Click here to go to Register for a Store.</a></h3>
    {% endif %}
    <br>
       
