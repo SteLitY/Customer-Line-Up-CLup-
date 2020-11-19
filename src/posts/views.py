@@ -467,14 +467,6 @@ def line_up_view(request,*args, **kwargs):
     myFilter = business_search_filter(request.GET, queryset=business)
     business = myFilter.qs
     
-    #putting exit queue links in a list to be used in html file
-    # temp_list = []
-    # business_list = Business.objects.filter().order_by('store_name')
-    # for store in business_list:
-    #    temp_list.append("/store_details.html/?restName=" + str(store))
-
-
-
     return render(request, "lineup.html", {'business':business, 'myFilter':myFilter})
 
 #Allows customer to schedule a time slot for a ticket
@@ -498,7 +490,8 @@ def store_details_view(request):
     #reusable variables by David
     store_group_limit = Business.objects.filter(store_name=restaurant_name)[0].group_limit #gets the store's group_limit
     current_user = request.user.get_username() #gets the currently logged in user
-    is_user_in_queue = Customer_queue.objects.filter(store_name=restaurant_name, name = current_user).exists() #bool to check if user is already in the customer_queue for the current business
+    #bool to check if user is already in the customer_queue for the current business
+    is_user_in_queue = Customer_queue.objects.filter(store_name=restaurant_name, name = current_user).exists() 
     #formatted_phone_number = res_num[:3] + '-' + res_num[3:6] + '-' + res_num[6:]
 
 
@@ -515,32 +508,32 @@ def store_details_view(request):
         if (group.isdigit() == False):
             messages.error(request, "Please enter a valid number.")
             # new_link = "store_details.html\?restName=" + str(restaurant_name)
-            return render(request, "store_details.html", context,)
+            return render(request, "store_details.html", context)
         
         #checks to see if group_size is less than 1
         if (int(group)) <= 0:
             messages.error(request, "Your group size is too small.")
             # new_link = "store_details.html\?restName=" + str(restaurant_name)
-            return render(request, "store_details.html", context,)
+            return render(request, "store_details.html", context)
 
         #checks to see if user is already in the queue for this business
         if is_user_in_queue == True:
             messages.error(request, "You are already on line for this store.")
             # new_link = "store_details.html\?restName=" + str(restaurant_name)
-            return render(request, "store_details.html", context,)
+            return render(request, "store_details.html", context)
         
         #checks to see if business has group limit set up
         if (store_group_limit == '') or (int(store_group_limit) == 0):
             messages.error(request, "Business is temporarily not accepting more customers.")
             # new_link = "store_details.html\?restName=" + str(restaurant_name)
-            return render(request, "store_details.html", context,)
+            return render(request, "store_details.html", context)
         
 
         #checks to see if group_size > group limit set by the store
         if (int(group)) > int(store_group_limit):
             messages.error(request, "Your group size exceeds the limit.")
             # new_link = "store_details.html\?restName=" + str(restaurant_name)
-            return render(request, "store_details.html", context, )
+            return render(request, "store_details.html", context)
 
 #this part is for position
         #check if another user is already in queue. If it is, then take the highest position in that store and add 1, if not, then position = 1.
@@ -550,15 +543,10 @@ def store_details_view(request):
             user_position = 1        
         
     #to do: (written by: David)
+#   send email confirmation with links to exit line.
 #   check if there's space in store:
 #   if sum_of_group_size_on_queue_for_this_business + current_user's group_size < group_capacity: 
 #       redirect to print QR code page and be sure to include webpage for "I'm near the vicinity"
-#
-#   each time a user checks out:
-#      check if users are on the queue (if sum_of_clients > group_limit). 
-#      if there are user(s) on the queue and not "in the vicinity of the store", 
-#           send email/text notifications to people who are next on line (ex: 5th online, 10th online, or 15th online, etc)
-#   subtract group_size from in line.
 
         EnterInMySQL = Customer_queue.objects.create(
             name = current_user,
@@ -586,4 +574,36 @@ def store_details_view(request):
 #Page to leave the queue
 @user_must_login(please_login_view)
 def leave_line_view(request, *args, **kwargs):
-    return render(request, "leave_line.html", {})
+    #reusable variables
+    current_user = request.user.get_username() #gets the currently logged in user
+    store = request.GET.get('store') #gets the store name
+    user_in_store = Customer_queue.objects.filter(store_name=store, name=current_user)
+    business = Business.objects.filter(store_name=store)
+    
+    if user_in_store.exists():
+        head_count = Customer_queue.objects.filter(store_name=store, name=current_user)[0].group_size
+    else:
+        head_count = 0
+        
+    context = {'storeName':store, 'groupSize':head_count}
+    if request.method == 'POST':
+        form = CustomerLineUpForm(request.POST)
+        if user_in_store.exists():
+            delete_from_queue = Customer_queue.objects.filter(store_name=store, name=current_user)
+            delete_from_queue.delete()
+
+            for store in business:
+                store.scheduled = store.scheduled - head_count
+                store.save()
+            
+            messages.success(request, "You've left the line for " + str(store)) 
+            return redirect("/leave_line/?store=" + str(store), context)
+            #   to do: (By: David)
+#   each time a user checks out:
+#      check if users are on the queue (if sum_of_clients > group_limit). 
+#      if there are user(s) on the queue and not "in the vicinity of the store", 
+#           send email/text notifications to people who are next on line (ex: 5th online, 10th online, or 15th online, etc)
+        else:
+            messages.error(request, "You are not in line for " + str(store))
+
+    return render(request, "leave_line.html", context)
