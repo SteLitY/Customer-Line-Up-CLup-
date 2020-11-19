@@ -150,7 +150,6 @@ def signup_signin_page_view(request, *args, **kwargs):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                messages.success(request, "Successfuly Logged in for Line Up") 
                 return redirect('/line_up')
     return render(request, "signin.html", {})
 
@@ -206,7 +205,6 @@ def customer_signup_view(request, *args, **kwargs):
             raw_password = form.cleaned_data.get('password1')
             customer = authenticate(username=user.username, password=raw_password)
             login(request, customer)
-            messages.success(request, "Successfuly Logged in for Line Up") 
             return redirect('/line_up') 
         else: 
             print(form.errors)  
@@ -303,6 +301,7 @@ def control_panel_view(request, *args, **kwargs):
             for item in obj:
                 #If removing one more customer goes under 0, then dont remove
                 if item.in_store-1 == 0:
+                    inside = 0
                     obj.update(in_store = 0)
                 #If removing one more customer doesnt goes under 0, then remove
                 if item.in_store-1 > 0:
@@ -315,7 +314,8 @@ def control_panel_view(request, *args, **kwargs):
     else:
         #show page
         return render(request, "control_panel.html", {'obj':obj})
-#Shows profile settings based on who is logged in
+
+
 #If you are a customer displays:
 #   username, email, name, number and option to change password
 #If you are a business displays:
@@ -464,8 +464,17 @@ def profile_setting_view(request, *args, **kwargs):
 def line_up_view(request,*args, **kwargs):
     #search filter
     business = Business.objects.all().order_by('store_name')
-    myFilter = business_search_filter(request.GET ,queryset=business)
+    myFilter = business_search_filter(request.GET, queryset=business)
     business = myFilter.qs
+    
+    #putting exit queue links in a list to be used in html file
+    # temp_list = []
+    # business_list = Business.objects.filter().order_by('store_name')
+    # for store in business_list:
+    #    temp_list.append("/store_details.html/?restName=" + str(store))
+
+
+
     return render(request, "lineup.html", {'business':business, 'myFilter':myFilter})
 
 #Allows customer to schedule a time slot for a ticket
@@ -540,7 +549,7 @@ def store_details_view(request):
         else:
             user_position = 1        
         
-    #to do: (writtem by: David)
+    #to do: (written by: David)
 #   check if there's space in store:
 #   if sum_of_group_size_on_queue_for_this_business + current_user's group_size < group_capacity: 
 #       redirect to print QR code page and be sure to include webpage for "I'm near the vicinity"
@@ -550,6 +559,7 @@ def store_details_view(request):
 #      if there are user(s) on the queue and not "in the vicinity of the store", 
 #           send email/text notifications to people who are next on line (ex: 5th online, 10th online, or 15th online, etc)
 #   subtract group_size from in line.
+
         EnterInMySQL = Customer_queue.objects.create(
             name = current_user,
             position = user_position, 
@@ -573,3 +583,7 @@ def store_details_view(request):
     return render(request, "store_details.html", context)
 
 
+#Page to leave the queue
+@user_must_login(please_login_view)
+def leave_queue_view(request, *args, **kwargs):
+    return render(request, "leave_queue.html", {})
