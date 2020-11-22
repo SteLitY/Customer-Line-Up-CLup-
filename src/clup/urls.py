@@ -27,8 +27,6 @@ urlpatterns = [
     path('control_panel/', control_panel_view),
     path('signup/', customer_signup_view, name="customer_signup_view"),
     path('profile_setting/', profile_setting_view),
-    path('customer_control/', customer_control_view),
-    path('scheduled/', scheduled_view),
     path('please_login/', please_login_view),
     path('line_up/', line_up_view),
     path('store_details/', store_details_view),
