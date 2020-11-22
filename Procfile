@@ -1,1 +1,1 @@
-web: gunicorn src/manage.py runserver 0.0.0.0:$PORT --noreload
+web: python src/manage.py runserver 0.0.0.0:$PORT --noreload
