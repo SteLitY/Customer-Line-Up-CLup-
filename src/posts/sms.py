@@ -14,5 +14,10 @@ def sendtext(userphone, usersname):
         PhoneNumber=userphonenumber,
         Message="Thanks for joining Clup " + usersname + "!"
  )
-
+def enterqueue(userphone, storename):
+    userphonenumber = '1' + userphone
+    client.publish(
+        PhoneNumber=userphonenumber,
+        Message="You are now in queue for " + storename + "."
+    )
 
