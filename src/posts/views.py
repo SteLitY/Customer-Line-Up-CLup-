@@ -18,6 +18,7 @@ from django.contrib import messages #import messages for passsword
 from posts.forms import CustomerSignUpForm
 from django.forms import inlineformset_factory
 from .sms import sendtext
+from .sms import enterqueue
 from django.http import HttpResponse
 from .models import *
 from .forms import *
@@ -496,12 +497,15 @@ def store_details_view(request):
 
 
     if request.method == 'POST':
+        closed = request.POST.get("closed", None)
         form = CustomerLineUpForm(request.POST)
         #context needs to be updated in two places
         context = {**restaurant, "store_name":restaurant_name, "restaurant_number": res_num, "store_group_limit": store_group_limit,"form": form}
 
         #input for the forms
         group = request.POST.get('group_size')
+        #if closed in ["smsuser"]:         #function from sms.py for texting when they enter queue
+            #enterqueue(request.user.profile.phone_number, restaurant_name)
 
 #this part checks for stupid user inputs
         #checks group_size for stupid inputs like: abc@#. /?
