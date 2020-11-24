@@ -102,6 +102,7 @@ inside the store and several customers outside the store in an inactive state. W
 * ```pip install django-filter``` This is a search filter
 
 * ```pip install boto3```  This is for sending text messages
+* ```pip install django-heroku``` This is for deployment of the website
 
 ## How to use:
 
