@@ -17,6 +17,7 @@ from django.contrib.auth.tokens import default_token_generator #password reset
 from django.contrib import messages #import messages for passsword
 from posts.forms import CustomerSignUpForm
 from django.forms import inlineformset_factory
+
 from .sms import sendtext
 from .sms import enterqueue
 from django.http import HttpResponse
@@ -122,8 +123,6 @@ def password_reset_request(request):
                     except BadHeaderError:
 
                         return HttpResponse('Invalid header found.')
-                        
-                    messages.success(request, 'Password reset instructions have been sent to your email')
                     return redirect ("/password_reset/done/")
             messages.error(request, 'An invalid email has been entered.')
     password_reset_form = PasswordResetForm()
@@ -566,7 +565,7 @@ def store_details_view(request):
             item.scheduled = item.scheduled + int(group)
             item.save()
 
-        return redirect(line_up_view)
+        return redirect(customer_schedule_view)
     else: 
         form = CustomerLineUpForm()
 
@@ -601,8 +600,8 @@ def leave_line_view(request, *args, **kwargs):
                 store.save()
             
             messages.success(request, "You've left the line for " + str(store)) 
-            return redirect("/leave_line/?store=" + str(store), context)
-            #   to do: (By: David)
+            return redirect("/customer_schedule/")
+            #   to do: (Written By: David)
 #   each time a user checks out:
 #      check if users are on the queue (if sum_of_clients > group_limit). 
 #      if there are user(s) on the queue and not "in the vicinity of the store", 
@@ -611,3 +610,30 @@ def leave_line_view(request, *args, **kwargs):
             messages.error(request, "You are not in line for " + str(store))
 
     return render(request, "leave_line.html", context)
+
+#Shows the people who is registered for that business
+def my_business_scheduled_view(request,*args, **kwargs):
+    current_user = request.user.get_username()
+    current_business_name = Business.objects.filter(username=current_user)[0].store_name
+    scheduled = Customer_queue.objects.filter(store_name=current_business_name)
+
+    context = {'scheduled':scheduled, 'current_business_name':current_business_name}
+    return render(request, "my_business_scheduled.html", context)
+
+
+#Shows the customer which business they're registered for
+def customer_schedule_view(request,*args, **kwargs):
+    current_user = request.user.get_username()
+    scheduled = Customer_queue.objects.filter(name=current_user)
+
+    current_business_name = Business.objects.filter(username=current_user)[0].store_name
+    customer_queue = Customer_queue.objects.filter(store_name=current_business_name)
+
+
+    # #isEmpty is here to make comparison between current_user in the html file
+    isEmpty = current_user
+    if not scheduled:
+        isEmpty = "You are not Scheduled for anything."
+
+    context = {'scheduled':scheduled, 'current_user':current_user, 'isEmpty':isEmpty, 'customer_queue':customer_queue}
+    return render(request, "customer_schedule.html", context)
