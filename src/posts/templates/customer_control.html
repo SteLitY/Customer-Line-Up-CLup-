@@ -13,12 +13,18 @@
    float: none;
 }
 
+body{
+    margin:0;
+    padding:0;
+    background:#5812c5;
+}
+
 @media (max-width: 770px)  { 
     
 .col-md-3 {
 
    display: block;
-   vertical-align: middle;
+   /* vertical-align: middle; */
    float: none;
    padding: 20px;
     }
@@ -26,32 +32,36 @@
 
 .button {
 text-align: center;
-
 }
 
-.container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
-    width: 100%;
-    padding-right: 0px;
-    padding-left: 0px;
-    margin-right: auto;
-    margin-left: auto;
-}
-footer {
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #391c77;
-    align: center;
-    min-height: 10vh;
-    height: 15vh;
-    margin-top: 350px;
-    width: 100%;
-    postion absolute: ;
+.home-main{
+    background: #5812c5;
+    color:#fff;
+    padding: 10%;
+    text-align: center;
 
 }
-
+button {
+     border-radius:1;
+    }
+   
+    .home-main button{
+      background: #fff;
+      color: #5812c5;
+      border-radius: 1;
+      font-size: 2.5vw;
+      width: 25%;
+      height: auto;
+      top: 4%;
+      margin-top: 2vw;
+      margin-bottom: 8vw;
+    }
+    
+    .home-main button:hover{
+      transition: none;
+      color:#5812c5;
+    }
 </style>
-
-
 
 {% comment %} // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) { ... }
@@ -61,94 +71,147 @@ footer {
 
 <html lang="en">
 <head>
-<meta charset="utf-8">
-{% comment %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endcomment %}
+  <meta charset="utf-8">
 </head>
-
-
+<form id = "panel" action = "" method="POST">
+{% csrf_token %}
+<!-- To iterate through business database -->
+{% for item in obj %}
+<!-- Containers for "in line, in store, scheduled" -->
 <div class="container-fluid home-main">
-	<div class="row1">
-      <div class="block">
+  <h1 class="card-title"> Control Panel <span class="blinker">!</span></h1>
+</br>
+	<div class="row">
 
-    <div class="col-md-3" style="padding=5.0em;">
-        <div class="card bg-dark">
-            <h4 class="card-header">Select your appointment date and time</h4>
-            <div class="card-body home-main">
-                <span>
-                    <select name="month">
-                       <option value="01">January</option>
-                       <option value="02">February</option>
-                       <option value="03">March</option>
-                       <option value="04">April</option>
-                       <option value="05">May</option>
-                       <option value="06">June</option>
-                       <option value="07">July</option>
-                       <option value="08">August</option>
-                       <option value="09">September</option>
-                       <option value="10">October</option>
-                       <option value="11">November</option>
-                       <option value="12">December</option>
-                    </select> 
-                    <select name="day">
-                         <option value="01">1</option>
-                         <option value="02">2</option>
-                         <option value="03">3</option>
-                         <option value="04">4</option>
-                         <option value="05">5</option>
-                         <option value="06">6</option>
-                         <option value="07">7</option>
-                         <option value="08">8</option>
-                         <option value="09">9</option>
-                         <option value="10">10</option>
-                         <option value="11">11</option>
-                         <option value="12">12</option>
-                         <option value="13">13</option>
-                         <option value="14">14</option>
-                         <option value="15">15</option>
-                         <option value="16">16</option>
-                         <option value="17">17</option>
-                         <option value="18">18</option>
-                         <option value="19">19</option>
-                         <option value="20">20</option>
-                         <option value="21">21</option>
-                         <option value="22">22</option>
-                         <option value="23">23</option>
-                         <option value="24">24</option>
-                         <option value="25">25</option>
-                         <option value="26">26</option>
-                         <option value="27">27</option>
-                         <option value="28">28</option>
-                         <option value="29">29</option>
-                         <option value="30">30</option>
-                         <option value="31">31</option>
-                    </select>
-            
-                    <select name="year">
-                         <option value="2021">2021</option>
-                         <option value="2020">2020</option>
-                    </select>
-                </br>
-            </br>
-                    <input class="field" type="time" id="appt" min="00:00" max="24:00"/>
-                    
-                </br>
-            </br>
-        </br>
-
-                </span> 
-            </div>
+    <!-- Customers scheduled  -->
+        <div class="col-md-4" style="padding: 0.5em;">
+          <div class="card bg-light">
+            <h4 class="card-header" style="color: #5812c5"> <a href="/my_business_scheduled/" style="color: #5812c5" >Scheduled</a></h4>
+              <div class="card-body home-main">
+                  <tb id = "scheduled"><a href="/scheduled/" style="color: #ffffff" >{{item.scheduled}}</a></tb>
+              </br>
+          </div>
+          </div>
         </div>
-            
-            <button onclick="location.href='/scheduled'" type="scheduled"  class="btn btn-success">confirm schedule</button>
-    
-            </br>
-        
-    <!-- <div style="margin-top: 1em;">
-    <button onclick="location.href='/customer_profile'" type="button" class="btn btn-default">View Profile</button>
-    </div> -->
+
+    <!-- Customers in line  -->
+    <div class="col-md-4" style="padding: 0.5em;">
+      <div class="card bg-light">
+        <h4 class="card-header" style="color: #5812c5">In Line</h4>
+          <div class="card-body home-main">
+             <tb id = "inline">{{item.in_line}}</tb>
+          </br>
+      </div>
+      </div>
     </div>
 
+    <!-- Customers in store  -->
+    <div class="col-md-4" style="padding: 0.5em;">
+      <div class="card bg-light">
+        <h4 class="card-header" style="color: #5812c5">In Store</h4>
+          <div class="card-body home-main">
+               <tb id = "instore" >{{item.in_store}}</tb>
+          </br>
+          </div>
+      </div>
+  </div>
 
+
+      </div>
+      </form>
+
+
+      </br>
+    </br>
+
+       <div class = "col-md-10 mx-auto">
+        <!-- Add customer manually -->
+        <form id="added" action="" method="POST">
+          {% csrf_token %}
+         <button id="change" for= "change "type="submit" name="change" value ="add" class="btn btn-default">Check In </button>
+         </form>
+         <!-- Create space between the buttons -->
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+         <label></label>
+        <!-- Remove customers manually -->
+        <form id="removed" action="" method="POST">
+          {% csrf_token %}
+        <button button type="submit" type="button" name="action" value ="remove" class="btn btn-default">Check Out</button>
+        </form>
+   </div>
+   <!-- Go to Profile settings -->
+    <div style="margin-top: 1em;">
+    <button onclick="location.href='/profile_setting'" type="button" class="btn btn-default">View Profile</button>
+   </div>
+   
+ </div>
+    {% endfor %}
+<!-- </form> -->
+<script>
+function increaseCus(e) {
+  console.log("i added yo")
+    e.stopImmediatePropagation()
+    e.preventDefault();
+    $.ajax({
+      url: '/control_panel/',
+        data: {
+          'change': 'add'
+        },
+        success: function (data) {
+          document.getElementById("instore").innerHTML = data;
+        }
+    })};
+  let increase_button = document.getElementById("added");
+  increase_button.addEventListener("click", increaseCus);
+
+
+    function decreaseCus(e) {
+      console.log("i remove sumn yo")
+    e.stopImmediatePropagation()
+    e.preventDefault();
+    $.ajax({
+      url: '/control_panel/',
+        data: {
+          'change': 'remove'
+        },
+        success: function (data) {
+          document.getElementById("instore").innerHTML = data;
+        }
+    })};
+  let decrease_button = document.getElementById("removed");
+  decrease_button.addEventListener("click", decreaseCus);
+</script>
+</html>
 
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-8 bg-dark">.col-xs-12 .col-sm-6 .col-md-8</div>
+  <div class="col-xs-6 col-md-4 bg-dark">.col-xs-6 .col-md-4</div>
+</div>
+<div class="row">
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+  <!-- Optional: clear the XS cols if their content doesn't match in height -->
+  <div class="clearfix visible-xs-block"></div>
+  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+</div> 
+</form>
+{% endcomment %}
