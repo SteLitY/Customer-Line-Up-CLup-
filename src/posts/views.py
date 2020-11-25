@@ -623,17 +623,15 @@ def my_business_scheduled_view(request,*args, **kwargs):
 
 #Shows the customer which business they're registered for
 def customer_schedule_view(request,*args, **kwargs):
+    #query variables to be passed to django template
     current_user = request.user.get_username()
     scheduled = Customer_queue.objects.filter(name=current_user)
+    business = Business.objects.filter(store_name__isnull=False)
 
-    current_business_name = Business.objects.filter(username=current_user)[0].store_name
-    customer_queue = Customer_queue.objects.filter(store_name=current_business_name)
-
-
-    # #isEmpty is here to make comparison between current_user in the html file
+    #checking to see if user signed up for a store
     isEmpty = current_user
     if not scheduled:
         isEmpty = "You are not Scheduled for anything."
 
-    context = {'scheduled':scheduled, 'current_user':current_user, 'isEmpty':isEmpty, 'customer_queue':customer_queue}
+    context = {'business':business, 'scheduled':scheduled, 'current_user':current_user, 'isEmpty':isEmpty}
     return render(request, "customer_schedule.html", context)
