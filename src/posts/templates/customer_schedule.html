@@ -25,6 +25,7 @@ h2{
                     <br>
                     <a href='/line_up/' style=color:#5812c5>Click Here to Sign Up to Go to a Store.</a></h2>
                 {% else %}
+                
             <table class="table">
                 <tr>
                 <th>Business Name</th>
@@ -33,17 +34,24 @@ h2{
                 <th>Total People on line</th>
                 <th>Leave line</th>
                 </tr>
+            
                     <!-- Retrieves information from database  -->
                     {% for person in scheduled %}
                     <tr>
                         <td style=color:#5812c5>{{person.store_name}}</td>
                         <td style=color:#5812c5>{{person.group_size}}</td>
                         <td style=color:#5812c5>{{person.position}}</td>
-
+                        
                         <td style=color:#5812c5>
-
+                            {% for store in business %}
+                                {% if person.store_name == store.store_name %}
+                                 {{store.scheduled}}
+                                {% endif %}
+                            {% endfor %}
                         </td>
-                        <td style=color:#5812c5><a href='/leave_line/?store={{person.store_name}}'style=color:#5812c5>Leave the Line</a></td>
+
+                            
+                        <td style=color:#5812c5><a href='/leave_line/?store={{person.store_name}}'style=color:#5812c5>Leave {{person.store_name}}</a></td>
                         
                     {% endfor %}
                  
