@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>My Schedule</title>
+<style>
+
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+h2{
+    color:#5812c5
+}
+    
+</style>
+
+<div class="container-fluid home-main">
+    <div class="main">
+        <div class="col-md-10">
+          <div class="card card-body">
+            <div class="card-body">
+                <p><h2><strong>{{current_business_name}}</strong></h2></p>
+
+            <table class="table">
+                <tr>
+                <th>Customer's Username</th>
+                <th>Customer Group Size</th>
+                <th>Position</th>
+                </tr>
+                <!-- Retrieves store information from database  -->
+                {% for person in scheduled %}
+                <tr>
+                    <td style=color:#5812c5>{{person.name}}</td>
+                    <td style=color:#5812c5>{{person.group_size}}</td>
+                    <td style=color:#5812c5>{{person.position}}</td>
+                {% endfor %}
+                </tr>
+            </table>
+            </div>
+         </div>
+        </div>
+     </div>
+
+</div>
+{% endblock %}

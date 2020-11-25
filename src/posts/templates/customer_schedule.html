@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+h2{
+    color:#5812c5
+}
+    
+</style>
+
+<div class="container-fluid home-main">
+    <div class="main">
+        <div class="col-md-10">
+          <div class="card card-body">
+            <div class="card-body">
+                <p><h2><strong>Businesses I'm Signed Up For:</strong></h2></p>
+                {% if isEmpty != current_user %}
+                <h2>None.
+                    <br>
+                    <a href='/line_up/' style=color:#5812c5>Click Here to Sign Up to Go to a Store.</a></h2>
+                {% else %}
+            <table class="table">
+                <tr>
+                <th>Business Name</th>
+                <th>My Group Size</th>
+                <th>Ticket Number</th>
+                <th>Total People on line</th>
+                <th>Leave line</th>
+                </tr>
+                    <!-- Retrieves information from database  -->
+                    {% for person in scheduled %}
+                    <tr>
+                        <td style=color:#5812c5>{{person.store_name}}</td>
+                        <td style=color:#5812c5>{{person.group_size}}</td>
+                        <td style=color:#5812c5>{{person.position}}</td>
+
+                        <td style=color:#5812c5>
+
+                        </td>
+                        <td style=color:#5812c5><a href='/leave_line/?store={{person.store_name}}'style=color:#5812c5>Leave the Line</a></td>
+                        
+                    {% endfor %}
+                 
+                {% endif %}
+                </tr>
+            </table>
+            </div>
+         </div>
+        </div>
+     </div>
+
+</div>
+{% endblock %}
