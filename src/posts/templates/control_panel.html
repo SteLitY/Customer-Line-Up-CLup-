@@ -24,7 +24,7 @@ body{
 .col-md-3 {
 
    display: block;
-   vertical-align: middle;
+   /* vertical-align: middle; */
    float: none;
    padding: 20px;
     }
@@ -82,30 +82,48 @@ button {
   <h1 class="card-title"> Control Panel <span class="blinker">!</span></h1>
 </br>
 	<div class="row">
-    <!-- Customers in store  -->
-     <div class="col-md-6" style="padding=0.5em;">
-        <div class="card bg-light">
-        	<h4 class="card-header" style="color: #5812c5">In store</h4>
-            <div class="card-body home-main">
-                 <tb id = "instore" >{{item.in_store}}</tb>
-            </br>
-            </div>
-        </div>
-    </div>
+
     <!-- Customers scheduled  -->
-    <div class="col-md-6" style="padding=0.5em;">
+        <div class="col-md-4" style="padding: 0.5em;">
+          <div class="card bg-light">
+            <h4 class="card-header" style="color: #5812c5"> <a href="/my_business_scheduled/" style="color: #5812c5" >Scheduled</a></h4>
+              <div class="card-body home-main">
+                  <tb id = "scheduled"><a href="/scheduled/" style="color: #ffffff" >{{item.scheduled}}</a></tb>
+              </br>
+          </div>
+          </div>
+        </div>
+
+    <!-- Customers in line  -->
+    <div class="col-md-4" style="padding: 0.5em;">
       <div class="card bg-light">
-        <h4 class="card-header" style="color: #5812c5">In line</h4>
+        <h4 class="card-header" style="color: #5812c5">In Line</h4>
           <div class="card-body home-main">
-             <tb id = "inline">{{item.scheduled}}</tb>
+             <tb id = "inline">{{item.in_line}}</tb>
           </br>
       </div>
       </div>
     </div>
+
+    <!-- Customers in store  -->
+    <div class="col-md-4" style="padding: 0.5em;">
+      <div class="card bg-light">
+        <h4 class="card-header" style="color: #5812c5">In Store</h4>
+          <div class="card-body home-main">
+               <tb id = "instore" >{{item.in_store}}</tb>
+          </br>
+          </div>
+      </div>
+  </div>
+
+
       </div>
       </form>
+
+
       </br>
     </br>
+
        <div class = "col-md-10 mx-auto">
         <!-- Add customer manually -->
         <form id="added" action="" method="POST">
