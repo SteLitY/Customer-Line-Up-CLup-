@@ -596,6 +596,8 @@ def store_details_view(request):
         'store_name': restaurant["store_name"],
         'store_name_hyperlinked': store_name_hyperlinked,
         'current_user_first_name': current_user_first_name,
+        'user_position':user_position,
+        'group_size':int(group),
         }
         email_message = render_to_string(email_template_name, email_context)
         try:
