@@ -567,6 +567,45 @@ def store_details_view(request):
             item.scheduled = item.scheduled + int(group)
             item.save()
 
+        #Now we send an email to the user to confirm that they're online and include links to remove themselves.
+        current_users_email = str(Customer.objects.filter(username=current_user)[0].email)
+        current_user_first_name = str(Customer.objects.filter(username=current_user)[0].first_name)
+
+        #won't work unless I do this.
+        all_emails = [current_users_email]
+        recipient_list = {current_users_email}
+
+        #if store_name has spaces or symbols, the link won't work so I will fix it here
+        store_name_ = restaurant["store_name"]
+        store_name_hyperlinked = ""
+
+        for i in range (len(store_name_)):
+            if store_name_[i] == ' ':
+                store_name_hyperlinked =  store_name_hyperlinked + "%20"
+            elif store_name_[i] == "'":
+                store_name_hyperlinked =  store_name_hyperlinked + "%27"
+            else:
+                store_name_hyperlinked = store_name_hyperlinked + store_name_[i]
+        
+        #this part sets the variables for the email template and sends the email
+        subject = "You're on the line for " + restaurant["store_name"]
+        email_template_name = "user_entered_queue_email.txt"
+        email_context = {
+        "email":current_users_email,
+        'domain':'127.0.0.1:8000',
+        'site_name': 'Line Up',
+        'protocol': 'http',
+        'store_name': restaurant["store_name"],
+        'store_name_hyperlinked': store_name_hyperlinked,
+        'current_user_first_name': current_user_first_name,
+        'user_position':user_position,
+        'group_size':int(group),
+        }
+        email_message = render_to_string(email_template_name, email_context)
+        try:
+            send_mail(subject, email_message, 'david.chen68@myhunter.cuny.edu', recipient_list)
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
         return redirect(customer_schedule_view)
     else: 
         form = CustomerLineUpForm()
