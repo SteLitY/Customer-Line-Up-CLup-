@@ -61,6 +61,25 @@ button {
       transition: none;
       color:#5812c5;
     }
+.container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+footer {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #391c77;
+    align: center;
+    min-height: 10vh;
+    height: 15vh;
+    margin-top: 350px;
+    width: 100%;
+    position: absolute ;
+
+}
 </style>
 
 {% comment %} // Medium devices (tablets, 768px and up)
@@ -111,19 +130,14 @@ button {
         <h4 class="card-header" style="color: #5812c5">In Store</h4>
           <div class="card-body home-main">
                <tb id = "instore" >{{item.in_store}}</tb>
-          </br>
-          </div>
+            <br>
+        </div>
       </div>
   </div>
-
-
-      </div>
+  </div>
       </form>
-
-
-      </br>
-    </br>
-
+    <br>
+    <br>
        <div class = "col-md-10 mx-auto">
         <!-- Add customer manually -->
         <form id="added" action="" method="POST">
@@ -148,8 +162,8 @@ button {
     <div style="margin-top: 1em;">
     <button onclick="location.href='/profile_setting'" type="button" class="btn btn-default">View Profile</button>
    </div>
-   
  </div>
+
     {% endfor %}
 <!-- </form> -->
 <script>
@@ -188,18 +202,7 @@ function increaseCus(e) {
 </script>
 </html>
 
-
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
 
 {% comment %} 
 <div class="row">

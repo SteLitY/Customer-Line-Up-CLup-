@@ -1,4 +1,6 @@
 {% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
   h5 {
     color:#5812c5;
@@ -28,6 +30,28 @@
        overflow:auto;
        text-decoration: none;
    }
+
+nav-item {
+  border: 1px solid grey;
+}
+
+.w3-bar-block .w3-bar-item {
+    width: 100%;
+    display: block;
+    padding: 8px 16px;
+    text-align: left;
+    border: 1px solid grey;
+    white-space: normal;
+    float: none;
+    outline: 0;
+    color: black;
+}
+
+.w3-teal, .w3-hover-teal:hover {
+    color: #000!important;
+    background-color: #f2f2f2!important;
+}
+
    ul{
        padding:0;
        margin:0 0 0 26vw;
@@ -197,11 +221,36 @@ color: #004d40;
       </li>
 
   <!-- Collapse button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
-    aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+  {% comment %} <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
+    aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button> {% endcomment %}
+<div class="w3-teal">
+  <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
+  <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
+  <button onclick="closeRightMenu()" style="font-size:30px;" class="w3-bar-item w3-button w3-large"><b>X</b></button>
+    <ul class="navbar-nav mr-auto center-align">
+      <li class="nav-item active">
+        <a class="color-me" style="text-decoration:none;" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="color-me" style="text-decoration:none;" href="/about_us">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="color-me" style="text-decoration:none;" href="/contact_us">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="color-me" style="text-decoration:none;" href="/signin">Customer Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="color-me" style="text-decoration:none;" href="/business_sign_in">Business Login</a>
+      </li>
+    </ul>
+</div>
+  <div class="w3-container">
 
+  </div>
+</div>
   <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="navbarSupportedContent15">
+  {% comment %} <div class="collapse navbar-collapse" id="navbarSupportedContent15">
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto center-align">
@@ -223,14 +272,36 @@ color: #004d40;
     </ul>
     <!-- Links -->
 
-  </div>
+  </div> {% endcomment %}
   <!-- Collapsible content -->
 
 </nav>
 <!--/.Navbar-->
+{% comment %} ---------------------------------------------------------------------------------------------------- {% endcomment %}
 
-{% comment %} 
-<nav class="navbar navbar-light navbar-expand-md">
+
+{% comment %} <div class="w3-teal">
+  <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
+  <div class="w3-container">
+  </div>
+</div> {% endcomment %}
+
+     
+<script>
+
+function openRightMenu() {
+  document.getElementById("rightMenu").style.display = "block";
+}
+
+function closeRightMenu() {
+  document.getElementById("rightMenu").style.display = "none";
+}
+</script>
+
+{% comment %} ---------------------------------------------------------------------------------------------------- {% endcomment %}
+
+
+<!-- <nav class="navbar navbar-light navbar-expand-md">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
     <span class="navbar-toggler-icon"></span>
@@ -245,7 +316,7 @@ color: #004d40;
       </li>
     </ul>
   </div>
-</nav> {% endcomment %}
+</nav>  -->
 
 <!--/.Navbar-->
 
