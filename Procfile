@@ -1,1 +1,1 @@
-web: gunicorn clup.wsgi
+web: gunicorn -w 1 -t 100 --log-level debug src:app
