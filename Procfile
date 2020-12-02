@@ -1,1 +1,3 @@
-web: gunicorn -w 1 -t 100 --log-level debug src:app
+web: gunicorn clup.wsgi:application --log-file - --log-level debug
+python src/manage.py collectstatic --noinput
+manage.py migrate
