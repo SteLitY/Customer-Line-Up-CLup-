@@ -30,20 +30,21 @@ DEBUG = True
 
 
 
+
 ALLOWED_HOSTS = ['127.0.0.1','customerlineup.herokuapp.com']
 
 
 # Application definition
-
 INSTALLED_APPS = [
+    # 'clup.apps.clupConfig',
+    'clup',
+    'posts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'posts',
-    'clup.apps.clupConfig',
     'crispy_forms',
 ]
 
