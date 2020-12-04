@@ -1,1 +1,1 @@
-web: gunicorn clup.wsgi
+web: gunicorn clup.wsgi --log-file -
