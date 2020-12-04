@@ -11,7 +11,7 @@ If you want to bring more people with you on this visit, please rejoin the line 
 	1) Leave the line using: {{ protocol }}://{{ domain }}/leave_line/?store={{ store_name_hyperlinked }}
 	2) Rejoin it using {{ protocol }}://{{ domain }}/store_details/?restName={{ store_name_hyperlinked }}
 
-If you are bringing few people, please let the front desk know when you arrive.
+If you are bringing fewer people, please let the front desk know when you arrive.
 
 
 {% endautoescape %}
