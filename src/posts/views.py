@@ -568,8 +568,8 @@ def store_details_view(request):
             item.save()
 
         #Now we send an email to the user to confirm that they're online and include links to remove themselves.
-        current_users_email = str(Customer.objects.filter(username=current_user)[0].email)
-        current_user_first_name = str(Customer.objects.filter(username=current_user)[0].first_name)
+        current_users_email = str(Profile.objects.filter(username=current_user)[0].email)
+        current_user_first_name = str(Profile.objects.filter(username=current_user)[0].first_name)
 
         #won't work unless I do this.
         all_emails = [current_users_email]
@@ -623,9 +623,11 @@ def leave_line_view(request, *args, **kwargs):
     store = request.GET.get('store') #gets the store name
     user_in_store = Customer_queue.objects.filter(store_name=store, name=current_user)
     business = Business.objects.filter(store_name=store)
+    total_people_to_email_line = 2 #sets how many people to email when it's almost their turn
     
     if user_in_store.exists():
         head_count = Customer_queue.objects.filter(store_name=store, name=current_user)[0].group_size
+        user_leavings_position = Customer_queue.objects.filter(store_name=store, name=current_user)[0].position
     else:
         head_count = 0
         
@@ -633,20 +635,89 @@ def leave_line_view(request, *args, **kwargs):
     if request.method == 'POST':
         form = CustomerLineUpForm(request.POST)
         if user_in_store.exists():
+            #variables for use       
+            current_store = Customer_queue.objects.filter(store_name=store).order_by('position')
+            clients_to_email_by_username = []
+            
+            #delete leaver in queue
             delete_from_queue = Customer_queue.objects.filter(store_name=store, name=current_user)
             delete_from_queue.delete()
-
+            #decrement count for scheduled in business model
             for store in business:
                 store.scheduled = store.scheduled - head_count
                 store.save()
-            
+
+            #save usernames into the container clients_to_email_by_username
+            people_to_email_counter = 0
+
+            for client in current_store:
+                #set the number of people to email in the next if statement
+                if people_to_email_counter < total_people_to_email_line:
+                    clients_to_email_by_username.append(client)
+                else:
+                    break
+                people_to_email_counter = people_to_email_counter + 1
+
+            #add user name to email_list
+            email_list = []
+            username_list =  []
+            for client in clients_to_email_by_username:
+                email_list.append(str(Profile.objects.filter(username=client)[0].email))
+                username_list.append(str(Profile.objects.filter(username=client)[0].username))
+            #if email list is not empty, send email to client.
+            if not email_list:
+                return redirect("/customer_schedule/")
+            else:
+                #converting characters to properly display hyperlinks in email
+                store_name_hyperlinked = ""
+                store_name_ = str(store)
+                for i in range (len(store_name_)):
+                    if store_name_[i] == ' ':
+                        store_name_hyperlinked =  store_name_hyperlinked + "%20"
+                    elif store_name_[i] == "'":
+                        store_name_hyperlinked =  store_name_hyperlinked + "%27"
+                    else:
+                        store_name_hyperlinked = store_name_hyperlinked + store_name_[i]
+
+                groups_ahead = 1
+                for email in email_list:
+                    current_users_email = email
+                    current_user_first_name = str(Profile.objects.filter(email=current_users_email, username= username_list[groups_ahead-1])[0].first_name)
+                    current_user_username = username_list[groups_ahead-1]
+                    user_position = Customer_queue.objects.filter(store_name=store, name=username_list[groups_ahead-1])[0].position
+                    # print ("current_user_username " + current_user_username + " where user_position is " + str(user_position) + ". user_leavings_position is " + str(user_leavings_position))
+                    group = int(Customer_queue.objects.filter(store_name=store, name=username_list[groups_ahead-1])[0].group_size)
+                    recipient_list = {current_users_email}
+
+                    subject = "Your position on line for " + str(store) + " is " + str(groups_ahead) + "."
+                    email_template_name = "user_position_email.txt"
+                    
+                    email_context = {
+                    "email":current_users_email,
+                    'domain':'127.0.0.1:8000',
+                    'site_name': 'Line Up',
+                    'protocol': 'http',
+                    'store_name': store,
+                    'store_name_hyperlinked': store_name_hyperlinked,
+                    'current_user_first_name': current_user_first_name,
+                    'user_position':user_position,
+                    'group_size':int(group),
+                    'other_groups':groups_ahead,
+                    }
+
+                    #don't email if position in line has not changed
+                    if int(user_position) > int(user_leavings_position):
+                        email_message = render_to_string(email_template_name, email_context)
+                        try:
+                            send_mail(subject, email_message, 'david.chen68@myhunter.cuny.edu', recipient_list)
+                            print ("email sent to " + str(current_users_email) + ". where username is " + current_user_username)
+                        except BadHeaderError:
+                            return HttpResponse('Invalid header found.')
+                    groups_ahead = groups_ahead + 1            
+
             messages.success(request, "You've left the line for " + str(store)) 
             return redirect("/customer_schedule/")
-            #   to do: (Written By: David)
-#   each time a user checks out:
-#      check if users are on the queue (if sum_of_clients > group_limit). 
-#      if there are user(s) on the queue and not "in the vicinity of the store", 
-#           send email/text notifications to people who are next on line (ex: 5th online, 10th online, or 15th online, etc)
+
         else:
             messages.error(request, "You are not in line for " + str(store))
 
