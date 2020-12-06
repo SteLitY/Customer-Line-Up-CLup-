@@ -10,11 +10,8 @@ img {
 h2 {
  text-align:center;
 }
-span {
- text-align:center;
- /* border: 1px solid #391c77; */
- width: 100%;
- padding: 1vw;
+#reset {
+    padding: 5px;
 }
 
 
@@ -56,11 +53,11 @@ a:hover {
             <button button type="submit" type="button" class="btn btn-default">Login</button>
         </div>
         <br>
-        <span id="reset-links">
-                <a style="text-decoration:none;border-right:1px solid #f2f2f2;" href="/password_reset"><b>Forgot password?</b></a>   
-                <a style="text-decoration:none;" href="/signup"><b></b>Sign up for Line Up</b></a>  
-                <a style="text-decoration:none;border-left:1px solid #f2f2f2" href="/business_sign_in"><b>Businesses Click Here!</b></a>
-        </span>  
+        <p>
+            <a id="reset" href="/password_reset">Forgot password? |</a>
+            <a id="reset" href="/business_sign_up">Sign up your Business</a>
+            <a id="reset" href="/signin">| Customers Click Here!</a>
+        </p>
 
         </form>
 </div>
