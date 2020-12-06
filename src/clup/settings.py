@@ -166,12 +166,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django_ses.SESBackend'
-AWS_SES_REGION_NAME = 'us-east-1' #(ex: us-east-2)
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID') #cannot be posted on github. this is used for customer forgot password - David
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY') #cannot be posted on github. this is used for customer forgot password - David
-AWS_SES_REGION_ENDPOINT ='email.us-east-1.amazonaws.com' #(ex: email.us-east-2.amazonaws.com)
+
 # Make sure your email end point matches the environment variable in .bashrc and heroku
-DATABASES['heroku'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 django_heroku.settings(locals())
