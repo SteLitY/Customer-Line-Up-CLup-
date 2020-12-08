@@ -33,5 +33,8 @@ urlpatterns = [
     path('leave_line/', leave_line_view),
     path('my_business_scheduled/', my_business_scheduled_view),
     path('customer_schedule/', customer_schedule_view),
+    path('qrpage/<storename>/', qrpage_view, name="qrpage"),
+    path('business_success/<username>/', business_success_view, name= "business_success"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
