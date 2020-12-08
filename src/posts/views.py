@@ -317,7 +317,78 @@ def control_panel_view(request, *args, **kwargs):
         #show page
         return render(request, "control_panel.html", {'obj':obj})
 
+def qrpage_view(request, storename, *args, **kwargs):
+    current_user = request.user.get_username()
+    barcode  = Barcode.objects.filter(username=current_user, store_name=storename)
 
+    if barcode.exists():
+
+         barcodeQuery = Barcode.objects.get(username=current_user, store_name=storename)
+         barcodeId = barcodeQuery.id
+         print('this is barcode id', barcodeId)
+    else:
+        customerQuery = Customer_queue.objects.get(name=current_user, store_name=storename)
+        barcode = Barcode.objects.create(name='https://tinyurl.com/y2os3ozl', store_name=customerQuery.store_name,group_size=customerQuery.group_size, position=customerQuery.position, username= current_user)
+        query = Barcode.objects.get(username= current_user, store_name = storename)
+        barcodeId = query.id
+
+    name = "Please show this code to an associate in "
+    idquery = Barcode.objects.get(username= current_user, store_name = storename)
+    barcodeId = idquery.id
+    obj = Barcode.objects.get(id=barcodeId)
+
+
+
+    context = {
+         'name': name,
+         'obj': obj,
+}
+
+    return render(request, 'qrpage.html', context)
+
+def business_success_view(request, username):
+
+    if request.user.profile.is_business != True:
+        return redirect(home_page_view)
+
+    businessQuery = Business.objects.get(username=request.user.get_username())
+    barcodeQuery = Barcode.objects.get(store_name=businessQuery.store_name)
+
+    business = Business.objects.filter(username=request.user.get_username())
+    customer = Customer_queue.objects.filter(store_name=businessQuery.store_name)
+    barcodespecific = Barcode.objects.filter(store_name =businessQuery.store_name, InQ = False, InStore = False)
+    barcode = Barcode.objects.filter(store_name=businessQuery.store_name)
+    groupsz = barcodeQuery.group_size
+    pos = barcodeQuery.position
+
+    if (barcodeQuery.InQ == True) and barcodeQuery.InStore == False:
+        barcodeQuery.InQ = not barcodeQuery.InQ
+        barcodeQuery.InStore = not barcodeQuery.InStore
+        barcodeQuery.save()
+        totalforbzn = businessQuery.scheduled
+        totalforbzn -= groupsz
+        businessQuery.scheduled = totalforbzn
+        businessQuery.save()
+        instoreforbzn = businessQuery.in_store
+        instoreforbzn += groupsz
+        businessQuery.in_store = instoreforbzn
+        businessQuery.save()
+    elif (barcodeQuery.InQ == False) and barcodeQuery.InStore == True:
+        specificrow = Customer_queue.objects.get(store_name=businessQuery.store_name,position = pos)
+        print(specificrow.name, specificrow.store_name)
+        specificrow.delete()
+        barcodeQuery.InStore = not barcodeQuery.InStore
+        barcodeQuery.save()
+        instoreforbzn = businessQuery.in_store
+        instoreforbzn -=  groupsz
+        businessQuery.in_store = instoreforbzn
+        businessQuery.save()
+    elif (barcodeQuery.InQ == False) and barcodeQuery.InStore == False:
+        barcodespecific.delete()
+    else:
+        return redirect(home_page_view())
+
+    return render(request, "business_success.html",)
 #If you are a customer displays:
 #   username, email, name, number and option to change password
 #If you are a business displays:
