@@ -5,6 +5,8 @@ Thanks for signing up for {{ store_name }}!
 
 We're emailing you to let you know that your turn is coming up soon. Your place on line is {{ other_groups }}. Your ticket number is {{ user_position }} and we're excited to have {{ group_size }} of you visit us!
 
+Please remember to bring your face mask and remember to keep a safe distance!
+
 If you would like to leave the line, please go to {{ protocol }}://{{ domain }}/leave_line/?store={{ store_name_hyperlinked }}
 
 If you want to bring more people with you on this visit, please rejoin the line by:

@@ -1,70 +1,67 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<style>
-
-</style>
-
-<!-- <head>
-    <link rel="stylesheet" type="text/css"  href="{% static 'css/signup.css' %}">
-</head> -->
 
 <div class="container-fluid home-main">
     <!-- Sign up form -->
-    <form action = "" method="POST">
-    {% csrf_token %}
-        <h1 class="card-title"> Sign Up <span class="blinker">!</span></h1>
-        <div class="row">
-            <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
+<form action = "" method="POST">
+{% csrf_token %}
+    <h1 class="card-title"> Sign Up <span class="blinker">!</span></h1>
+    <div class="row">
+        <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="username" class="col-form-label">Username</label>
+                    <input type="name" class="form-control" id="username" name="username" name="email" placeholder=" Username" required>
+                    <div class="username">
+                </div>
+                <div class="form-group">
+                    <label for="first_name" class="col-form-label">First Name</label>
+                    <input type="name" class="form-control" id="first_name" name="first_name" placeholder="First name" required>
+                    <div class="first_name">
+                </div>
+                <div class="form-group">
+                    <label for="last_name" class="col-form-label">Last Name</label>
+                    <input type="name" class="form-control" id="last_name" name="last_name" placeholder="Last name" required>
+                    <div class="last_name">
+                    </div>
 
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="username" class="col-form-label">Username</label>
-                            <input type="name" class="form-control" id="username" name="username" name="email" placeholder=" Username" required>
-                            <div class="username">
-                        </div>
-                        <div class="form-group">
-                            <label for="first_name" class="col-form-label">First Name</label>
-                            <input type="name" class="form-control" id="first_name" name="first_name" placeholder="First name" required>
-                            <div class="first_name">
-                        </div>
-                        <div class="form-group">
-                            <label for="last_name" class="col-form-label">Last Name</label>
-                            <input type="name" class="form-control" id="last_name" name="last_name" placeholder="Last name" required>
-                            <div class="last_name">
-                            </div>
+                <div class="form-group">
+                    <label for="email" class="col-form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com" required>
+                    <div class="email-feedback">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com" required>
-                            <div class="email-feedback">
-                            </div>
-
-                        <div class="form-group">
-                            <label for="phone_number" class="col-form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="718 555 5555" required>
-                            <div class="tel-feedback">    
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password1" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Type your password" required>
-                            <div class="password-feedback"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password_conf" class="col-form-label">Password (confirm)</label>
-                            <input type="password" class="form-control" id="password_conf" name="password2" placeholder="Type your password again" required>
-                            <div class="password_conf-feedback">    
-                            </div>
-                        </div>
-                    </div>  
-                </div> 
-            </div>
-            <div style="margin-top: 1em;">
-            <button button type="submit" type="button" name="action" value ="Customer" class="btn btn-default">Sign Up</button>
-            </div>
-        <br>
-    </form>
+                <div class="form-group">
+                    <label for="phone_number" class="col-form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="718 555 5555" required>
+                    <div class="tel-feedback">    
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password1" class="col-form-label">Password</label>
+                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Type your password" required>
+                    <div class="password-feedback"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password_conf" class="col-form-label">Password (confirm)</label>
+                    <input type="password" class="form-control" id="password_conf" name="password2" placeholder="Type your password again" required>
+                    <div class="password_conf-feedback">    
+                    </div>
+                </div>
+            </div>  
+            </div> 
+        </div>
+        <div style="margin-top: 1em;">
+        <button button type="submit" type="button" name="action" value ="Customer" class="btn btn-default">Sign Up</button>
+        </div>
+    <br>
+    <p>
+        <a id="reset" href="/password_reset">Forgot password? |</a>
+        <a href="/signin">Sign in !</a>
+        <a href="/business_sign_in">| Business Click Here!</a>
+    </p>
+</form>
 </div>
 {% endblock %}
 

@@ -2,13 +2,13 @@
 
 {% block content %}
 <style>
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-h2 {
- text-align:center;
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  h2 {
+   text-align:center;
 }
 #reset {
     padding: 5px;
@@ -21,45 +21,38 @@ a:hover {
 
 </style>
 <div class="container-fluid home-main">
-    <!-- Sign up form -->
-    <form method="post">
-    	     
-
-
-        <h1 class="card-title"> Welcome <span class="blinker">!</span></h1>
+    <!-- Sign in form -->
+    <form method="post"><h1 class="card-title"> Welcome <span class="blinker">!</span></h1>
         <div class="row">
-         <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
-                    <div class="card-body">
-                    	{% csrf_token %} 
-                        <div class="form-group">
-
-                            <label for="username" class="col-form-label">Username</label>
-                            <input type="input" class="form-control" name="username" id="inputEmail" placeholder="Login Name" required>
-                            <div class="login-feedback">
-                            
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Type your password" required>
-                            <div class="password-feedback">
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-
+           <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
+            <div class="card-body">
+               {% csrf_token %} 
+               <div class="form-group">
+                <label for="username" class="col-form-label">Username</label>
+                <input type="input" class="form-control" name="username" id="inputEmail" placeholder="Login Name" required>
+                <div class="login-feedback">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-form-label">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Type your password" required>
+                <div class="password-feedback">
+                </div>
+            </div>
         </div>
-        <div style="margin-top: 1em;">
-            <button button type="submit" type="button" class="btn btn-default">Login</button>
-        </div>
-        <br>
-        <p>
-            <a id="reset" href="/password_reset">Forgot password? |</a>
-            <a id="reset" href="/business_sign_up">Sign up your Business</a>
-            <a id="reset" href="/signin">| Customers Click Here!</a>
-        </p>
+    </div>
+</div>
+<div style="margin-top: 1em;">
+    <button button type="submit" type="button" class="btn btn-default">Login</button>
+</div>
+<br>
+<p>
+    <a id="reset" href="/password_reset">Forgot password? |</a>
+    <a href="/signup">Sign up !</a>
+    <a href="/business_sign_in">| Business Click Here!</a>
+</p>
 
-        </form>
+</form>
 </div>
 {% endblock %}
 

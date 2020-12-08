@@ -1,17 +1,15 @@
 <!doctype html>
 <html lang="en">
 <style>
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-ul.messages {
-  padding: 0;
-  margin-left:auto;
-  margin-right:auto;
-  /* {% comment %} margin: 0vw 26vw 0vw 26vw; {% endcomment %}
-  float: center; */
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  ul.messages {
+    padding: 0;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 h1, p{
@@ -20,7 +18,6 @@ h1, p{
 
 
 #messages {
-  /* background-color: #1b1b5f; */
   color:white;
   box-shadow: 12px 12px 12px #ffffff;
   text-align:center; 
@@ -31,125 +28,123 @@ h1, p{
 }
 
 /* {% comment %} Added a padding top to fix the customer_control.html footer  {% endcomment %} */
-  .home-main{
-      background: #5812c5;
-      color:#ffffff;
-      padding-top: 7%;
-      text-align: center;
-    }
-    .blinker{
-      animation: blinker 2s linear infinite;
-    }
-    @keyframes blinker {
-      50% {
-      opacity: 0;
-      }
-    }
+.home-main{
+  background: #5812c5;
+  color:#ffffff;
+  padding-top: 7%;
+  text-align: center;
+}
+.blinker{
+  animation: blinker 2s linear infinite;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
 
-    button {
-     border-radius:1;
-    }
-   
-    .home-main button{
-      background: #ffffff;
-      color: #5812c5;
-      border-radius: 1;
-      font-size: 3.25vw;
-      width: 50%;
-      height: 2.5em;
-      top: 4%;
-      margin-top: 2vw;
-      margin-bottom: 4vw;
-    }
-    
-    .home-main button:hover{
-      transition: 1s ease;
-      color:#5812c5;
-      width: 19%;
-    }
-    .content1-left{
-      padding:9%;
-    }
-    .content1-right{
-      padding:9%;
-      background:#e4e4e4;
-    }
-    .home-content2{
-      background: #5812c5;
-      padding: 1.4%;
-      text-align: center; 
-    }
-    .home-content2 p{
-      font-size: 18px;
-      line-height: 50px;
-    }
-    .home-content2 p span{
-      font-weight: 500;
-    }
+button {
+ border-radius:1;
+}
+
+.home-main button{
+  background: #ffffff;
+  color: #5812c5;
+  border-radius: 1;
+  font-size: 3.25vw;
+  width: 50%;
+  height: 2.5em;
+  top: 4%;
+  margin-top: 2vw;
+  margin-bottom: 4vw;
+}
+
+.home-main button:hover{
+  transition: 1s ease;
+  color:#5812c5;
+  width: 19%;
+}
+.content1-left{
+  padding:9%;
+}
+.content1-right{
+  padding:9%;
+  background:#e4e4e4;
+}
+.home-content2{
+  background: #5812c5;
+  padding: 1.4%;
+  text-align: center; 
+}
+.home-content2 p{
+  font-size: 18px;
+  line-height: 50px;
+}
+.home-content2 p span{
+  font-weight: 500;
+}
     /* .card {
     background: #89239;
- } */
- body {
-   min-height: 76vh;
-   background-color: white;
- }
+    } */
+    body {
+     min-height: 76vh;
+     background-color: white;
+   }
 
- a:hover {
-  color:white;
-}
-.container-fluid {
-  min-height: 80vh;
-}
+   a:hover {
+    color:white;
+  }
+  .container-fluid {
+    min-height: 80vh;
+  }
 
-footer {
+  footer {
     margin-left: auto;
     margin-right: auto;
     background-color: #391c77;
-    /* align: center; */
     min-height: 10vh;
     height: 24vh;
     margin-top: 400px;
     width: 100%;
-    /* postion absolute: ; */
-}
+  }
 
 </style>
-  <head>
+<head>
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Customer LineUp</title>
-  </head>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Customer LineUp</title>
+</head>
 
-  <body>
-    {% include 'navbar.html' %}
-      {% if messages %}
-        <ul class="messages">
-          {% for message in messages %}
-            <li id="messages" {% if message.tags %} class="{{ message.tags }}" {% endif %}> 
-            {{ message }} 
-            </li>
-          {% endfor %} 
-        </ul>
-      {% endif %}
-    <script>
-      $('#messages').fadeIn('fast').delay(3000).fadeOut('fast');
-      $('#messages').fadeOut('slow').delay(2000).hide(0);
-    </script> 
-    
-    {% block content %}
-    <h1>Customer LineUp!</h1>
-    </br>
-    {% endblock %}
-    {% include 'footer.html' %}
-  
-  </body>
-      
+<body>
+  {% include 'navbar.html' %}
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li id="messages" {% if message.tags %} class="{{ message.tags }}" {% endif %}> 
+      {{ message }} 
+    </li>
+    {% endfor %} 
+  </ul>
+  {% endif %}
+  <script>
+    $('#messages').fadeIn('fast').delay(3000).fadeOut('fast');
+    $('#messages').fadeOut('slow').delay(2000).hide(0);
+  </script> 
+
+  {% block content %}
+  <h1>Customer LineUp!</h1>
+</br>
+{% endblock %}
+{% include 'footer.html' %}
+
+</body>
+
 </html>

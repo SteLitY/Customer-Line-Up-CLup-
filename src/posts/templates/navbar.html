@@ -2,22 +2,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
-  h5 {
-    color:#5812c5;
-  }
+    h5 {
+      color:#5812c5;
+    }
 
-  .login-signup {
-    font-color: black;
-  }
+    .login-signup {
+      font-color: black;
+    }
 
-  .nav.navbar-nav.navbar-right li a {
-    color: blue;
-  }
-  {% comment %} This was responsible for the thin white line at the bottom of the control_panel.html page {% endcomment %}
-   body{
-       margin:0;
-       padding:0;
-       background:#5812c5;
+    .nav.navbar-nav.navbar-right li a {
+      color: blue;
+    }
+    body{
+     margin:0;
+     padding:0;
+     background:#5812c5;
    }
    .header{
      width:1100px;
@@ -25,22 +24,22 @@
      margin:auto;
    }
    nav{
-       width:100%;
-       background:#f2f2f2;
-       overflow:auto;
-       text-decoration: none;
+     width:100%;
+     background:#f2f2f2;
+     overflow:auto;
+     text-decoration: none;
    }
 
-nav-item {
-  border: 1px solid grey;
-}
+   nav-item {
+    border: 1px solid grey;
+  }
 
-.w3-card, .w3-card-2 {
+  .w3-card, .w3-card-2 {
     border: 1px solid grey;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
-}
+  }
 
-.w3-bar-block .w3-bar-item {
+  .w3-bar-block .w3-bar-item {
     width: 100%;
     display: block;
     padding: 8px 16px;
@@ -50,84 +49,84 @@ nav-item {
     float: none;
     outline: 0;
     color: black;
-}
+  }
 
-.w3-teal, .w3-hover-teal:hover {
+  .w3-teal, .w3-hover-teal:hover {
     color: #000!important;
     background-color: #f2f2f2!important;
-}
-
-   ul{
-       padding:0;
-       margin:0 0 0 26vw;
-       list-style:none;
-       float:right;
-   }
-   li {
-       text-decoration: none;
-   }
-   .logo img{
-       position:absolute;
-       margin-top:15px;
-       margin-left:10px;
-   }
-
-   nav a{
-       display:block;
-       padding:1.5vw 1vw;
-       font-family:Arial;
-       color:#f2f2f2;
-       text-align:center; 
-       float: right;
-       margin-left: auto;
-       margin-right: auto;
-       border:1px;
-   }
-
-   .nav-item .right {
-     float: right;
-   }
-
-   nav a:hover{
-       background:#D3D3D3;
-       transition:0.5s;
-   }
-   .color-me{
-      background: #f2f2f2;
-      color:#5812c5;
-    }
-    /* Modify the backgorund color */ 
-.navbar-custom { 
-    background-color: #f2f2f2; 
-} 
-{% comment %} Mobile Friendly - Navbar  {% endcomment %}
-
-.fa-1x {
-font-size: 1.5rem;
-}
-.navbar-toggler.toggler-example {
-cursor: pointer;
-}
-.dark-blue-text {
-color: #0A38F5;
-}
-.dark-pink-text {
-color: #AC003A;
-}
-.dark-amber-text {
-color: #ff6f00;
-}
-.dark-teal-text {
-color: #004d40;
-}
-
-
-{% comment %} Mobile - Friendly View  {% endcomment %}
-@media (min-width: 1001px) {
-  .navbar-light {
-    display:none;
   }
-      .home-main button{
+
+  ul{
+   padding:0;
+   margin:0 0 0 26vw;
+   list-style:none;
+   float:right;
+  }
+  li {
+   text-decoration: none;
+  }
+  .logo img{
+   position:absolute;
+   margin-top:15px;
+   margin-left:10px;
+  }
+
+  nav a{
+   display:block;
+   padding:1.5vw 1vw;
+   font-family:Arial;
+   color:#f2f2f2;
+   text-align:center; 
+   float: right;
+   margin-left: auto;
+   margin-right: auto;
+   border:1px;
+  }
+
+  .nav-item .right {
+   float: right;
+  }
+
+  nav a:hover{
+   background:#D3D3D3;
+   transition:0.5s;
+  }
+  .color-me{
+    background: #f2f2f2;
+    color:#5812c5;
+  }
+  /* Modify the backgorund color */ 
+  .navbar-custom { 
+    background-color: #f2f2f2; 
+  } 
+  {% comment %} Mobile Friendly - Navbar  {% endcomment %}
+
+  .fa-1x {
+    font-size: 1.5rem;
+  }
+  .navbar-toggler.toggler-example {
+    cursor: pointer;
+  }
+  .dark-blue-text {
+    color: #0A38F5;
+  }
+  .dark-pink-text {
+    color: #AC003A;
+  }
+  .dark-amber-text {
+    color: #ff6f00;
+  }
+  .dark-teal-text {
+    color: #004d40;
+  }
+
+
+  {% comment %} Mobile - Friendly View  {% endcomment %}
+  @media (min-width: 1001px) {
+    .navbar-light {
+      display:none;
+    }
+    .home-main button{
       background: #fff;
       color: #5812c5;
       border-radius: 1;
@@ -139,225 +138,126 @@ color: #004d40;
     }
 
 
-}
+  }
 
-@media (max-width: 1000px) { 
+  @media (max-width: 1000px) { 
    .center-align {
      width:145%;
    } 
 
    nav a{
-       width: 67%;
-       display:block;
-       padding:1.5vw 2vw;
-       font-family:Arial;
-       color:#f2f2f2;
-       text-align:center; 
+     width: 67%;
+     display:block;
+     padding:1.5vw 2vw;
+     font-family:Arial;
+     color:#f2f2f2;
+     text-align:center; 
    }
-  .navbar-expand-lg {
+   .navbar-expand-lg {
     display: none;
     color:#5812c5;
   }
-}
+  }
 
 </style>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-custom">
-  <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <li class="nav-item right" style="list-style-type:none;" >
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <li class="nav-item right" style="list-style-type:none;" >
         <a class="color-me" style="text-decoration:none;" href="/home"><h4><b>LineUp</b></h4><span class="sr-only"></span></a>
       </li>
-    <ul class="navbar-nav mr-auto flex-row">
-      {% if user.is_authenticated %}
-      <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;" href="/line_up">Enter The Line</a>
-      </li>
-      <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;float:none;" href="/customer_schedule">My Schedule</a>
-      </li>
-      <li class="nav-item active">
-        {% endif %}
-      <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;float:none;" href="/about_us">About Us</a>
-      </li>
-      <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;float:none;" href="/contact_us">Contact</a>
-      </li>
-      {% if user.is_authenticated %}
-
-            {% if request.user.profile.is_business %}
-      <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;float:none;" href="/control_panel">Control Panel</a>
-      </li>
-      {% endif %}
+      <ul class="navbar-nav mr-auto flex-row">
+        {% if user.is_authenticated %}
         <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;float:none;" href="/profile_setting"> {{ request.user }}</a>
+          <a class="color-me" style="text-decoration:none;" href="/line_up">Enter The Line</a>
         </li>
-        <li class="nav-item disabled">
-        <a class="color-me" href="#" onClick="document.getElementById('logoutform').submit()">Logout</a>
+        <li class="nav-item active">
+          <a class="color-me" style="text-decoration:none;float:none;" href="/customer_schedule">My Schedule</a>
         </li>
-        <form id="logoutform" method="POST" action="{% url 'customer_sign_out' %}">
-  {% csrf_token %}
-    <input type="hidden">
-  </form>
+        <li class="nav-item active">
+          {% endif %}
+          <li class="nav-item active">
+            <a class="color-me" style="text-decoration:none;float:none;" href="/about_us">About Us</a>
+          </li>
+          <li class="nav-item active">
+            <a class="color-me" style="text-decoration:none;float:none;" href="/contact_us">Contact</a>
+          </li>
+          {% if user.is_authenticated %}
 
-  {% else %}
-    <li class="nav-item active">
-      <a class ="color-me" style="text-decoration: none;float:right;" href="{% url 'customer_signup_view' %}">Sign up</a>
-      </li> 
-    <li class="nav-item active">
-      <a class ="color-me" style="text-decoration: none;float:right;" href="{% url 'customer_login' %}">Login</a>
-      </li>
-  {% endif %}
-    </ul>
+          {% if request.user.profile.is_business %}
+          <li class="nav-item active">
+            <a class="color-me" style="text-decoration:none;float:none;" href="/control_panel">Control Panel</a>
+          </li>
+          {% endif %}
+          <li class="nav-item active">
+            <a class="color-me" style="text-decoration:none;float:none;" href="/profile_setting"> {{ request.user }}</a>
+          </li>
+          <li class="nav-item disabled">
+            <a class="color-me" href="#" onClick="document.getElementById('logoutform').submit()">Logout</a>
+          </li>
+          <form id="logoutform" method="POST" action="{% url 'customer_sign_out' %}">
+            {% csrf_token %}
+            <input type="hidden">
+          </form>
 
-  </div>
-</nav>
-</body>
+          {% else %}
+          <li class="nav-item active">
+            <a class ="color-me" style="text-decoration: none;float:right;" href="{% url 'customer_signup_view' %}">Sign up</a>
+          </li> 
+          <li class="nav-item active">
+            <a class ="color-me" style="text-decoration: none;float:right;" href="{% url 'customer_login' %}">Login</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </body>
 
-<!--Navbar-->
-<nav class="navbar navbar-light navbar-2 white">
- 
-  <!-- Navbar brand -->
-           <li class="nav-item" style="list-style-type:none;" >
-        <a class="color-me" style="text-decoration:none;" href="/home"><h4><b>LineUp</b></h4><span class="sr-only"></span></a>
-        <!-- <a href="#" class="color-me"><h5>LineUp</h5><span class="glyphicon glyphicon-list-alt"></span></a> -->
-      </li>
-
-  <!-- Collapse button -->
-  {% comment %} <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
-    aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button> {% endcomment %}
-<div class="w3-teal">
-  <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
-  <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
-  <button onclick="closeRightMenu()" style="font-size:30px;" class="w3-bar-item w3-button w3-large"><b>X</b></button>
-    <ul class="navbar-nav mr-auto center-align">
-      <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;" href="/"><b>Home</b> <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="color-me" style="text-decoration:none;" href="/about_us"><b>About Us</b></a>
-      </li>
-      <li class="nav-item">
-        <a class="color-me" style="text-decoration:none;" href="/contact_us"><b>Contact Us</b></a>
-      </li>
-      <li class="nav-item">
-        <a class="color-me" style="text-decoration:none;" href="/signin"><b>Customer Login</b></a>
-      </li>
-      <li class="nav-item">
-        <a class="color-me" style="text-decoration:none;" href="/business_sign_in"><b>Business Login</b></a>
-      </li>
-    </ul>
-</div>
-  <div class="w3-container">
-
-  </div>
-</div>
-  <!-- Collapsible content -->
-  {% comment %} <div class="collapse navbar-collapse" id="navbarSupportedContent15">
-
-    <!-- Links -->
-    <ul class="navbar-nav mr-auto center-align">
-      <li class="nav-item active">
-        <a class="color-me" style="text-decoration:none;" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="color-me" style="text-decoration:none;" href="/about_us">About Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="color-me" style="text-decoration:none;" href="/contact_us">Contact Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="color-me" style="text-decoration:none;" href="/signin">Customer Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="color-me" style="text-decoration:none;" href="/business_sign_in">Business Login</a>
-      </li>
-    </ul>
-    <!-- Links -->
-
-  </div> {% endcomment %}
-  <!-- Collapsible content -->
-
-</nav>
-<!--/.Navbar-->
-{% comment %} ---------------------------------------------------------------------------------------------------- {% endcomment %}
+  <!--Navbar-->
+  <nav class="navbar navbar-light navbar-2 white">
+    <!-- Navbar brand -->
+    <li class="nav-item" style="list-style-type:none;" >
+      <a class="color-me" style="text-decoration:none;" href="/home"><h4><b>LineUp</b></h4><span class="sr-only"></span></a>
+    </li>
+    <!-- Collapse button -->
+    <div class="w3-teal">
+      <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
+      <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
+        <button onclick="closeRightMenu()" style="font-size:30px;" class="w3-bar-item w3-button w3-large"><b>X</b></button>
+        <ul class="navbar-nav mr-auto center-align">
+          <li class="nav-item active">
+            <a class="color-me" style="text-decoration:none;" href="/"><b>Home</b> <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="color-me" style="text-decoration:none;" href="/about_us"><b>About Us</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="color-me" style="text-decoration:none;" href="/contact_us"><b>Contact Us</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="color-me" style="text-decoration:none;" href="/signin"><b>Customer Login</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="color-me" style="text-decoration:none;" href="/business_sign_in"><b>Business Login</b></a>
+          </li>
+        </ul>
+      </div>
+      <div class="w3-container">
+      </div>
+    </div>
+  </nav>
+  <!--/.Navbar-->
+  {% comment %} ---------------------------------------------------------------------------------------------------- {% endcomment %}
 
 
-{% comment %} <div class="w3-teal">
-  <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
-  <div class="w3-container">
-  </div>
-</div> {% endcomment %}
+  <script>
 
-     
-<script>
+    function openRightMenu() {
+      document.getElementById("rightMenu").style.display = "block";
+    }
 
-function openRightMenu() {
-  document.getElementById("rightMenu").style.display = "block";
-}
-
-function closeRightMenu() {
-  document.getElementById("rightMenu").style.display = "none";
-}
-</script>
-
-{% comment %} ---------------------------------------------------------------------------------------------------- {% endcomment %}
-
-
-<!-- <nav class="navbar navbar-light navbar-expand-md">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbar1">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-    </ul>
-  </div>
-</nav>  -->
-
-<!--/.Navbar-->
-
-
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">LineUp</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown active">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Login / Sign Up 
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Customer</a>
-          <a class="dropdown-item" href="#">Business</a>
-         {% comment %} <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a> {% endcomment %}
-        </div>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">About Us</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link disabled" href="#">Contact</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav> -->
+    function closeRightMenu() {
+      document.getElementById("rightMenu").style.display = "none";
+    }
+  </script>

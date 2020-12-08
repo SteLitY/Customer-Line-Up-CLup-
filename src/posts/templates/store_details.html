@@ -2,16 +2,6 @@
 
 {% block content %}
 <style type="text/css">
-    .row1 {
-        text-align: center;
-        margin: 0 auto;
-    }
-
-    .row1 .col-md-3 {
-        display: inline-block;
-        vertical-align: middle;
-        float: none;
-    }
 
     @media (max-width: 770px) {
 
@@ -27,18 +17,6 @@
     .button {
         text-align: center;
 
-    }
-
-    .container-fluid,
-    .container-lg,
-    .container-md,
-    .container-sm,
-    .container-xl {
-        width: 100%;
-        padding-right: 0px;
-        padding-left: 0px;
-        margin-right: auto;
-        margin-left: auto;
     }
 
     footer {
@@ -70,109 +48,119 @@
         border-color: whitesmoke;
 
     }
+    .col-md-6 {
+        padding:1vw;
+        border:white;
+        border-width: 5px;
+    }
+}
 </style>
 
 <div class="container-fluid home-main">
-    <div class="row">
-        <div class="col-md-4 mx-auto" style="padding:0.5em;">
-            <div class="card-body">
-                <h1><a style="color: whiek">Welcome to {{store_name}}</a></h1>
-                </br>
-                <div class="storeinfo">
+    <h1><a class="card-title" style="color: whiek">Welcome to {{store_name}}</a><span class="blinker">!</span> </h1>
+</br>
+<div class="row">
+    <div class="col-md-5 mx-auto" style="padding: 0.5em;">
+      <div class="card bg-light">
+        <h4 class="card-header" style="color: #5812c5">Our Store Address</h4>
+        <div class="card-body home-main">
+          <h4><a class="card-body home-main" style="color: #f2f2f2"> {{store_address}}, {{city}}, {{state}}.
+          {{zipcode}}</a></h4>
+      </br>
+      <h3><a style="color: #f2f2f2" href="tel:{{store_number}}" > Give us a call at {{store_number}} !</a></h3>
+  </br>
+  <h5 style="background:#f2f2f2; padding: 0.5em;"><a href="http://maps.google.com/maps?q={{store_address}}, {{city}}, {{state}}. {{zipcode}}"
+    class="card-body " style="color: #5812c5">Get Directions</a></h5>
+</div>
+</div>
+</div>
+<div class="col-md-5 mx-auto" style="padding: 0.5em;" >
+    <div class="card bg-light">
+        <h4 class="card-header" style="color: #5812c5">Business Hours</h4>
+        <div class="card-body home-main">
+            {% if monday_open == ''  or monday_closed == "" %}
+            <br>
+            <div><a><strong>Please Call Business.</strong></a></div>
+            <div><a><strong>Hours have not been set!</strong></a></div>
+            <br>
+            {% else %}
 
-                    <div>
-                        <h4><a class="address">Our Store Address:<br> {{store_address}}, {{city}}, {{state}}.
-                                {{zipcode}}</a></h4>
-                        <h5><a href="http://maps.google.com/maps?q={{store_address}}, {{city}}, {{state}}. {{zipcode}}"
-                                style="color:white; text-decoration: underline;">Get Direction</a></h5>
-                    </div>
-    <br>
-                        <h3> Call us at: <a href="tel:{{store_number}}" style="text-decoration: underline; color:white"><p>{{store_number}}</p></a></h3>
+            {% if monday_open == "00:00" and monday_closed == "00:00" %}
+            <div><a> Monday <strong>Closed</strong></a></div>
+            {% else %}
+            <div><a> Monday from {{monday_open}} to {{monday_closed}}</a></div>
+            {% endif %}
 
+            {% if tuesday_open == "00:00" and tuesday_closed == "00:00" %}
+            <div><a> Tuesday <strong>Closed</strong></a></div>
+            {% else %}
+            <div><a> Tuesday from {{tuesday_open}} to {{tuesday_closed}}</a></div>
+            {% endif %}
 
-                            
-                    </br>
-                    {% if store_group_limit == '' %}
-                    <h4>Maximum Group Size: 0</h4>
-                    {% else %}
-                    <h4>Maximum Group Size: {{store_group_limit}}</h4>
-                    {% endif %}
-                    <div class="bhours">
-                        <br>
-                        <h4>Business Hours:</h4>
-                        {% if monday_open == ''  or monday_closed == "" %}
-                        <br>
-                        <div><a><strong>Please Call Business.</strong></a></div>
-                        <div><a><strong>Hours have not been set!</strong></a></div>
-                        <br>
-                        {% else %}
+            {% if wednesday_open == "00:00" and wednesday_closed == "00:00" %}
+            <div><a> Wednesday <strong>Closed</strong></a></div>
+            {% else %}
+            <div><a> Wednesday from {{wednesday_open}} to {{wednesday_closed}}</a></div>
+            {% endif %}
 
-                            {% if monday_open == "00:00" and monday_closed == "00:00" %}
-                            <div><a> Monday <strong>Closed</strong></a></div>
-                            {% else %}
-                            <div><a> Monday from {{monday_open}} to {{monday_closed}}</a></div>
-                            {% endif %}
+            {% if thursday_open == "00:00" and thursday_closed == "00:00" %}
+            <div><a> Thursday <strong>Closed</strong></a></div>
+            {% else %}
+            <div><a> Thursday from {{thursday_open}} to {{thursday_closed}}</a></div>
+            {% endif %}
 
-                            {% if tuesday_open == "00:00" and tuesday_closed == "00:00" %}
-                            <div><a> Tuesday <strong>Closed</strong></a></div>
-                            {% else %}
-                            <div><a> Tuesday from {{tuesday_open}} to {{tuesday_closed}}</a></div>
-                            {% endif %}
+            {% if friday_open == "00:00" and friday_closed == "00:00" %}
+            <div><a> Friday <strong>Closed</strong></a></div>
+            {% else %}
+            <div><a> Friday from {{friday_open}} to {{friday_closed}}</a></div>
+            {% endif %}
 
-                            {% if wednesday_open == "00:00" and wednesday_closed == "00:00" %}
-                            <div><a> Wednesday <strong>Closed</strong></a></div>
-                            {% else %}
-                            <div><a> Wednesday from {{wednesday_open}} to {{wednesday_closed}}</a></div>
-                            {% endif %}
+            {% if saturday_open == "00:00" and saturday_closed == "00:00" %}
+            <div><a> Saturday <strong>Closed</strong></a></div>
+            {% else %}
+            <div><a> Saturday from {{saturday_open}} to {{saturday_closed}}</a></div>
+            {% endif %}
 
-                            {% if thursday_open == "00:00" and thursday_closed == "00:00" %}
-                            <div><a> Thursday <strong>Closed</strong></a></div>
-                            {% else %}
-                            <div><a> Thursday from {{thursday_open}} to {{thursday_closed}}</a></div>
-                            {% endif %}
+            {% if sunday_open == "00:00" and sunday_closed == "00:00" %}
+            <div><a> Sunday <strong>Closed</strong></a></div>
+            {% else %}
+            <div><a> Sunday from {{sunday_open}} to {{sunday_closed}}</a></div>
+            {% endif %}    
 
-                            {% if friday_open == "00:00" and friday_closed == "00:00" %}
-                            <div><a> Friday <strong>Closed</strong></a></div>
-                            {% else %}
-                            <div><a> Friday from {{friday_open}} to {{friday_closed}}</a></div>
-                            {% endif %}
-
-                            {% if saturday_open == "00:00" and saturday_closed == "00:00" %}
-                            <div><a> Saturday <strong>Closed</strong></a></div>
-                            {% else %}
-                            <div><a> Saturday from {{saturday_open}} to {{saturday_closed}}</a></div>
-                            {% endif %}
-
-                            {% if sunday_open == "00:00" and sunday_closed == "00:00" %}
-                            <div><a> Sunday <strong>Closed</strong></a></div>
-                            {% else %}
-                            <div><a> Sunday from {{sunday_open}} to {{sunday_closed}}</a></div>
-                            {% endif %}    
-
-                        {% endif %}    
-                        <br>               
-                    </div>
-
-                </div>
-            </div>
-            </br>
-                <h4 style="color:red">For your safety and efficiency, we limited our store capacity to
-                    {{store_capacity}} people.</h4>
-            </br>
-            <div class="gsize">
-
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <a>Please provide your group size to enter the line:</a>
-                    <br>
-                        <input type="text" name="group_size" value="" placeholder=max={{store_group_limit}} required/>
-                        <input type="submit" value="Enter the line" />
-                    </br>
-                        <input type="checkbox" name="closed" value="smsuser">
-                        <font size="2"></font><span>Check this box to receive a text</span>
-                </form>
-
-            </div>
-
+            {% endif %}    
+            <br>               
         </div>
+    </div>
+</div>
+</div>
+<br>
+<div class="col-md-5 mx-auto">  
+</div>
+</br>
+<div class="col-md-7 mx-auto">
+    <div class="card bg-light">
+        
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h1 class="card-header" style="color: #5812c5">Please provide your group size to enter the line</h1>
+            
+            <div class="card-body home-main">
+                {% if store_group_limit == '' %}
+                <h2 class="card-title" style="color: #f2f2f2">Our Maximum Group Size: 0</h2>
+                {% else %}
+                <h4 class="card-title" style="color: #f2f2f2">Our Maximum Group Size: {{store_group_limit}}</h4>
+                {% endif %}
+            </br>
+            <input type="text" name="group_size" value="" placeholder= "Max = {{store_group_limit}}" required/>
+            <input type="submit" value="Enter the line" />
+        </br>
+        <br>
+        <br>
+        <input style="color: #5812c5" type="checkbox" name="closed" value="smsuser">
+        <font size="2"></font><span>Check this box to receive a text</span>
+    </form>
+</div>
+</div>
+</div>
+</div>
 {% endblock %}

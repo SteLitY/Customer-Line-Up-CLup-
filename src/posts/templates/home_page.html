@@ -1,69 +1,69 @@
 {% extends 'base.html' %}
 {% block content %}
 <style type="text/css">
-h1 {
-  font-size: 5vw;
-}
+  h1 {
+    font-size: 5vw;
+  }
 
-h3 {
-  text-align: center;
-}
+  h3 {
+    text-align: center;
+  }
 
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-span{
-  margin: 0 15px;
-  line-height: .7;
-  text-shadow: 0 0 2px rgba(0, 0, 0, .45);
-  animation: span 3s ease-in infinite alternate;
-}
-.main{
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-.letter{
-  display: inline-flex;
-  height: 30px;
-  width: 100px;
-  animation: letter 3s ease-in-out infinite alternate;
-}
-@keyframes span {
-  0%,30%{ margin: 0 5px; }
-  70%,100%{ margin: 0 2px; }
-}
-@keyframes letter {
-  0%,30%{ width: 7px; }
-  70%,100%{ width: 10vw; }
-}
+  *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  span{
+    margin: 0 15px;
+    line-height: .7;
+    text-shadow: 0 0 2px rgba(0, 0, 0, .45);
+    animation: span 3s ease-in infinite alternate;
+  }
+  .main{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .letter{
+    display: inline-flex;
+    height: 30px;
+    width: 100px;
+    animation: letter 3s ease-in-out infinite alternate;
+  }
+  @keyframes span {
+    0%,30%{ margin: 0 5px; }
+    70%,100%{ margin: 0 2px; }
+  }
+  @keyframes letter {
+    0%,30%{ width: 7px; }
+    70%,100%{ width: 10vw; }
+  }
 
-.container-fluid {
-  min-height: 20vh;
-}
+  .container-fluid {
+    min-height: 20vh;
+  }
 
-.content1-left {
-  background-color:white;
-}
+  .content1-left {
+    background-color:white;
+  }
 
-.content1-right {
-  background-color:#D3D3D3;
-}
-{% comment %} To reduce the size of the animation {% endcomment %}
-.marquee-inner {
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
+  .content1-right {
+    background-color:#D3D3D3;
+  }
+  {% comment %} To reduce the size of the animation {% endcomment %}
+  .marquee-inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
 
-.lower-button {
-  border:none;
-  border-radius:0;
-}
+  .lower-button {
+    border:none;
+    border-radius:0;
+  }
 
-footer {
+  footer {
     margin-left: auto;
     margin-right: auto;
     background-color: #391c77;
@@ -73,68 +73,68 @@ footer {
     margin-top: 400px;
     width: 100%;
     postion: relative;
-}
+  }
   
-{% comment %} Social Distance {% endcomment %}
+  {% comment %} Social Distance {% endcomment %}
 
-body {
+  body {
     overflow: hidden;
     background: radial-gradient(circle, rgba(255,255,255,1) 20%, rgb(236, 243, 251) 60%);
-}
+  }
 
-*{
-  transition: 350ms ease;
-}
- 
-.guy, .girl {
+  *{
+    transition: 350ms ease;
+  }
+  
+  .guy, .girl {
     position:relative;
     margin: 5vw;
-}
+  }
 
-.content {
+  .content {
     height:12vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+  }
 
-.girl img, .guy img{
+  .girl img, .guy img{
     height: 18vw;
     width: 16vw;
     transform-origin:left bottom;
     animation-name: brief;
     animation-interation-count:infinite;
     animation-duration: 1s;
-}
+  }
 
-.hand{
+  .hand{
     position:absolute;
     display:none;
-}
+  }
 
-.hand img{
+  .hand img{
     width: 10vw;
-}
+  }
 
-.guy .hand{
+  .guy .hand{
     left: 9.5vw;
     top: 9.6vw;
     z-index: -1;
-}
+  }
 
-.girl .hand{
+  .girl .hand{
     right: 10vw;
     top: 9.6vw;
     z-index: -1;
-}
+  }
 
-.distance-bar{
+  .distance-bar{
     display: flex;
     align-items: center;
     justify-content:center;
-}
+  }
 
-.distance-bar:after{
+  .distance-bar:after{
     content:'Safe Distance';
     position:absolute; 
     text-align:center;
@@ -144,189 +144,163 @@ body {
     color: #70f157;
     font-family: 'Arial';
     border-radius: 50px;
-}
+  }
 
-.distance-bar .horizontal-bar{
+  .distance-bar .horizontal-bar{
     background: #654cfe;
     max-width: 55vw;
     height: 7px;
     min-width: 40vw;
-}
+  }
 
-.distance-bar .vertical-bar{
+  .distance-bar .vertical-bar{
     background: #70f157;
     width:1vh;
     height: 35px;
     border-radius:20px;
-}
+  }
 
 
-.corona{
+  .corona{
     width: 5vw;
     position:absolute;
     top: 0;
     animation-name: move;
     animation-iteration-count:infinite;
-}
+  }
 
-.corona img{
+  .corona img{
     max-width: 3.5vw;
     min-width: 2vw;
-}
+  }
 
-.virus1{
+  .virus1{
     left:10vw;
     animation-duration:4s;
     zoom:1.5;
-}
+  }
 
-.virus2{
+  .virus2{
     left:32vw;
     zoom:0.8;
     animation-duration:5s;
-}
+  }
 
-.virus3{
+  .virus3{
     left: 32vw;
     animation-duration:6s;
-}
+  }
 
 
-/* EFFECTS ANIMATION */
-@keyframes move {
+  /* EFFECTS ANIMATION */
+  @keyframes move {
     0% { margin-top:0; margin-left:0; transform: rotate(0deg);}
     50% { margin-top:30px; margin-left:5px; transform: rotate(180deg);}
     100% { margin-top:0; margin-left:0; transform: rotate(0deg); }
-}
+  }
 
-@keyframes brief {
+  @keyframes brief {
     0% { transform: scaleY(1);}
     50% { transform: scaleY(1.01);}
     100% { transform: scaleY(1); }
-}
+  }
 
-/* RESIZES - MEDIA QUERIES */
+  /* RESIZES - MEDIA QUERIES */
 
-@media (max-width: 900px) {
-  body{
-    background: radial-gradient(circle, rgb(251, 251, 251) 20%, rgb(251, 224, 190) 60%);
+  @media (max-width: 900px) {
+    body{
+      background: radial-gradient(circle, rgb(251, 251, 251) 20%, rgb(251, 224, 190) 60%);
+    }
+    
+    .distance-bar:after{
+      content:'Maintain Distance';
+      background:#FFC107;
+      color:#fffcfb;
+      padding: 5px 30px;
+    }
+    
+    .distance-bar .vertical-bar, .distance-bar .horizontal-bar{
+      background: #ffc107;
+    }
+    
+    .hand{
+      display:block;
+    }
   }
-  
-  .distance-bar:after{
-    content:'Maintain Distance';
-    background:#FFC107;
-    color:#fffcfb;
-    padding: 5px 30px;
-  }
-  
-  .distance-bar .vertical-bar, .distance-bar .horizontal-bar{
-    background: #ffc107;
-  }
-  
-  .hand{
-    display:block;
-  }
-}
 
-@media (max-width: 600px) {
-  body{
-    background: radial-gradient(circle, rgb(255, 121, 157) 20%, #f53665 60%);
+  @media (max-width: 600px) {
+    body{
+      background: radial-gradient(circle, rgb(255, 121, 157) 20%, #f53665 60%);
+    }
+    
+    .distance-bar:after{
+      content:'Contagion Risk';
+      background:#f53665;
+      padding: 5px 13x;
+    }
+    
+    .distance-bar .vertical-bar, .distance-bar .horizontal-bar{
+      background: #ff004b;
+    }
   }
-  
-  .distance-bar:after{
-    content:'Contagion Risk';
-    background:#f53665;
-    padding: 5px 13x;
-  }
-  
-  .distance-bar .vertical-bar, .distance-bar .horizontal-bar{
-    background: #ff004b;
-  }
-}
 
 </style>
 
- <div class="container-fluid home-main">
+<div class="container-fluid home-main">
   {% if user.is_authenticated %}
-      <h1>Welcome {{ request.user }}<span class="blinker">!</span> </h1>
-      <div class="main">
-      <h2><div class ="marquee-inner"><marquee behavior ="scroll" direction ="left"><span class="blinker">🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️</span></marquee></div></h2>
-    </div>
-    {% if request.user.profile.is_customer %}
-      <button onclick="location.href='/line_up'" type="button" class="btn btn-default">Get A Ticket</button>
-    {% endif %}
-    {% if request.user.profile.is_business %}
-      <button onclick="location.href='/line_up'" type="button" class="btn btn-default">Get A Ticket</button>
-      </br>
-      <button onclick="location.href='/control_panel'" type="button" class="btn btn-default">Control Panel</button>
-    </div>
-    <div class="container-fluid home-content1">
-      <div class="row">
-        <div class="col-md-6 content1-left">
-          <h3>Why use Line Up <span class="blinker">?</span></h3>
-          <p> COVID has added safety restrictions for stores. We need to make sure that the store isn’t too crowded and that the lines don’t have too many people on it.</p>
-          <!-- <div class="content1-left"></div> -->
-        </div>
-        <div class="col-md-6 content1-right">
-          <p>Line Up is an Innovative ticket system
-            Allow people to sign up online, in person, and over the phone. The tickets numbers will be given starting from 1. People coming in person or are calling over the phone will have their spot on-the-line tracked by the online system. Ticket numbers are first come first serve. The smaller your ticket number, the closer you are to the front of the line.</p>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid home-content2">
-
-    </div>
-    {% endif %}
-  {% else %}
-   <h1>Line Up </h1>
-    
-    </br>
-<!-- 
-    <input id="searchbar" onkeyup="search_store()" type="text" name="search" placeholder="Search for store.."> 
-     -->
-
-     <!-- Corona Virus Animation -->
-    <!-- <div class="content">
-  <div class="guy">
-    <img src="https://svgur.com/i/M4u.svg">
-    <div class="hand"><img src="https://svgur.com/i/M1L.svg"></div>
-    <div class="virus">
-      <div class="corona virus1"><img src="https://svgur.com/i/M56.svg"></div>
-      <div class="corona virus2"><img src="https://svgur.com/i/M56.svg"></div>
-      <div class="corona virus3"><img src="https://svgur.com/i/M56.svg"></div>
-    </div>
+  <h1>Welcome {{ request.user }}<span class="blinker">!</span> </h1>
+  <div class="main">
+    <h2><div class ="marquee-inner"><marquee behavior ="scroll" direction ="left"><span class="blinker">🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏿‍♂️ 🚶🏻‍♀️ 🚶🏾‍♀️ 🚶🏽‍♀️ 🚶🏻‍♂️ 🚶🏼‍♀️ 🚶🏻‍♀️ 🚶🏿‍♂️ 🚶🏾‍♀️</span></marquee></div></h2>
   </div>
-  <div class="distance-bar">
-    <div class="vertical-bar"></div>
-    <div class="horizontal-bar"></div>
-    <div class="vertical-bar"></div>
-  </div>
-  <div class="girl">
-    <img src="https://svgur.com/i/M55.svg">
-    <div class="hand"><img src="https://svgur.com/i/M1K.svg"></div>
-  </div>
-</div> -->
-    <button onclick="location.href='/signin'" type="button" class="btn btn-default">Customer</button>
-    </br>
-    </br>
-    <button onclick="location.href='/business_sign_in'" type="button" class="btn btn-default">Business</button>
-
-  </div>
-  <div class="container-fluid home-content1">
-    <div class="row">
-      <div class="col-md-6 content1-left">
-        <h3>Why use Line Up <span class="blinker">?</span></h3>
-        <p> COVID has added safety restrictions for stores. We need to make sure that the store isn’t too crowded and that the lines don’t have too many people on it.</p>
-        <!-- <div class="content1-left"></div> -->
-      </div>
-      <div class="col-md-6 content1-right">
-        <p>Line Up is an Innovative ticket system
-          Allow people to sign up online, in person, and over the phone. The tickets numbers will be given starting from 1. People coming in person or are calling over the phone will have their spot on-the-line tracked by the online system. Ticket numbers are first come first serve. The smaller your ticket number, the closer you are to the front of the line.</p>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid home-content2">
-
-  </div>
+  {% if request.user.profile.is_customer %}
+  <button onclick="location.href='/line_up'" type="button" class="btn btn-default">Get A Ticket</button>
   {% endif %}
+  {% if request.user.profile.is_business %}
+  <button onclick="location.href='/line_up'" type="button" class="btn btn-default">Get A Ticket</button>
+</br>
+<button onclick="location.href='/control_panel'" type="button" class="btn btn-default">Control Panel</button>
+</div>
+<div class="container-fluid home-content1">
+  <div class="row">
+    <div class="col-md-6 content1-left">
+      <h3>Why use Line Up <span class="blinker">?</span></h3>
+      <p> COVID has added safety restrictions for stores. We need to make sure that the store isn’t too crowded and that the lines don’t have too many people on it.</p>
+      <!-- <div class="content1-left"></div> -->
+    </div>
+    <div class="col-md-6 content1-right">
+      <p>Line Up is an Innovative ticket system
+      Allow people to sign up online, in person, and over the phone. The tickets numbers will be given starting from 1. People coming in person or are calling over the phone will have their spot on-the-line tracked by the online system. Ticket numbers are first come first serve. The smaller your ticket number, the closer you are to the front of the line.</p>
+    </div>
+  </div>
+</div>
+<div class="container-fluid home-content2">
+
+</div>
+{% endif %}
+{% else %}
+<h1>Line Up </h1>
+
+</br>
+<button onclick="location.href='/signin'" type="button" class="btn btn-default">Customer</button>
+</br>
+</br>
+<button onclick="location.href='/business_sign_in'" type="button" class="btn btn-default">Business</button>
+
+</div>
+<div class="container-fluid home-content1">
+  <div class="row">
+    <div class="col-md-6 content1-left">
+      <h3>Why use Line Up <span class="blinker">?</span></h3>
+      <p> COVID has added safety restrictions for stores. We need to make sure that the store isn’t too crowded and that the lines don’t have too many people on it.</p>
+    </div>
+    <div class="col-md-6 content1-right">
+      <p>Line Up is an Innovative ticket system
+      Allow people to sign up online, in person, and over the phone. The tickets numbers will be given starting from 1. People coming in person or are calling over the phone will have their spot on-the-line tracked by the online system. Ticket numbers are first come first serve. The smaller your ticket number, the closer you are to the front of the line.</p>
+    </div>
+  </div>
+</div>
+<div class="container-fluid home-content2">
+
+</div>
+{% endif %}
 {% endblock %} 

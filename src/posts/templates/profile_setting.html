@@ -9,68 +9,68 @@
       display: inline-block;
       width: 140px;
       text-align: left;
-    }​
+      }​
 
-    .button-form button{
+      .button-form button{
         position: relative;
     }
     
 </style>
 <table>
-{% comment %} for business {% endcomment %}
-{% if request.user.profile.is_business %}
-	{% for item in bus %}
-<form action="" method="POST">
-	{% csrf_token %}
-    <div class="container-fluid home-main">
+    {% comment %} for business {% endcomment %}
+    {% if request.user.profile.is_business %}
+    {% for item in bus %}
+    <form action="" method="POST">
+       {% csrf_token %}
+       <div class="container-fluid home-main">
         <!-- Profile form-->
         <h1 class="card-title"> Account Profile </h1>
-            <div class="row">
-             <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
-                <div class="card-body">
+        <div class="row">
+           <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="firstname" class="col-form-label">First Name</label>
+                    <input type="name" class="form-control" id="firstname" value="{{item.first_name}}" name="first_name" placeholder="First Name" required>
+                    <div class="first-name">
+                    </div>
                     <div class="form-group">
-                        <label for="firstname" class="col-form-label">First Name</label>
-                        <input type="name" class="form-control" id="firstname" value="{{item.first_name}}" name="first_name" placeholder="First Name" required>
-                        <div class="first-name">
+                        <label for="lastname" class="col-form-label">Last Name</label>
+                        <input type="name" class="form-control" id="lastname" value="{{item.last_name}}" name="last_name" placeholder="Last Name" required>
+                        <div class="last-name">
                         </div>
-                        <div class="form-group">
-                            <label for="lastname" class="col-form-label">Last Name</label>
-                            <input type="name" class="form-control" id="lastname" value="{{item.last_name}}" name="last_name" placeholder="Last Name" required>
-                            <div class="last-name">
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-form-label">Email</label>
+                        <input type="email" class="form-control" id="email" value="{{item.email}}" name="email" placeholder="mystore@mystore.com" required>
+                        <div class="email-feedback">
                         </div>
-                        <div class="form-group">
-                            <label for="email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" id="email" value="{{item.email}}" name="email" placeholder="mystore@mystore.com" required>
-                            <div class="email-feedback">
-                            </div>
-                        </div>      
-                        <div class="form-group">
-                            <label for="tel" class="col-form-label">Phone number</label>
-                            <input type="tel" class="form-control" id="phone" value="{{item.phone_number}}" name="phone_number" placeholder="718 555 5555"pattern="[0-9]{10}" required>
-                            <div class="phone-feedback">
-                            </div>
-                        </div>            
-                        <div class="form-group">
-                            <label for="sname" class="col-form-label">Store name</label>
-                            <input type="text" class="form-control" id="storename" value="{{item.store_name}}" name="store_name" placeholder="My Store" required>
-                            <div class="sname-feedback">
-                            </div>
-                        </div>          
-                        <div class="form-group">
-                            <label for="stel" class="col-form-label">Store phone number</label>
-                            <input type="tel" class="form-control" id="phone" value= "{{item.store_number}}" name="store_number" placeholder="718 555 5555" pattern="[0-9]{10}" required>
-                            <div class="stel-feedback">
-                            </div>
+                    </div>      
+                    <div class="form-group">
+                        <label for="tel" class="col-form-label">Phone number</label>
+                        <input type="tel" class="form-control" id="phone" value="{{item.phone_number}}" name="phone_number" placeholder="718 555 5555"pattern="[0-9]{10}" required>
+                        <div class="phone-feedback">
                         </div>
-                        <div class="block">
-                            <label for="sstradd" class="col-form-label">Store Street address</label>
-                            <input type="sstradd" class="form-control" id="sstradd" value="{{item.store_address}}" name="store_address" placeholder="123 Shopping Street" required>
+                    </div>            
+                    <div class="form-group">
+                        <label for="sname" class="col-form-label">Store name</label>
+                        <input type="text" class="form-control" id="storename" value="{{item.store_name}}" name="store_name" placeholder="My Store" required>
+                        <div class="sname-feedback">
                         </div>
-                        <div class="block">
+                    </div>          
+                    <div class="form-group">
+                        <label for="stel" class="col-form-label">Store phone number</label>
+                        <input type="tel" class="form-control" id="phone" value= "{{item.store_number}}" name="store_number" placeholder="718 555 5555" pattern="[0-9]{10}" required>
+                        <div class="stel-feedback">
+                        </div>
+                    </div>
+                    <div class="block">
+                        <label for="sstradd" class="col-form-label">Store Street address</label>
+                        <input type="sstradd" class="form-control" id="sstradd" value="{{item.store_address}}" name="store_address" placeholder="123 Shopping Street" required>
+                    </div>
+                    <div class="block">
                         <label for="scity" class="col-form-label">City </label>
                         <input type="scity" class="form-control" id="scity" value="{{item.city}}" name="city" placeholder="Brooklyn" required>
-                
+                        
                         <label for="sstate" class="col-form-label">State </label>
                         <input list="states" class="form-control" id="sstate" value="{{item.state}}" name="state" placeholder="NY" required>
                         <datalist id = states>
@@ -125,134 +125,134 @@
                             <option value="WV">West Virginia</option>
                             <option value="WI">Wisconsin</option>
                             <option value="WY">Wyoming</option>
-                         </datalist>      
-                       <label for="szip" class="col-form-label">Zipcode </label>
+                        </datalist>      
+                        <label for="szip" class="col-form-label">Zipcode </label>
                         <input type="szip" class="form-control" id="szip" value="{{item.zipcode}}" name="zipcode" placeholder="12345" pattern="[0-9]{5}"required>
                     </div>
                     <div class="form-group">
-                            <label for="store_capacity" class="col-form-label">Store Capacity</label>
-                            <input type="store_capacity" class="form-control" id="store_capacity" value="{{item.store_capacity}}" name="store_capacity" placeholder="50" required>
-                            <div class="store_capacity-feedback">
-                            </div>
-                        </div>      
+                        <label for="store_capacity" class="col-form-label">Store Capacity</label>
+                        <input type="store_capacity" class="form-control" id="store_capacity" value="{{item.store_capacity}}" name="store_capacity" placeholder="50" required>
+                        <div class="store_capacity-feedback">
+                        </div>
+                    </div>      
                     <div class="form-group">
-                            <label for="group_limit" class="col-form-label">Group Limit</label>
-                            <input type="group_limit" class="form-control" id="group_limit" value="{{item.group_limit}}" name="group_limit" placeholder="5" required>
-                            <div class="group_limit-feedback">
-                            </div>
-                        </div>   
-                </div>
-                </div>
-             </div>
-        </div>
-    </br>
-<!-- Business Hours -->
-<div id="business-form" class="day-hour-form">
-                                <div class="block">
-                                <label> Sunday:    </label>
-                                    <input class="field" type="time" name="sunday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"min="00:00" max="24:00" value="{{item.sunday_open}}" placeholder="00:00"/>
-                                    to
-                                    <input class="field" type="time" name="sunday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.sunday_closed}}" placeholder="00:00"/>
-                                    <input type="checkbox" name="closed" value="sclosed">
-                                    <font size="2"></font><span>Closed</span>
-                                </div>
-                                </br>
-                                <div class="block">
-                                <label> Monday:    </label>
-                                    <input class="field" type="time" name="monday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.monday_open}}" placeholder="00:00"/> 
-                                    to
-                                    <input class="field" type="time" name="monday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.monday_closed}}" placeholder="00:00"/>
-                                    <input type="checkbox" name="closed" value="mclosed">
-                                    <font size="2"></font><span>Closed</span>
-                                </div>
-                                </br>
-                                <div class="block">
-                                <label>Tuesday:    </label>                                    
-                                    <input class="field" type="time" name="tuesday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.tuesday_open}}" placeholder="00:00"/>
-                                    to
-                                    <input class="field" type="time" name="tuesday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.tuesday_closed}}" placeholder="00:00"/>
-                                    <input type="checkbox" name="closed" value="tclosed">
-                                    <font size="2"></font><span>Closed</span>
-                                </div>
-                                </br>
-
-                                <div class="block">
-                                <label>Wednesday:    </label>                                    
-                                    <input class="field" type="time" name="wednesday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.wednesday_open}}" placeholder="00:00"/>
-                                    to
-                                    <input class="field" type="time" name="wednesday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.wednesday_closed}}" placeholder="00:00"/>
-                                    <input type="checkbox" name="closed" value="wclosed">
-                                    <font size="2"></font><span>Closed</span>
-                                </div>
-                                </br>
-
-                                <div class="block">
-                                <label>Thursday:    </label>                                    
-                                    <input class="field" type="time" name="thursday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.thursday_open}}" placeholder="00:00"/>
-                                    to
-                                    <input class="field" type="time" name="thursday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.thursday_closed}}" placeholder="00:00" />
-                                    <input type="checkbox" name="closed" value="thclosed">
-                                    <font size="2"></font><span>Closed</span>
-                                </div>
-                                </br>
-
-                                <div class="block">
-                                <label>Friday:    </label>     
-                                    <input class="field" type="time" name="friday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.friday_open}}"  placeholder="00:00"/>
-                                    to
-                                    <input class="field" type="time" name="friday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.friday_closed}}" placeholder="00:00"/>
-                                    <input type="checkbox" name="closed" value="fclosed">
-                                    <font size="2"></font><span>Closed</span>
-                                </div>
-                                </br>
-                                <div class="block">
-                                <label>Saturday:    </label>
-                                    <input class="field" type="time" name="saturday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.saturday_open}}" placeholder="00:00"/>
-                                    to
-                                    <input class="field" type="time" name="saturday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.saturday_closed}}"placeholder="00:00" />
-                                    <input type="checkbox" name="closed" value="saclosed">
-                                    <font size="2"></font><span>Closed</span>
-                                </div>
-                                </br>
-                                </div>
-                                <div class="form-group">
-
-                                	<!-- check tis password agains db , to make sure theyre approved to change password -->
-                                    <label class="grey" for="password1">Current Password:</label>
-                                    <input class="field" type="password" name="password1" id="password1" />
-                                    <label class="grey" for="password">New Password:</label>
-                                    <input class="field" type="password" name="password2" id="password2" />
-                                </div>
-                                <div id="business-form" class="button-form">
-                            <button type="submit" name="action" value="Business" class="btn btn-success">Save Changes</button>
-                        <div>
-                    </div>           
+                        <label for="group_limit" class="col-form-label">Group Limit</label>
+                        <input type="group_limit" class="form-control" id="group_limit" value="{{item.group_limit}}" name="group_limit" placeholder="5" required>
+                        <div class="group_limit-feedback">
+                        </div>
+                    </div>   
                 </div>
             </div>
         </div>
-    </br>
     </div>
-    </form>
-    {% endfor %}
-      {% endif %}
+</br>
+<!-- Business Hours -->
+<div id="business-form" class="day-hour-form">
+    <div class="block">
+        <label> Sunday:    </label>
+        <input class="field" type="time" name="sunday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"min="00:00" max="24:00" value="{{item.sunday_open}}" placeholder="00:00"/>
+        to
+        <input class="field" type="time" name="sunday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.sunday_closed}}" placeholder="00:00"/>
+        <input type="checkbox" name="closed" value="sclosed">
+        <font size="2"></font><span>Closed</span>
+    </div>
+</br>
+<div class="block">
+    <label> Monday:    </label>
+    <input class="field" type="time" name="monday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.monday_open}}" placeholder="00:00"/> 
+    to
+    <input class="field" type="time" name="monday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.monday_closed}}" placeholder="00:00"/>
+    <input type="checkbox" name="closed" value="mclosed">
+    <font size="2"></font><span>Closed</span>
+</div>
+</br>
+<div class="block">
+    <label>Tuesday:    </label>                                    
+    <input class="field" type="time" name="tuesday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.tuesday_open}}" placeholder="00:00"/>
+    to
+    <input class="field" type="time" name="tuesday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.tuesday_closed}}" placeholder="00:00"/>
+    <input type="checkbox" name="closed" value="tclosed">
+    <font size="2"></font><span>Closed</span>
+</div>
+</br>
+
+<div class="block">
+    <label>Wednesday:    </label>                                    
+    <input class="field" type="time" name="wednesday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.wednesday_open}}" placeholder="00:00"/>
+    to
+    <input class="field" type="time" name="wednesday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.wednesday_closed}}" placeholder="00:00"/>
+    <input type="checkbox" name="closed" value="wclosed">
+    <font size="2"></font><span>Closed</span>
+</div>
+</br>
+
+<div class="block">
+    <label>Thursday:    </label>                                    
+    <input class="field" type="time" name="thursday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.thursday_open}}" placeholder="00:00"/>
+    to
+    <input class="field" type="time" name="thursday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.thursday_closed}}" placeholder="00:00" />
+    <input type="checkbox" name="closed" value="thclosed">
+    <font size="2"></font><span>Closed</span>
+</div>
+</br>
+
+<div class="block">
+    <label>Friday:    </label>     
+    <input class="field" type="time" name="friday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.friday_open}}"  placeholder="00:00"/>
+    to
+    <input class="field" type="time" name="friday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.friday_closed}}" placeholder="00:00"/>
+    <input type="checkbox" name="closed" value="fclosed">
+    <font size="2"></font><span>Closed</span>
+</div>
+</br>
+<div class="block">
+    <label>Saturday:    </label>
+    <input class="field" type="time" name="saturday_open" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.saturday_open}}" placeholder="00:00"/>
+    to
+    <input class="field" type="time" name="saturday_closed" id="appt" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" min="00:00" max="24:00" value="{{item.saturday_closed}}"placeholder="00:00" />
+    <input type="checkbox" name="closed" value="saclosed">
+    <font size="2"></font><span>Closed</span>
+</div>
+</br>
+</div>
+<div class="form-group">
+
+   <!-- check tis password agains db , to make sure theyre approved to change password -->
+   <label class="grey" for="password1">Current Password:</label>
+   <input class="field" type="password" name="password1" id="password1" />
+   <label class="grey" for="password">New Password:</label>
+   <input class="field" type="password" name="password2" id="password2" />
+</div>
+<div id="business-form" class="button-form">
+    <button type="submit" name="action" value="Business" class="btn btn-success">Save Changes</button>
+    <div>
+    </div>           
+</div>
+</div>
+</div>
+</br>
+</div>
+</form>
+{% endfor %}
+{% endif %}
 
 
- {% comment %} for customer {% endcomment %}      
+{% comment %} for customer {% endcomment %}      
 {% if request.user.profile.is_customer %}
 <div class="container-fluid home-main">
     {% for item in cus %}
     <!-- Sign up form -->
     <form action = "" method="POST">
-    {% csrf_token %}
+        {% csrf_token %}
         <h1 class="card-title"> Account Profile <span class="blinker">!</span></h1>
         <div class="row">
             <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
 
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="first_name" class="col-form-label">First Name</label>
-                            <input type="name" class="form-control" id="first_name" name="first_name" value="{{item.first_name}}" placeholder="First name" required>
-                            <div class="first_name">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="first_name" class="col-form-label">First Name</label>
+                        <input type="name" class="form-control" id="first_name" name="first_name" value="{{item.first_name}}" placeholder="First name" required>
+                        <div class="first_name">
                         </div>
                         <div class="form-group">
                             <label for="last_name" class="col-form-label">Last Name</label>
@@ -260,39 +260,39 @@
                             <div class="last_name">
                             </div>
 
-                        <div class="form-group">
-                            <label for="email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{item.email}}"placeholder="example@gmail.com" required>
-                            <div class="email-feedback">
-                            </div>
-
-                        <div class="form-group">
-                            <label for="phone_number" class="col-form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone_number" name="phone_number" value="{{item.phone_number}}" placeholder="718 555 5555" required>
-                            <div class="tel-feedback">    
-                            </div>
-                        </div>
-                                                </div>  
-
-                        <div class="row-center">
-                             <div class="form-group">
-                                    <!-- check tis password agains db , to make sure theyre approved to change password -->
-                                    <label class="grey" for="password1">Current Password:</label>
-                                    <input class="form-control" type="password" name="password3" id="password1" />
-                                    <label class="grey" for="password">New Password:</label>
-                                    <input class="form-control" type="password" name="password4" id="password2" />
+                            <div class="form-group">
+                                <label for="email" class="col-form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{item.email}}"placeholder="example@gmail.com" required>
+                                <div class="email-feedback">
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="phone_number" class="col-form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone_number" name="phone_number" value="{{item.phone_number}}" placeholder="718 555 5555" required>
+                                    <div class="tel-feedback">    
+                                    </div>
+                                </div>
+                            </div>  
+
+                            <div class="row-center">
+                               <div class="form-group">
+                                <!-- check tis password agains db , to make sure theyre approved to change password -->
+                                <label class="grey" for="password1">Current Password:</label>
+                                <input class="form-control" type="password" name="password3" id="password1" />
+                                <label class="grey" for="password">New Password:</label>
+                                <input class="form-control" type="password" name="password4" id="password2" />
                             </div>
                         </div>
+                    </div>
                 </div> 
-        </div>
-        <!-- <div style="margin-top: 1em;"> -->
-             <button type="submit" name="action" value="Business" class="btn btn-success">Save Changes</button>
-        </div>
-        <br>
-        </form>
-</div>
-    </table>
-    {% endfor %}
-    {% endif %}
+            </div>
+            <!-- <div style="margin-top: 1em;"> -->
+               <button type="submit" name="action" value="Business" class="btn btn-success">Save Changes</button>
+           </div>
+           <br>
+       </form>
+   </div>
+</table>
+{% endfor %}
+{% endif %}
 {% endblock %}

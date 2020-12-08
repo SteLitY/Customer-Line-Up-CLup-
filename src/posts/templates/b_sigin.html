@@ -2,13 +2,13 @@
 
 {% block content %}
 <style>
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-h2 {
- text-align:center
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  h2 {
+   text-align:center
 }
 #reset {
     /* margin: auto; */
@@ -20,30 +20,29 @@ h2 {
 }
 </style>
 <div class="container-fluid home-main" >
-    <!-- Sign up form -->
+    <!-- Sign in form -->
     <form method="post">
         {% csrf_token %} 
-        <h3 class="card-title"> Line Up for Business <span class="blinker">!</span></h2>
+        <h3 class="card-title"> Line Up for Business <span class="blinker">!</span></h3>
         <div class="row">
             <div class="col-md-6 mx-auto" style="padding=0.5em;"> 
-                    <div class="card-body">
-                        
-                        <div class="form-group">
-                            <label for="username" class="col-form-label">Username</label>
-                            <input type="input" class="form-control" name="username" id="inputEmail" placeholder="Login Name" required>
-                            <div class="login-feedback">
-                            
-                            </div>
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label for="username" class="col-form-label">Username</label>
+                        <input type="input" class="form-control" name="username" id="inputEmail" placeholder="Login Name" required>
+                        <div class="login-feedback">
                         </div>
-                        <div class="form-group">
-                            <label for="password" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Type your password" required>
-                            <div class="password-feedback">
-                            
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-form-label">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Type your password" required>
+                        <div class="password-feedback">
+
                         </div>
-                     </div>
+                    </div>
                 </div>
-             </div>
+            </div>
         </div>
         <div style="margin-top: 1em;">
             <button button type="submit" type="button" class="btn btn-default">Login</button>
@@ -54,7 +53,8 @@ h2 {
             <a id="reset" href="/business_sign_up">Sign up your Business</a>
             <a id="reset" href="/signin">| Customers Click Here!</a>
         </p>  
-        </form>
+    </form>
+</div>
 </div>
 {% endblock %}
 

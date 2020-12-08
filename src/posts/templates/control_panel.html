@@ -2,65 +2,65 @@
 
 {% block content %}
 <style type="text/css">
-.row1{
+  .row1{
     text-align:center;
     margin:0 auto;
-}
+  }
 
-.row1 .col-md-3{
+  .row1 .col-md-3{
    display:inline-block;
    vertical-align: middle;
    float: none;
-}
+ }
 
-body{
-    margin:0;
-    padding:0;
-    background:#5812c5;
+ body{
+  margin:0;
+  padding:0;
+  background:#5812c5;
 }
 
 @media (max-width: 770px)  { 
-    
-.col-md-3 {
+
+  .col-md-3 {
 
    display: block;
    /* vertical-align: middle; */
    float: none;
    padding: 20px;
-    }
+ }
 }
 
 .button {
-text-align: center;
+  text-align: center;
 }
 
 .home-main{
-    background: #5812c5;
-    color:#fff;
-    padding: 10%;
-    text-align: center;
+  background: #5812c5;
+  color:#fff;
+  padding: 10%;
+  text-align: center;
 
 }
 button {
-     border-radius:1;
-    }
-   
-    .home-main button{
-      background: #fff;
-      color: #5812c5;
-      border-radius: 1;
-      font-size: 2.5vw;
-      width: 25%;
-      height: auto;
-      top: 4%;
-      margin-top: 2vw;
-      margin-bottom: 8vw;
-    }
-    
-    .home-main button:hover{
-      transition: none;
-      color:#5812c5;
-    }
+ border-radius:1;
+}
+
+.home-main button{
+  background: #fff;
+  color: #5812c5;
+  border-radius: 1;
+  font-size: 2.5vw;
+  width: 25%;
+  height: auto;
+  top: 4%;
+  margin-top: 2vw;
+  margin-bottom: 8vw;
+}
+
+.home-main button:hover{
+  transition: none;
+  color:#5812c5;
+}
 </style>
 
 {% comment %} // Medium devices (tablets, 768px and up)
@@ -74,144 +74,114 @@ button {
   <meta charset="utf-8">
 </head>
 <form id = "panel" action = "" method="POST">
-{% csrf_token %}
-<!-- To iterate through business database -->
-{% for item in obj %}
-<!-- Containers for "in line, in store, scheduled" -->
-<div class="container-fluid home-main">
-  <h1 class="card-title"> Control Panel <span class="blinker">!</span></h1>
-</br>
-	<div class="row">
-
+  {% csrf_token %}
+  <!-- To iterate through business database -->
+  {% for item in obj %}
+  <!-- Containers for "in line, in store, scheduled" -->
+  <div class="container-fluid home-main">
+    <h1 class="card-title"> Control Panel <span class="blinker">!</span></h1>
+  </br>
+  <div class="row">
     <!-- Customers scheduled  -->
-        <div class="col-md-4" style="padding: 0.5em;">
-          <div class="card bg-light">
-            <h4 class="card-header" style="color: #5812c5"> <a href="/my_business_scheduled/" style="color: #5812c5" >Scheduled</a></h4>
-              <div class="card-body home-main">
-                  <tb id = "scheduled"><a href="/my_business_scheduled/" style="color: #ffffff" >{{item.scheduled}}</a></tb>
-              </br>
-          </div>
-          </div>
-        </div>
-
-    <!-- Customers in line  -->
     <div class="col-md-4" style="padding: 0.5em;">
       <div class="card bg-light">
-        <h4 class="card-header" style="color: #5812c5">In Line</h4>
-          <div class="card-body home-main">
-             <tb id = "inline">{{item.in_line}}</tb>
-          </br>
-      </div>
+        <h4 class="card-header" style="color: #5812c5"> <a href="/my_business_scheduled/" style="color: #5812c5" >Scheduled</a></h4>
+        <div class="card-body home-main">
+          <tb id = "scheduled"><a href="/my_business_scheduled/" style="color: #ffffff" >{{item.scheduled}}</a></tb>
+        </br>
       </div>
     </div>
-
-    <!-- Customers in store  -->
-    <div class="col-md-4" style="padding: 0.5em;">
-      <div class="card bg-light">
-        <h4 class="card-header" style="color: #5812c5">In Store</h4>
-          <div class="card-body home-main">
-               <tb id = "instore" >{{item.in_store}}</tb>
-          </br>
-          </div>
-      </div>
   </div>
-
-
-      </div>
-      </form>
-
-
-      </br>
-    </br>
-
-       <div class = "col-md-10 mx-auto">
-        <!-- Add customer manually -->
-        <form id="added" action="" method="POST">
-          {% csrf_token %}
-         <button id="change" for= "change "type="submit" name="change" value ="add" class="btn btn-default">Check In </button>
-         </form>
-         <!-- Create space between the buttons -->
-         <label></label>
-         <label></label>
-         <label></label>
-         <label></label>
-         <label></label>
-         <label></label>
-         <label></label>
-        <!-- Remove customers manually -->
-        <form id="removed" action="" method="POST">
-          {% csrf_token %}
-        <button button type="submit" type="button" name="action" value ="remove" class="btn btn-default">Check Out</button>
-        </form>
+  <!-- Customers in line  -->
+  <div class="col-md-4" style="padding: 0.5em;">
+    <div class="card bg-light">
+      <h4 class="card-header" style="color: #5812c5">In Line</h4>
+      <div class="card-body home-main">
+       <tb id = "inline">{{item.in_line}}</tb>
+     </br>
    </div>
-   <!-- Go to Profile settings -->
-    <div style="margin-top: 1em;">
-    <button onclick="location.href='/profile_setting'" type="button" class="btn btn-default">View Profile</button>
-   </div>
-   
  </div>
-    {% endfor %}
+</div>
+<!-- Customers in store  -->
+<div class="col-md-4" style="padding: 0.5em;">
+  <div class="card bg-light">
+    <h4 class="card-header" style="color: #5812c5">In Store</h4>
+    <div class="card-body home-main">
+     <tb id = "instore" >{{item.in_store}}</tb>
+   </br>
+ </div>
+</div>
+</div>
+
+
+</div>
+</form>
+
+
+</br>
+</br>
+
+<div class = "col-md-10 mx-auto">
+  <!-- Add customer manually -->
+  <form id="added" action="" method="POST">
+    {% csrf_token %}
+    <button id="change" for= "change "type="submit" name="change" value ="add" class="btn btn-default">Check In </button>
+  </form>
+  <!-- Create space between the buttons -->
+  <label></label>
+  <label></label>
+  <label></label>
+  <label></label>
+  <label></label>
+  <label></label>
+  <label></label>
+  <!-- Remove customers manually -->
+  <form id="removed" action="" method="POST">
+    {% csrf_token %}
+    <button button type="submit" type="button" name="action" value ="remove" class="btn btn-default">Check Out</button>
+  </form>
+</div>
+<!-- Go to Profile settings -->
+<div style="margin-top: 1em;">
+  <button onclick="location.href='/profile_setting'" type="button" class="btn btn-default">View Profile</button>
+</div>
+
+</div>
+{% endfor %}
 <!-- </form> -->
 <script>
-function increaseCus(e) {
-  console.log("i added yo")
+  function increaseCus(e) {
+    console.log("i added yo")
     e.stopImmediatePropagation()
     e.preventDefault();
     $.ajax({
       url: '/control_panel/',
-        data: {
-          'change': 'add'
-        },
-        success: function (data) {
-          document.getElementById("instore").innerHTML = data;
-        }
+      data: {
+        'change': 'add'
+      },
+      success: function (data) {
+        document.getElementById("instore").innerHTML = data;
+      }
     })};
-  let increase_button = document.getElementById("added");
-  increase_button.addEventListener("click", increaseCus);
+    let increase_button = document.getElementById("added");
+    increase_button.addEventListener("click", increaseCus);
 
 
-    function decreaseCus(e) {
-      console.log("i remove sumn yo")
+  function decreaseCus(e) {
+    console.log("i remove sumn yo")
     e.stopImmediatePropagation()
     e.preventDefault();
     $.ajax({
       url: '/control_panel/',
-        data: {
-          'change': 'remove'
-        },
-        success: function (data) {
-          document.getElementById("instore").innerHTML = data;
-        }
+      data: {
+        'change': 'remove'
+      },
+      success: function (data) {
+        document.getElementById("instore").innerHTML = data;
+      }
     })};
-  let decrease_button = document.getElementById("removed");
-  decrease_button.addEventListener("click", decreaseCus);
-</script>
+    let decrease_button = document.getElementById("removed");
+    decrease_button.addEventListener("click", decreaseCus);
+</script>   
 </html>
-
-
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-{% comment %} 
-<div class="row">
-  <div class="col-xs-12 col-sm-6 col-md-8 bg-dark">.col-xs-12 .col-sm-6 .col-md-8</div>
-  <div class="col-xs-6 col-md-4 bg-dark">.col-xs-6 .col-md-4</div>
-</div>
-<div class="row">
-  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-  <!-- Optional: clear the XS cols if their content doesn't match in height -->
-  <div class="clearfix visible-xs-block"></div>
-  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-</div> 
-</form>
-{% endcomment %}

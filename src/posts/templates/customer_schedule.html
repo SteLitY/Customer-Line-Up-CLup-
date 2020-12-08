@@ -2,16 +2,16 @@
 {% block content %}
 <style>
 
-.main{
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
+    .main{
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+  }
 
-h2{
+  h2{
     color:#5812c5
 }
-    
+
 </style>
 
 <div class="container-fluid home-main">
@@ -21,48 +21,45 @@ h2{
             <div class="card-body">
                 <p><h2><strong>Businesses I'm Signed Up For:</strong></h2></p>
                 {% if isEmpty != current_user %}
-                <h2>None.
+                    <h2>None.
                     <br>
                     <a href='/line_up/' style=color:#5812c5>Click Here to Sign Up to Go to a Store.</a></h2>
                 {% else %}
-                
-            <table class="table">
-                <tr>
-                <th>Business Name</th>
-                <th>My Group Size</th>
-                <th>Ticket Number</th>
-                <th>Total People on line</th>
-                <th>Qr Code (For Store)</th>
-                <th>Leave line</th>
-                </tr>
-            
+                    <table class="table">
+                        <tr>
+                            <th>Business Name</th>
+                            <th>My Group Size</th>
+                            <th>Ticket Number</th>
+                            <th>Total People on line</th>
+                            <th>Qr Code (For Store)</th>
+                            <th>Leave line</th>
+                        </tr>
                     <!-- Retrieves information from database  -->
                     {% for person in scheduled %}
-                    <tr>
-                        <td style=color:#5812c5>{{person.store_name}}</td>
-                        <td style=color:#5812c5>{{person.group_size}}</td>
-                        <td style=color:#5812c5>{{person.position}}</td>
-                        
-                        <td style=color:#5812c5>
-                            {% for store in business %}
+                        <tr>
+                            <td style=color:#5812c5>{{person.store_name}}</td>
+                            <td style=color:#5812c5>{{person.group_size}}</td>
+                            <td style=color:#5812c5>{{person.position}}</td>
+
+                            <td style=color:#5812c5>
+                                {% for store in business %}
                                 {% if person.store_name == store.store_name %}
-                                 {{store.scheduled}}
+                                {{store.scheduled}}
                                 {% endif %}
+                                {% endfor %}
+                            </td>
+
+                            <td style=color:#5812c5>{% url 'qrpage' person.store_name as the_url %}<a href="{{the_url}}"><button </button>Click Here</a> </td>  
+                                <td style=color:#5812c5><a href='/leave_line/?store={{person.store_name}}'style=color:#5812c5>Leave {{person.store_name}}</a></td>
+
                             {% endfor %}
-                        </td>
 
-                         <td style=color:#5812c5>{% url 'qrpage' person.store_name as the_url %}<a href="{{the_url}}"><button </button>Click Here</a> </td>  
-                        <td style=color:#5812c5><a href='/leave_line/?store={{person.store_name}}'style=color:#5812c5>Leave {{person.store_name}}</a></td>
-                        
-                    {% endfor %}
-                 
                 {% endif %}
-                </tr>
-            </table>
+                        </tr>
+                    </table>
+                </div>
             </div>
-         </div>
         </div>
-     </div>
-
+    </div>
 </div>
 {% endblock %}
