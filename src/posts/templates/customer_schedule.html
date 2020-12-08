@@ -32,6 +32,7 @@ h2{
                 <th>My Group Size</th>
                 <th>Ticket Number</th>
                 <th>Total People on line</th>
+                <th>Qr Code (For Store)</th>
                 <th>Leave line</th>
                 </tr>
             
@@ -50,7 +51,7 @@ h2{
                             {% endfor %}
                         </td>
 
-                            
+                         <td style=color:#5812c5>{% url 'qrpage' person.store_name as the_url %}<a href="{{the_url}}"><button </button>Click Here</a> </td>  
                         <td style=color:#5812c5><a href='/leave_line/?store={{person.store_name}}'style=color:#5812c5>Leave {{person.store_name}}</a></td>
                         
                     {% endfor %}
