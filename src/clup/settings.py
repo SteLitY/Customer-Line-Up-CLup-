@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'qr_code',
 ]
 
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -170,3 +171,7 @@ STATICFILES_DIRS = [
 # Make sure your email end point matches the environment variable in .bashrc and heroku
 # DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 django_heroku.settings(locals())
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(
+    BASE_DIR), "media_root")
