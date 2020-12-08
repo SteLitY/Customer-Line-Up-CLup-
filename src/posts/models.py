@@ -2,6 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import qrcode
+from io import BytesIO
+from django.core.files import File
+from PIL import Image, ImageDraw
 
 from django import forms 
 
@@ -34,7 +38,7 @@ class Customer_queue(models.Model):
         return (self.name)
 
     def __iter__(self):
-        return iter([self.name, self.store_name, self.group_size])
+        return iter([self.name, self.store_name, self.group_size, self.position])
 
 #Customer Registration
 class Customer(models.Model):
@@ -107,3 +111,27 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
      instance.profile.save()
+
+class Barcode(models.Model):
+    name = models.CharField(max_length=100)
+    InQ = models.BooleanField(default=True)
+    InStore = models.BooleanField(default=False)
+    qr_code = models.ImageField(upload_to='qr_codes', blank=True)
+    store_name = models.CharField(max_length=100, default = "")
+    group_size = models.IntegerField(default=1)
+    username = models.CharField(max_length=30, default = '')
+    position = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.name)
+
+    def save(self, *args, **kwargs):
+        qrcode_img = qrcode.make(self.name)
+        canvas = Image.new('RGB', (500, 500), 'white')
+        canvas.paste(qrcode_img)
+        fname = f'qr_code-{self.store_name}.png'
+        buffer = BytesIO()
+        canvas.save(buffer, 'PNG')
+        self.qr_code.save(fname, File(buffer), save=False)
+        canvas.close()
+        super().save(*args, **kwargs)        
