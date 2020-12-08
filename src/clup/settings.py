@@ -160,7 +160,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 #Static files are contained here
-STATIC_ROOT = os.path.join(BASE_DIR, 'posts/static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'posts/static')
+#STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
