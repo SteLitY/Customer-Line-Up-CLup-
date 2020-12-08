@@ -103,6 +103,8 @@ inside the store and several customers outside the store in an inactive state. W
 
 * ```pip install boto3```  This is for sending text messages
 * ```pip install django-heroku``` This is for deployment of the website
+* ```pip install qrcode``` This is to generate the qrcode
+* ```pip install pillow``` Supports qrcode
 
 ## How to use:
 
