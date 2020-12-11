@@ -114,3 +114,26 @@ inside the store and several customers outside the store in an inactive state. W
 
 3. open http://127.0.0.1:8000/
 
+
+
+
+# Final Written Report
+###  Abstract (4 sentences)
+-   Introduction (0.5 pages)
+    -   State the problem. Use an example.
+    -   State your contributions (the rest of the paper explains how you achieved these)
+-   Main content section:
+    -   Recap problem, this time with details. (0.5 pages)
+    -   The idea (1 page)
+        -   What is novel about your work?
+    -   Technical details (1 page per team member)
+        -   Data, algorithms, platforms, code, etc….
+        -   How did you fulfill the web service requirement of the project?
+            -   Include your API documentation in an appendix.
+        -   How did you fulfill the multiple native client requirements?
+        -   How did you fulfill the security requirements of the project?
+    -   Related projects (0.5 pages and only if needed)
+-   Conclusions and further work (0.5 pages)
+-   References
+    -   Website, links, citations, etc…
+
