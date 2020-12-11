@@ -105,6 +105,7 @@ inside the store and several customers outside the store in an inactive state. W
 * ```pip install django-heroku``` This is for deployment of the website
 * ```pip install qrcode``` This is to generate the qrcode
 * ```pip install pillow``` Supports qrcode
+* ```pip install dj_Static ``` 
 
 ## How to use:
 
