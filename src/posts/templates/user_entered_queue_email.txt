@@ -3,8 +3,7 @@ Hello {{ current_user_first_name }},
 
 Thanks for signing up for {{ store_name }}!
 
-Your ticket number is {{ user_position }} and we're excited to have {{ group_size }} of you visit us!
-
+Your ticket number is {{ user_position }} and we're excited to have {{ group_size }} of you visit us! {% if user_position == 1 %}Your turn is coming up! Please come to the store.{% endif %}
 Please remember to bring your face mask and remember to keep a safe distance!
 
 If you would like to leave the line, please go to {{ protocol }}://{{ domain }}/leave_line/?store={{ store_name_hyperlinked }}
