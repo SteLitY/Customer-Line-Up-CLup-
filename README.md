@@ -118,23 +118,26 @@ inside the store and several customers outside the store in an inactive state. W
 
 
 
-# Final Written Report
-###  Abstract (4 sentences)
--   Introduction (0.5 pages)
-    -   State the problem. Use an example.
-    -   State your contributions (the rest of the paper explains how you achieved these)
--   Main content section:
-    -   Recap problem, this time with details. (0.5 pages)
-    -   The idea (1 page)
+## Final Written Report
+### Abstract (4 sentences) : 
+**CustomerLineup** is a web application that modulates the influx of customers for registered stores. Our service offers a safe and efficient method to monitor customers in store and those on line with an innovative ticketing system. We understand that **COVID-19** has made shopping stressful and uncertain. We strive to return in-store shopping to its former glory by creating an easy and intuitive step-based system of lining up, shopping, and exiting a given store reflected in an easy-to-use customer queue.              
+###  Introduction (0.5 pages):
+   *   State the problem. Use an example.
+   *   State your contributions (the rest of the paper explains how you achieved these)
+###  Main content section:
+  *   Recap problem, this time with details. (0.5 pages)
+  *  The idea (1 page)
         -   What is novel about your work?
-    -   Technical details (1 page per team member)
+   *   Technical details (1 page per team member)
         -   Data, algorithms, platforms, code, etc….
         -   How did you fulfill the web service requirement of the project?
             -   Include your API documentation in an appendix.
         -   How did you fulfill the multiple native client requirements?
         -   How did you fulfill the security requirements of the project?
-    -   Related projects (0.5 pages and only if needed)
--   Conclusions and further work (0.5 pages)
--   References
-    -   Website, links, citations, etc…
+*  Related projects (0.5 pages and only if needed)
+*   Conclusions and further work (0.5 pages)
+
+*  References
+   >Website, links, citations, etc…
+
 
