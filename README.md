@@ -170,10 +170,9 @@ Technical details (5)
 -   How did you fulfill the multiple native client requirements?
 -   How did you fulfill the security requirements of the project?
 
-*  Related projects (0.5 pages and only if needed)
-*   Conclusions and further work (0.5 pages)
-
-*  References
+###  Related projects (0.5 pages and only if needed)
+###  Conclusions and further work (0.5 pages)
+###  References
    >Website, links, citations, etc…
 
 
