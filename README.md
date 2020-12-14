@@ -137,6 +137,39 @@ inside the store and several customers outside the store in an inactive state. W
 		    -   Include your API documentation in an appendix.
         -   How did you fulfill the multiple native client requirements?
         -   How did you fulfill the security requirements of the project?
+
+Technical details (2)
+
+-   Data, algorithms, platforms, code, etc….
+-   How did you fulfill the web service requirement of the project?
+    -   Include your API documentation in an appendix.
+-   How did you fulfill the multiple native client requirements?
+-   How did you fulfill the security requirements of the project?
+
+Technical details (3)
+
+-   Data, algorithms, platforms, code, etc….
+-   How did you fulfill the web service requirement of the project?
+    -   Include your API documentation in an appendix.
+-   How did you fulfill the multiple native client requirements?
+-   How did you fulfill the security requirements of the project?
+
+Technical details (4)
+
+-   Data, algorithms, platforms, code, etc….
+-   How did you fulfill the web service requirement of the project?
+    -   Include your API documentation in an appendix.
+-   How did you fulfill the multiple native client requirements?
+-   How did you fulfill the security requirements of the project?
+
+Technical details (5)
+
+-   Data, algorithms, platforms, code, etc….
+-   How did you fulfill the web service requirement of the project?
+    -   Include your API documentation in an appendix.
+-   How did you fulfill the multiple native client requirements?
+-   How did you fulfill the security requirements of the project?
+
 *  Related projects (0.5 pages and only if needed)
 *   Conclusions and further work (0.5 pages)
 
