@@ -129,9 +129,12 @@ inside the store and several customers outside the store in an inactive state. W
   *  The idea (1 page)
         -   What is novel about your work?
    *   Technical details (1 page per team member)
-        -   Data, algorithms, platforms, code, etc….
-        -   How did you fulfill the web service requirement of the project?
-            -   Include your API documentation in an appendix.
+        
+		(Ethan)
+		AJAX was used to create a data flow for the Business Control 	Panel and Customer Queue view. We needed to first understand the stateless nature of http requests, meaning that there isn’t memory held in an HTTP request, and instead that HTTP has Cookies which allow the server to track and read the user’s state. This also keeps track of user connections. AJAX stands for Asynchronous JavaScript and XML. By design, it exchanges small amounts of data with the server under-the-hood, therefore we used a JavaScript function to simultaneously make a GET request to the database to retrieve the number of customers current In store and update the current value of in-store customers on a portion of the view, asynchronously. To do this, a callback function was triggered to increment or decrement the database’s instore value, while also sending back an HTTP Response to reflect that newly updated value on the front-end.
+
+		 To fulfill the webservices portion of the project, the team used azure to connect a mySQL database for our backend. Our use-case of this relational database is to log customer and business data. This server-side service supports fast writes for customer and business registration and can take the load of many read/writes for entering and leaving the queue.
+		    -   Include your API documentation in an appendix.
         -   How did you fulfill the multiple native client requirements?
         -   How did you fulfill the security requirements of the project?
 *  Related projects (0.5 pages and only if needed)
