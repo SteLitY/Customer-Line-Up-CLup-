@@ -134,10 +134,12 @@ inside the store and several customers outside the store in an inactive state. W
 		(Ethan)
 		AJAX was used to create a data flow for the Business Control 	Panel and Customer Queue view. We needed to first understand the stateless nature of http requests, meaning that there isn’t memory held in an HTTP request, and instead that HTTP has Cookies which allow the server to track and read the user’s state. This also keeps track of user connections. AJAX stands for Asynchronous JavaScript and XML. By design, it exchanges small amounts of data with the server under-the-hood, therefore we used a JavaScript function to simultaneously make a GET request to the database to retrieve the number of customers current In store and update the current value of in-store customers on a portion of the view, asynchronously. To do this, a callback function was triggered to increment or decrement the database’s instore value, while also sending back an HTTP Response to reflect that newly updated value on the front-end.
 
-		 To fulfill the webservices portion of the project, the team used azure to connect a mySQL database for our backend. Our use-case of this relational database is to log customer and business data. This server-side service supports fast writes for customer and business registration and can take the load of many read/writes for entering and leaving the queue.
-		    -   Include your API documentation in an appendix.
-        -   How did you fulfill the multiple native client requirements?
-        -   How did you fulfill the security requirements of the project?
+		 	To fulfill the webservices portion of the project, the team used Azure to connect a mySQL database for our backend and PythonAnywhere’s web-hosting service to deploy our web-application with SSL encryption. Our use-case of the MySQL relational database was to log customer and business data. This server-side service supports fast writes for customer and business registration and can take the load of many read/writes for entering and leaving the queue.
+
+			The team fulfilled the native client requirement by using the MySQL Workbench client. In Django, the creation of models written in python describe the structure of data reflected in the backend tables. With the commands ``python manage.py makemigrations`` and ``python manage.py migrate``, we were able to translate models written in python to raw SQL data which could be read by the MySQL Workbench Client and be manipulated by user-created queries.
+
+			Customer Lineup’s security is handled by Django’s onboard middleware. Django’s Cross site scripting (XSS) protection leverages Django templating to mitigate these types of attacks. Its Cross site request forgery (CSRF) protection is built into the framework and checks for a secret when POST requests are made. This helps to mitigate malicious users from “replaying” requests made to compromise potentially sensitive information.
+
 
 Technical details (2) (David)
 
@@ -153,35 +155,16 @@ If the user is a business, they are redirected to the "control panel page" where
 
 (Ethan) AJAX was used to create a data flow for the Business Control Panel and Customer Queue view. We needed to first understand the stateless nature of http requests, meaning that there isn’t memory held in an HTTP request, and instead that HTTP has Cookies which allow the server to track and read the user’s state. This also keeps track of user connections. AJAX stands for Asynchronous JavaScript and XML. By design, it exchanges small amounts of data with the server under-the-hood, therefore we used a JavaScript function to simultaneously make a GET request to the database to retrieve the number of customers current in store and update the current value of in-store customers on a portion of the view, asynchronously. To do this, a callback function was triggered to increment or decrement the database’s instore value, while also sending back an HTTP Response to reflect that newly updated value on the front-end.
 
-		To fulfill the webservices portion of the project, the team used Azure to connect a mySQL database for our backend and PythonAnywhere’s web-hosting service to deploy our web-application with SSL encryption. Our use-case of the MySQL relational database was to log customer and business data. This server-side service supports fast writes for customer and business registration and can take the load of many read/writes for entering and leaving the queue.
-
-		The team fulfilled the native client requirement by using the MySQL Workbench client. In Django, the creation of models written in python describe the structure of data reflected in the backend tables. With the commands ``python manage.py makemigrations`` and ``python manage.py migrate``, we were able to translate models written in python to raw SQL data which could be read by the MySQL Workbench Client and be manipulated by user-created queries.
-
-		Customer Lineup’s security is handled by Django’s onboard middleware. Django’s Cross site scripting (XSS) protection leverages Django templating to mitigate these types of attacks. Its Cross site request forgery (CSRF) protection is built into the framework and checks for a secret when POST requests are made. This helps to mitigate malicious users from “replaying” requests made to compromise potentially sensitive information.
 
 Technical details (3)
 
--   Data, algorithms, platforms, code, etc….
--   How did you fulfill the web service requirement of the project?
-    -   Include your API documentation in an appendix.
--   How did you fulfill the multiple native client requirements?
--   How did you fulfill the security requirements of the project?
 
 Technical details (4)
 
--   Data, algorithms, platforms, code, etc….
--   How did you fulfill the web service requirement of the project?
-    -   Include your API documentation in an appendix.
--   How did you fulfill the multiple native client requirements?
--   How did you fulfill the security requirements of the project?
 
 Technical details (5)
 
--   Data, algorithms, platforms, code, etc….
--   How did you fulfill the web service requirement of the project?
-    -   Include your API documentation in an appendix.
--   How did you fulfill the multiple native client requirements?
--   How did you fulfill the security requirements of the project?
+
 
 ###  Related projects (0.5 pages and only if needed)
 ###  Conclusions and further work (0.5 pages)
