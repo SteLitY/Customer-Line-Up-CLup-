@@ -152,7 +152,7 @@ If the user is a business, they are redirected to the "control panel page" where
 
 "Scheduled" shows the customers that signed up for their store using our webapp. "In Line" means the user has already been notified that their turn is coming up, they've clicked "I'm near the vicinity" button and they're outside the store in line waiting  to scan their QR code. "In Store" shows a list of people that have already scanned their QR code and are currently shopping in the store. When the customer is ready to leave, the same person who scanned their QR code to let them into the store scans them out. 
 ## Customer goes on line
-
+When the user leaves the line, it will remove the user from customer_queue. Our algorithm has a variable named total_people_to_email_line which is the number of groups to notify when they're turn is about to come up. For example if total_people_to_email_line = 2, then it will email the first two people on line that their turn is coming up. It will not email people who are ahead of the person that left the line. For an example, if the position numbers are 1,2,3. If the user with position number 2 leaves the line, only the person in position 3 will be emailed, because the person in position 1 has been notified already. 
 
 
 Technical details (3)
