@@ -159,6 +159,8 @@ After a user signs up for a store, they will be redirected to the "customer_sche
 	
 When the user leaves the line, it will remove the user from customer_queue. Our algorithm has a variable named total_people_to_email_line which is the number of groups to notify when they're turn is about to come up. For example if total_people_to_email_line = 2, then it will email the first two people on line that their turn is coming up. It will not email people who are ahead of the person that left the line. For an example, if the position numbers are 1,2,3. If the user with position number 2 leaves the line, only the person in position 3 will be emailed, because the person in position 1 has been notified already. 
 
+Our webapp also has security features that doesn't let users visit specific pages. For example, if a user that is not logged in tries to view the "My Schedule" page, the webapp would crash because it requires a user to be logged in so they can look up who is on their store. It also hides certain webpages depending if the user is a customer or business. For an example, the "Enter the Line" page only appears for people that are logged in and the "Control Panel" page only appears for businesses. If a user tries to access those pages through hyperlinks, it will not show the page for them.
+
 Technical details (3)
 
 -   Data, algorithms, platforms, code, etc….
