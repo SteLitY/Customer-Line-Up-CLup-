@@ -27,6 +27,8 @@
               <th>Customer's Username</th>
               <th>Customer Group Size</th>
               <th>Position</th>
+              <th>Check-in</th>
+              <th>Remove</th>
             </tr>
             <!-- Retrieves store information from database  -->
             {% for person in scheduled %}
@@ -34,6 +36,8 @@
               <td style=color:#5812c5>{{person.name}}</td>
               <td style=color:#5812c5>{{person.group_size}}</td>
               <td style=color:#5812c5>{{person.position}}</td>
+              <td style=color:#5812c5><a href='/checkin/?name={{person.name}}'>Check-in</a></td>
+              <td style=color:#5812c5><a href='/remove/?name={{person.name}}'>Remove</a></td>
               {% endfor %}
             </tr>
           </table>
