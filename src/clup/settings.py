@@ -94,7 +94,7 @@ DATABASES = {
         'PASSWORD': 'CS499class',
         'HOST': 'lineup499.mysql.database.azure.com',
         'PORT': '3306',
-        # 'OPTIONS' : { 'ssl' : get_ssl_cert() }
+        'OPTIONS' : { 'ssl' : get_ssl_cert() }
 
     #     'OPTIONS': {
     #     'skip-ssl',
@@ -155,8 +155,9 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+MEDIA_URL = '/media/'
+
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django_ses.SESBackend'
