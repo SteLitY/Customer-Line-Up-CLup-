@@ -164,8 +164,8 @@ Additional functions that are vital to our project are “please_login_view “,
 
 
 
-Technical details (4)
-
+Technical details (4) (Mengzhen)
+Although different types of user have limited accessibility to pages. Business users have the same access of the pages as customer users, meaning business can become a customer and lineup for other stores. Both customer and business users can edit their profiles by clicking on their username on the navigation bar. On the profile page, customer users can change their username, contact information including password of the account. Business users can change their store address, store name, contact information, business operation hours and edit their store capacity and customer group limit for entering their store. By having all the information listed on a page from those business users, customer users can easily contact a store and get direction to that store address instead of googling it. The store address and the store phone number are listed as hyperlink. For example, if a customer wants to contact “7/11”, that customer can just click on the phone number provided, and it will show in a window ask permission to deal that number using keypad of your phone. And when clicked on the address of a store, it will direct to a google map link of that address with pictures of street views and directions. 
 
 Technical details (5)
 
@@ -173,7 +173,20 @@ Technical details (5)
 
 ###  Related projects (0.5 pages and only if needed)
 ###  Conclusions and further work (0.5 pages)
+This app is designed not just to protect people’s safety under current circumstance(COVID-19), but also to help business users to better manage their business and provide customers with various choices of which store to go to depend on their needs and locations. 
+
+In addition, we might automated COVID Requirements, add reservation functionality and customer vicinity to store, and extend the features such as adding a list of available items of each store in the furture.  
+
 ###  References
    >Website, links, citations, etc…
+
+Citations:
+“Deploy a Django App to Python Anywhere.” YouTube, YouTube, 12 Jan. 2018,www.youtube.com/watch?v=Y4c4ickks2A. 
+
+Ling, Xiao. “Building Django Barcode Scanning App.” Dynamsoft Developers, 30 Oct. 2019, www.dynamsoft.com/codepool/django-barcode-scanning-app.html. 
+
+Sanket. “Django Async: What's New and What's next?” DeepSource, DeepSource, 14 Aug. 2020, deepsource.io/blog/django-async-support/. 
+
+schafer5. “Python Django Tutorial: Deploying Your Application (Option #2) - Deploy Using Heroku.” YouTube, YouTube, 19 Feb. 2019, www.youtube.com/watch?v=6DI_7Zja8Zc. 
 
 
