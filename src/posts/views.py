@@ -1007,6 +1007,7 @@ def checkin_scheduled_view(request,*args, **kwargs):
     return render(request, "checkin_scheduled.html", context)
 
 #Shows the customer which business they're registered for
+@user_must_login(please_login_view)
 def customer_schedule_view(request,*args, **kwargs):
     #query variables to be passed to django template
     current_user = request.user.get_username()
