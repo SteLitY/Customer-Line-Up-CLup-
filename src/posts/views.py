@@ -795,7 +795,12 @@ def leave_line_view(request, *args, **kwargs):
     return render(request, "leave_line.html", context)
 
 #Shows the people who is registered for that business
+@user_must_login(please_login_view)
 def my_business_scheduled_view(request,*args, **kwargs):
+    #redirect customers if they find themselves at this link 
+    if request.user.profile.is_customer == True:
+        return redirect(home_page_view)
+
     current_user = request.user.get_username()
     current_business_name = Business.objects.filter(username=current_user)[0].store_name
     scheduled = Customer_queue.objects.filter(store_name=current_business_name)
@@ -803,6 +808,203 @@ def my_business_scheduled_view(request,*args, **kwargs):
     context = {'scheduled':scheduled, 'current_business_name':current_business_name}
     return render(request, "my_business_scheduled.html", context)
 
+#Removed selected customer from schedule
+@user_must_login(please_login_view)
+def remove_scheduled_view(request,*args, **kwargs):
+    #redirect customers if they find themselves at this link 
+    if request.user.profile.is_customer == True:
+        return redirect(home_page_view)
+
+    current_user = request.user.get_username()
+    name = request.GET.get('name')
+    context = {'name':name}
+    business=Business.objects.filter(username = request.user.get_username())
+    total_people_to_email_line = 1
+
+    for item in business:
+        store = item.store_name
+
+    user_in_store = Customer_queue.objects.filter(store_name=store, name=name)
+
+    if user_in_store.exists():
+        head_count = Customer_queue.objects.filter(store_name=store, name=name)[0].group_size
+        user_leavings_position = Customer_queue.objects.filter(store_name=store, name=name)[0].position
+    else:
+        head_count = 0
+
+    if request.method == 'POST':
+        form = CustomerLineUpForm(request.POST)
+        if user_in_store.exists():
+            #variables for use       
+            current_store = Customer_queue.objects.filter(store_name=store).order_by('position')
+            clients_to_email_by_username = []
+            
+            #delete leaver in queue
+            delete_from_queue = Customer_queue.objects.filter(store_name=store, name=name)
+            delete_from_queue.delete()
+            #decrement count for scheduled in business model
+            for store in business:
+                store.scheduled = store.scheduled - head_count
+                store.save()
+
+            #save usernames into the container clients_to_email_by_username
+            people_to_email_counter = 0
+
+            for client in current_store:
+                #set the number of people to email in the next if statement
+                if people_to_email_counter < total_people_to_email_line:
+                    clients_to_email_by_username.append(client)
+                else:
+                    break
+                people_to_email_counter = people_to_email_counter + 1
+
+            #add user name to email_list
+            email_list = []
+            username_list =  []
+            for client in clients_to_email_by_username:
+                email_list.append(str(Profile.objects.filter(username=client)[0].email))
+                username_list.append(str(Profile.objects.filter(username=client)[0].username))
+            #if email list is not empty, send email to client.
+            if not email_list:
+                return redirect("/my_business_scheduled/")
+            else:
+                #converting characters to properly display hyperlinks in email
+                store_name_hyperlinked = ""
+                store_name_ = str(store)
+                for i in range (len(store_name_)):
+                    if store_name_[i] == ' ':
+                        store_name_hyperlinked =  store_name_hyperlinked + "%20"
+                    elif store_name_[i] == "'":
+                        store_name_hyperlinked =  store_name_hyperlinked + "%27"
+                    else:
+                        store_name_hyperlinked = store_name_hyperlinked + store_name_[i]
+
+                groups_ahead = 1
+                for email in email_list:
+                    current_users_email = email
+                    current_user_first_name = str(Profile.objects.filter(email=current_users_email, username= username_list[groups_ahead-1])[0].first_name)
+                    current_user_username = username_list[groups_ahead-1]
+                    user_position = Customer_queue.objects.filter(store_name=store, name=username_list[groups_ahead-1])[0].position
+                    # print ("current_user_username " + current_user_username + " where user_position is " + str(user_position) + ". user_leavings_position is " + str(user_leavings_position))
+                    group = int(Customer_queue.objects.filter(store_name=store, name=username_list[groups_ahead-1])[0].group_size)
+                    recipient_list = {current_users_email}
+
+                    subject = "You Are Now Removed"
+                    email_template_name = "removed.txt"
+                    
+                    email_context = {
+                    "email":current_users_email,
+                    'domain':'127.0.0.1:8000',
+                    'site_name': 'Line Up',
+                    'protocol': 'http',
+                    'store_name': store,
+                    'store_name_hyperlinked': store_name_hyperlinked,
+                    'current_user_first_name': current_user_first_name,
+                    }          
+
+            messages.success(request, "You've removed " + str(name) + " from your list") 
+            return redirect("/my_business_scheduled/")
+    return render(request, "remove_scheduled.html")
+
+#Checkin selected customer from schedule
+@user_must_login(please_login_view)
+def checkin_scheduled_view(request,*args, **kwargs):
+   #redirect customers if they find themselves at this link 
+    if request.user.profile.is_customer == True:
+        return redirect(home_page_view)
+
+    current_user = request.user.get_username()
+    name = request.GET.get('name')
+    context = {'name':name}
+    business=Business.objects.filter(username = request.user.get_username())
+    total_people_to_email_line = 2
+
+    for item in business:
+        store = item.store_name
+
+    user_in_store = Customer_queue.objects.filter(store_name=store, name=name)
+
+    if user_in_store.exists():
+        head_count = Customer_queue.objects.filter(store_name=store, name=name)[0].group_size
+        user_leavings_position = Customer_queue.objects.filter(store_name=store, name=name)[0].position
+    else:
+        head_count = 0
+
+    if request.method == 'POST':
+        form = CustomerLineUpForm(request.POST)
+        if user_in_store.exists():
+            #variables for use       
+            current_store = Customer_queue.objects.filter(store_name=store).order_by('position')
+            clients_to_email_by_username = []
+            
+            #delete leaver in queue
+            checkin_size = Customer_queue.objects.filter(store_name=store, name=name)[0].group_size
+            delete_from_queue = Customer_queue.objects.filter(store_name=store, name=name)
+            delete_from_queue.delete() 
+            #decrement count for scheduled in business model
+            for store in business:
+                store.scheduled = store.scheduled - head_count
+                store.in_store = store.in_store + head_count
+                store.save()
+
+            #save usernames into the container clients_to_email_by_username
+            people_to_email_counter = 0
+
+            for client in current_store:
+                #set the number of people to email in the next if statement
+                if people_to_email_counter < total_people_to_email_line:
+                    clients_to_email_by_username.append(client)
+                else:
+                    break
+                people_to_email_counter = people_to_email_counter + 1
+
+            #add user name to email_list
+            email_list = []
+            username_list =  []
+            for client in clients_to_email_by_username:
+                email_list.append(str(Profile.objects.filter(username=client)[0].email))
+                username_list.append(str(Profile.objects.filter(username=client)[0].username))
+            #if email list is not empty, send email to client.
+            if not email_list:
+                return redirect("/my_business_scheduled/")
+            else:
+                #converting characters to properly display hyperlinks in email
+                store_name_hyperlinked = ""
+                store_name_ = str(store)
+                for i in range (len(store_name_)):
+                    if store_name_[i] == ' ':
+                        store_name_hyperlinked =  store_name_hyperlinked + "%20"
+                    elif store_name_[i] == "'":
+                        store_name_hyperlinked =  store_name_hyperlinked + "%27"
+                    else:
+                        store_name_hyperlinked = store_name_hyperlinked + store_name_[i]
+
+                groups_ahead = 1
+                for email in email_list:
+                    current_users_email = email
+                    current_user_first_name = str(Profile.objects.filter(email=current_users_email, username= username_list[groups_ahead-1])[0].first_name)
+                    current_user_username = username_list[groups_ahead-1]
+                    user_position = Customer_queue.objects.filter(store_name=store, name=username_list[groups_ahead-1])[0].position
+                    # print ("current_user_username " + current_user_username + " where user_position is " + str(user_position) + ". user_leavings_position is " + str(user_leavings_position))
+                    group = int(Customer_queue.objects.filter(store_name=store, name=username_list[groups_ahead-1])[0].group_size)
+                    recipient_list = {current_users_email}
+
+                    subject = "You Are Now Checked In"
+                    email_template_name = "checked_in.txt"
+                    
+                    email_context = {
+                    "email":current_users_email,
+                    'domain':'127.0.0.1:8000',
+                    'site_name': 'Line Up',
+                    'protocol': 'http',
+                    'store_name': store,
+                    'store_name_hyperlinked': store_name_hyperlinked,
+                    'current_user_first_name': current_user_first_name,
+                    }
+            messages.success(request, "You've checked in " + str(name) + " !") 
+            return redirect("/my_business_scheduled/")
+
+    return render(request, "checkin_scheduled.html", context)
 
 #Shows the customer which business they're registered for
 def customer_schedule_view(request,*args, **kwargs):
