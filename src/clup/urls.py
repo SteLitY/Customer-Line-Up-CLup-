@@ -32,6 +32,8 @@ urlpatterns = [
     path('store_details/', store_details_view),
     path('leave_line/', leave_line_view),
     path('my_business_scheduled/', my_business_scheduled_view),
+    path('remove/', remove_scheduled_view),
+    path('checkin/', checkin_scheduled_view),
     path('customer_schedule/', customer_schedule_view),
     path('qrpage/<storename>/', qrpage_view, name="qrpage"),
     path('business_success/<username>/', business_success_view, name= "business_success"),
