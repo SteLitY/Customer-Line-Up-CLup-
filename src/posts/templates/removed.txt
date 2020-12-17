@@ -1,0 +1,14 @@
+{% autoescape off %}
+Hello {{ current_user_first_name }},
+
+Thanks for scheduling your shopping with  {{store_name}}!
+
+Unfortunately you've been remove from the Line Up
+
+If this is a mistake, please rejoin the line here:
+	{{ protocol }}://{{ domain }}/store_details/?restName={{ store_name_hyperlinked }}
+
+Otherwise we hope to use Line Up in the future!
+
+
+{% endautoescape %}

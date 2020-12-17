@@ -1,0 +1,11 @@
+{% autoescape off %}
+Hello {{ current_user_first_name }},
+
+Thanks for shopping with {{store_name}}!
+
+Please remember to keep your face mask on and remember to keep a safe distance!
+
+We hope you continue to use Line Up in the future!
+
+
+{% endautoescape %}

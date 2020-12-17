@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid home-main">
+
+   <form action="" method="POST">
+
+      {% csrf_token %}
+      <h2>Do You Want to Check-in {{name}}?</h2>
+      <br>
+      <button type="submit" value="Checkin"> Yes </button>
+   
+      <br>
+      <a href="/my_business_scheduled/" style="color: #ffffff">Back</a></h3>
+      <br>
+
+   </form>
+
+</div>
+{% endblock %}
