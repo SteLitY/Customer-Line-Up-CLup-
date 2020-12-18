@@ -116,3 +116,7 @@ inside the store and several customers outside the store in an inactive state. W
 2. type: "python manage.py runserver"
 
 3. open http://127.0.0.1:8000/
+
+### Final Written Report
+ https://github.com/CSCI-49900-Fall-2020/project-csci-clup/wiki/CLup-Final-Written-Report
+
