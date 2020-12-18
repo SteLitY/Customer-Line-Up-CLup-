@@ -1,6 +1,7 @@
 # CustomerLineup 
 Link to deployment: http://64.225.27.198:8000/
 
+
 COVID has added safety restrictions for stores. We need to make sure that the store
 isn’t too crowded and that the lines don’t have too many people on it. The goal of this
 project is to develop an easy-to-use webapp that
