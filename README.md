@@ -1,6 +1,8 @@
 # CustomerLineup 
 Link to deployment: http://64.225.27.198:8000/
 
+### Final Written Report
+ https://github.com/CSCI-49900-Fall-2020/project-csci-clup/wiki/CLup-Final-Written-Report
 
 COVID has added safety restrictions for stores. We need to make sure that the store
 isn’t too crowded and that the lines don’t have too many people on it. The goal of this
@@ -117,7 +119,4 @@ inside the store and several customers outside the store in an inactive state. W
 2. type: "python manage.py runserver"
 
 3. open http://127.0.0.1:8000/
-
-### Final Written Report
- https://github.com/CSCI-49900-Fall-2020/project-csci-clup/wiki/CLup-Final-Written-Report
 
