@@ -113,7 +113,7 @@ def password_reset_request(request):
                     email_template_name = "password/password_reset_email.txt"
                     c = {
                     "email":user.email,
-                    'domain':'127.0.0.1:8000',
+                    'domain':'64.225.27.198:8000',
                     'site_name': 'Line Up',
                     "uid": urlsafe_base64_encode(force_bytes(user.pk)),
                     'token': default_token_generator.make_token(user),
@@ -195,7 +195,7 @@ def customer_signup_view(request, *args, **kwargs):
             user.profile.is_customer = True
             user.save()
             messages.success(request, "Successfully Signed Up for Line Up!")
-           #sendtext(user.profile.phone_number, user.profile.first_name)  #sends text to customer when they sign up
+            sendtext(user.profile.phone_number, user.profile.first_name)  #sends text to customer when they sign up
             #Save to db
             customer = Customer.objects.create(
                 username = request.POST.get('username'),
@@ -328,7 +328,7 @@ def qrpage_view(request, storename, *args, **kwargs):
          print('this is barcode id', barcodeId)
     else:
         customerQuery = Customer_queue.objects.get(name=current_user, store_name=storename)
-        barcode = Barcode.objects.create(name='https://tinyurl.com/y2os3ozl', store_name=customerQuery.store_name,group_size=customerQuery.group_size, position=customerQuery.position, username= current_user)
+        barcode = Barcode.objects.create(name='https://tinyurl.com/y7colxl3', store_name=customerQuery.store_name,group_size=customerQuery.group_size, position=customerQuery.position, username= current_user)
         query = Barcode.objects.get(username= current_user, store_name = storename)
         barcodeId = query.id
 
@@ -576,8 +576,8 @@ def store_details_view(request):
 
         #input for the forms
         group = request.POST.get('group_size')
-        #if closed in ["smsuser"]:         #function from sms.py for texting when they enter queue
-            #enterqueue(request.user.profile.phone_number, restaurant_name)
+        if closed in ["smsuser"]:         #function from sms.py for texting when they enter queue
+            enterqueue(request.user.profile.phone_number, restaurant_name)
 
 #this part checks for stupid user inputs
         #checks group_size for stupid inputs like: abc@#. /?
@@ -663,7 +663,7 @@ def store_details_view(request):
         email_template_name = "user_entered_queue_email.txt"
         email_context = {
         "email":current_users_email,
-        'domain':'127.0.0.1:8000',
+        'domain':'64.225.27.198:8000',
         'site_name': 'Line Up',
         'protocol': 'http',
         'store_name': restaurant["store_name"],
@@ -765,7 +765,7 @@ def leave_line_view(request, *args, **kwargs):
                     
                     email_context = {
                     "email":current_users_email,
-                    'domain':'127.0.0.1:8000',
+                    'domain':'64.225.27.198:8000',
                     'site_name': 'Line Up',
                     'protocol': 'http',
                     'store_name': store,
@@ -894,7 +894,7 @@ def remove_scheduled_view(request,*args, **kwargs):
                     
                     email_context = {
                     "email":current_users_email,
-                    'domain':'127.0.0.1:8000',
+                    'domain':'64.225.27.198:8000',
                     'site_name': 'Line Up',
                     'protocol': 'http',
                     'store_name': store,
@@ -994,7 +994,7 @@ def checkin_scheduled_view(request,*args, **kwargs):
                     
                     email_context = {
                     "email":current_users_email,
-                    'domain':'127.0.0.1:8000',
+                    'domain':'64.225.27.198:8000',
                     'site_name': 'Line Up',
                     'protocol': 'http',
                     'store_name': store,
@@ -1006,8 +1006,8 @@ def checkin_scheduled_view(request,*args, **kwargs):
 
     return render(request, "checkin_scheduled.html", context)
 
+
 #Shows the customer which business they're registered for
-@user_must_login(please_login_view)
 def customer_schedule_view(request,*args, **kwargs):
     #query variables to be passed to django template
     current_user = request.user.get_username()
