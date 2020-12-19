@@ -44,22 +44,29 @@
 button {
  border-radius:1;
 }
+.col-md-6 {
 
+   display: block;
+   vertical-align: middle; 
+   float: none;
+ }
 .home-main button{
   background: #fff;
   color: #5812c5;
   border-radius: 1;
   font-size: 2.5vw;
-  width: 25%;
+  width: auto;
   height: auto;
   top: 4%;
-  margin-top: 2vw;
-  margin-bottom: 8vw;
+  margin-top: 1vw;
+  margin-bottom: 4vw;
 }
 
 .home-main button:hover{
   transition: none;
   color:#5812c5;
+  width: auto;
+  height: auto;
 }
 </style>
 
@@ -121,12 +128,14 @@ button {
 </br>
 </br>
 
-<div class = "col-md-10 mx-auto">
+  <div class="row" >
   <!-- Add customer manually -->
+  <div class="col-md-6">
   <form id="added" action="" method="POST">
     {% csrf_token %}
-    <button id="change" for= "change "type="submit" name="change" value ="add" class="btn btn-default">Check In </button>
+    <button style="align" id="change" for= "change "type="submit" name="change" value ="add" class="btn btn-default">Check In </button>
   </form>
+</div>
   <!-- Create space between the buttons -->
   <label></label>
   <label></label>
@@ -135,11 +144,14 @@ button {
   <label></label>
   <label></label>
   <label></label>
+  <br>
   <!-- Remove customers manually -->
+  <div class="col-md-6">
   <form id="removed" action="" method="POST">
     {% csrf_token %}
     <button button type="submit" type="button" name="action" value ="remove" class="btn btn-default">Check Out</button>
   </form>
+</div>
 </div>
 <!-- Go to Profile settings -->
 <div style="margin-top: 1em;">
