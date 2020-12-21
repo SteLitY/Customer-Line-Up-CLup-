@@ -1,7 +1,74 @@
 #This is currently using Azure  -David 9/22/2020
-CREATE DATABASE IF NOT EXISTS lineup;
+#This code to checks if data was inputted into the MySQL tables properly
 
-use lineup;
+CREATE DATABASE IF NOT EXISTS lineup;
+show databases;
+
+select * from COLLATIONS;
+use information_schema;
+show tables;
+use mysql;
+show tables;
+use clup;
+show tables;
+
+select * from clup.auth_user;
+select * from auth_group;
+desc auth_user;
+
+truncate posts_customer_queue;
+
+UPDATE auth_user
+SET is_staff=1
+WHERE username = "David2";
+
+desc clup.posts_customer_queue;
+
+select * from clup.posts_customer_queue;
+select * from clup.posts_customer;
+select * from clup.auth_user;
+select * from clup.posts_profile;
+select * from clup.posts_business;
+desc clup.posts_business;
+select * from posts_post;
+
+show tables;
+drop table posts_all_customers;
+
+select store_name, sum(select group_size from posts_customer_queue where store_name=store_name)  from posts_customer_queue;
+
+SET SQL_SAFE_UPDATES = 0;
+select * from django_session;
+select * from django_admin_log;
+
+select * from django_content_type;
+delete from django_content_type where app_label = 'posts';
+
+select * from django_migrations;
+delete from django_migrations where app = 'sessions';
+
+
+select * from posts_post;
+select * from posts_test;
+select * from django_session;
+select * from django_migrations;
+select * from django_content_type;
+select * from django_admin_log;
+select * from auth_user_user_permissions;
+select * from auth_permission;
+select * from posts_post;
+select * from posts_post;
+select * from auth_group_permissions;
+select * from auth_user;
+use sys;
+desc auth_group;
+select * from auth_group;
+drop database clup;
+drop database lineup;
+
+CREATE DATABASE clup CHARACTER SET UTF8;
+CREATE USER David@lineup499.mysql.database.azure.com IDENTIFIED BY 'username';
+GRANT ALL PRIVILEGES ON clup.* TO David@lineup499.mysql.database.azure.com;
 
 #Register a client
 CREATE TABLE IF NOT EXISTS customers(
