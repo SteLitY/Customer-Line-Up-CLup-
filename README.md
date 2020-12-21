@@ -49,11 +49,18 @@ group may enter the store.
 
 #### In views.py:
 def user_must_login(redirect_to)
+
 def login_excluded(redirect_to)
+
 def please_login_view(request,*args, **kwargs)
+
 def password_reset_request(request)
+
 def line_up_view(request,*args, **kwargs)
+
 def leave_line_view(request, *args, **kwargs)
+
 def my_business_scheduled_view(request,*args, **kwargs)
+
 def remove_scheduled_view(request,*args, **kwargs)
 
