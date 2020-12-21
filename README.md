@@ -1,4 +1,5 @@
 # CustomerLineup 
+Authors: Ethan Sam, Kasey Harvey, David Chen, Mengzhen Zhao Christos Kamaris
 Link to deployment: http://64.225.27.198:8000/
 
 The goal of this project is to develop an easy-to-use webapp that:
@@ -43,4 +44,16 @@ group may enter the store.
 2. type: "python manage.py runserver"
 
 3. open http://127.0.0.1:8000/
+
+## Functions I've written (doesn't include the ones that I've contributed on).
+
+#### In views.py:
+def user_must_login(redirect_to)
+def login_excluded(redirect_to)
+def please_login_view(request,*args, **kwargs)
+def password_reset_request(request)
+def line_up_view(request,*args, **kwargs)
+def leave_line_view(request, *args, **kwargs)
+def my_business_scheduled_view(request,*args, **kwargs)
+def remove_scheduled_view(request,*args, **kwargs)
 
