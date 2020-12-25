@@ -27,7 +27,7 @@ group may enter the store.
 
 3. Install mySQL
 * This will allow you to manage data migrations\
-```pip install mysqlclient```
+*```pip install mysqlclient```
 * If you encounter any errors with this, [click here](https://stackoverflow.com/questions/35190465/virtualenvpython3-4-pip-install-mysqlclient-error)
 
 4. Install other libraries
