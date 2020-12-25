@@ -21,6 +21,10 @@ group may enter the store.
 1. Donwload Python 3.8 
 <https://www.python.org/downloads/>
 
+2. Skip other steps by installing all the libraries with this command:
+
+'''pip install django-crispy-forms django-ses django-filter qrcode pillow dj_Static mysqlclient'''
+
 3. Install mySQL
 * This will allow you to manage data migrations\
 ```pip install mysqlclient```
